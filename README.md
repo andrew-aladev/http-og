@@ -1,4 +1,4 @@
-# Old generation HTTP (0.9, 1.0, 1.1) C library.
+# Old generation HTTP (v0.9, v1.0, v1.1) C library
 
 WIP
 
