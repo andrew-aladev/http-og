@@ -1,0 +1,30 @@
+HTTP parser requires token parsing.
+Tokens can consist of list of predefined strings.
+The most basic example is "method" token.
+
+GET
+POST
+PUT
+
+We are taking next char from stream and validating whether new token is a valid "method".
+It means that we need to validate substring in the list of predefined methods.
+
+There is an easy way to do it: assign an unique number for each possible substring.
+This number can be named as "state".
+
+Empty - 0.
+"G" - 1, "GE" - 2, "GET" - 3.
+"P" - 4, "PO" - 5, "POS" - 6, "POST" - 7.
+"P" - 4, "PU" - 8, "PUT" - 9.
+
+We can see the following dependency:
+Empty => "G" => "GE" => "GET".
+Empty (0) => "G" (1) => "GE" (2) => "GET" (3).
+
+We can keep dependency + last symbol only.
+So we can update this table into the following form:
+Empty (0) => "G" (1) => "E" (2) => "T" (3).
+Empty (0) => "P" (4) => "O" (5) => "S" (6) => "T" (7).
+Empty (0) => "P" (4) => "U" (8) => "T" (9).
+
+-----
