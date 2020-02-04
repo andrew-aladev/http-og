@@ -2,12 +2,15 @@ HTTP parser requires token parsing.
 Tokens can consist of list of predefined strings.
 The most basic example is "method" token.
 
-GET
-POST
-PUT
+"constants":
+[
+  0: "GET,
+  1: "POST",
+  2: "PUT"
+]
 
 We are taking next char from stream and validating whether new token is a valid "method".
-It means that we need to validate substring in the list of predefined methods.
+It means that we need to validate substring in the list of predefined methods (constants).
 
 There is an easy way to do it: assign an unique number for each possible substring.
 This number can be named as "state".
@@ -21,10 +24,276 @@ We can see the following dependency:
 Empty => "G" => "GE" => "GET".
 Empty (0) => "G" (1) => "GE" (2) => "GET" (3).
 
-We can keep dependency + last symbol only.
-So we can update this table into the following form:
+We can keep dependency + last char only.
+Table can be updated into the following form:
 Empty (0) => "G" (1) => "E" (2) => "T" (3).
 Empty (0) => "P" (4) => "O" (5) => "S" (6) => "T" (7).
 Empty (0) => "P" (4) => "U" (8) => "T" (9).
 
+This mapping can be implemented as an array of char arrays:
+[
+  0: [ "G": 1, "P": 4 ],
+  1: [ "E": 2 ],
+  2: [ "T": 3 ],
+  4: [ "O": 5, "U": 8 ],
+  5: [ "S": 6 ],
+  6: [ "T": 7 ],
+  8: [ "T": 9 ]
+]
+
+It can be named as "next_state_by_last_symbols".
+
 -----
+
+What is the alphabet for constants?
+Each token has its own alphabet, so we should maintain it for each set of constants.
+
+For example alphabet for methods will be "A-Z" plus "-" symbol:
+[
+  0: "A"
+  ...
+  25: "Z",
+  26: "-"
+]
+
+We are taking next char from stream and wants to work with its index.
+Index of char in alphabet can be named as "symbol".
+
+We need to maintain mapping between symbol and char.
+This mapping can be named as "symbol_by_chars":
+[
+  "A": 0,
+  ...
+  "Z": 25,
+  "-": 26
+]
+
+It is possible that some chars in this mapping will not be defined.
+We can use "255" as undefined symbol value if alphabet is not full.
+
+So "symbol_by_chars" can be updated into the following form:
+[
+  [0 ... 255]: 255,
+  "A": 0,
+  ...
+  "Z": 25,
+  "-": 26
+]
+
+If alphabet will be full assignments will replace all default values ("[0 ... 255]: 255").
+
+Length of "symbol_by_chars" will be fixed - 255 elements.
+Memory consumption will be low and it will be easy to handle chars from stream.
+
+-----
+
+Lets update "next_state_by_last_symbols" mapping.
+We can have some "sym" function that maps char to symbol using "symbol_by_chars":
+[
+  0: [ [sym("G")]: 1, [sym("P")]: 4 ],
+  1: [ [sym("E")]: 2 ],
+  2: [ [sym("T")]: 3 ],
+  4: [ [sym("O")]: 5, [sym("U")]: 8 ],
+  5: [ [sym("S")]: 6 ],
+  6: [ [sym("T")]: 7 ],
+  8: [ [sym("T")]: 9 ]
+]
+
+3, 7, 9 states are missing here, these states are related to constants:
+[
+  3: "GET",
+  7: "POST",
+  9: "PUT"
+]
+
+Assignment of an unique state for substring can be done in any way, order is not important.
+So we can reassign states in the following way:
+1. assign first states for constants.
+2. assign "constants.length" as a state for empty string.
+3. assign next states for substrings.
+
+"next_state_by_last_symbols" can use "constants.length" offset for indexes.
+Lets update it:
+[
+  0: [ [sym("G")]: constants.length + 1, [sym("P")]: constants.length + 3 ],
+  1: [ [sym("E")]: constants.length + 2 ],
+  2: [ [sym("T")]: 0 ],
+  3: [ [sym("O")]: constants.length + 4, [sym("U")]: constants.length + 6 ],
+  4: [ [sym("S")]: constants.length + 5 ],
+  5: [ [sym("T")]: 1 ],
+  6: [ [sym("T")]: 2 ]
+]
+
+We need to review the following subarray:
+[
+  [sym("G")]: constants.length + 1,
+  [sym("P")]: constants.length + 3
+]
+
+Length of this array will be fixed - "alphabet.length" elements.
+It is possible to use "constants.length" as undefined value, because next state can't be "constants.length" (empty string).
+
+Lets update "next_state_by_last_symbols" once again:
+[
+  0: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("G")]: constants.length + 1,
+    [sym("P")]: constants.length + 3
+  ],
+  1: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("E")]: constants.length + 2
+  ],
+  2: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("T")]: 0
+  ],
+  3: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("O")]: constants.length + 4,
+    [sym("U")]: constants.length + 6
+  ],
+  4: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("S")]: constants.length + 5
+  ],
+  5: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("T")]: 1
+  ],
+  6: [
+    [0 ... (alphabet.length - 1)]: constants.length,
+    [sym("T")]: 2
+  ]
+]
+
+-----
+
+Lets finalize mappings for example.
+
+"constants":
+[
+  0: "GET,
+  1: "POST",
+  2: "PUT"
+]
+
+"alphabet":
+[
+  0: "G"
+  1: "E",
+  2: "T",
+  3: "P",
+  4: "0",
+  5: "S",
+  6: "U"
+]
+
+"symbol_by_chars":
+[
+  [0 ... 255]: 255,
+  "G": 0,
+  "E": 1,
+  "T": 2,
+  "P": 3,
+  "O": 4,
+  "S": 5,
+  "U": 6
+]
+
+"next_state_by_last_symbols":
+[
+  0: [
+    [0 ... 6]: 3,
+    [0]: 4,
+    [3]: 6
+  ],
+  1: [
+    [0 ... 6]: 3,
+    [1]: 5
+  ],
+  2: [
+    [0 ... 6]: 3,
+    [2]: 0
+  ],
+  3: [
+    [0 ... 6]: 3,
+    [4]: 7,
+    [6]: 9
+  ],
+  4: [
+    [0 ... 6]: 3,
+    [5]: 8
+  ],
+  5: [
+    [0 ... 6]: 3,
+    [2]: 1
+  ],
+  6: [
+    [0 ... 6]: 3,
+    [2]: 2
+  ]
+]
+
+-----
+
+How to process "GET" message from stream?
+
+Current state is "3".
+Next char is "G", symbol is symbol_by_chars["G"] => "0".
+next_state_by_last_symbols[3 - 3][0] => "4".
+
+Current state is "4".
+Next char is "E", symbol is symbol_by_chars["E"] => "1".
+next_state_by_last_symbols[4 - 3][1] => "5".
+
+Current state is "5".
+Next char is "T", symbol is symbol_by_chars["T"] => "2".
+next_state_by_last_symbols[5 - 3][2] => "0".
+
+Token was completed, current state "0" < 3, so constant can be found using the following way:
+constants[0] => "GET".
+
+-----
+
+How to process "PO" message from stream?
+
+Current state is "3".
+Next char is "P", symbol is symbol_by_chars["P"] => "3".
+next_state_by_last_symbols[3 - 3][3] => "6".
+
+Current state is "6".
+Next char is "O", symbol is symbol_by_chars["O"] => "4".
+next_state_by_last_symbols[6 - 3][4] => "7".
+
+Token was completed, current state "7" >= 3, so it is not valid.
+
+-----
+
+How to process "PUG" message from stream?
+
+Current state is "3".
+Next char is "P", symbol is symbol_by_chars["P"] => "3".
+next_state_by_last_symbols[3 - 3][3] => "6".
+
+Current state is "6".
+Next char is "U", symbol is symbol_by_chars["U"] => "6".
+next_state_by_last_symbols[6 - 3][6] => "9".
+
+Current state is "9".
+Next char is "G", symbol is symbol_by_chars["G"] => "0".
+next_state_by_last_symbols[9 - 3][0] => "3".
+
+Next state "3" is undefined, so token is not valid.
+
+-----
+
+How to process "Z" message from stream?
+
+Current state is "3".
+Next char is "Z", symbol is symbol_by_chars["Z"] => "255".
+Alphabet is not full, so symbol is undefined, token is invalid.
+
+-----
+
+How much memory will it consume?
