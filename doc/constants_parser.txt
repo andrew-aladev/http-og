@@ -1,5 +1,5 @@
 HTTP parser requires token parsing.
-Tokens can consist of list of predefined strings.
+Tokens can consist of list of predefined strings (constants).
 The most basic example is "method" token.
 
 "constants":
@@ -10,12 +10,12 @@ The most basic example is "method" token.
 ]
 
 We are taking next char from stream and validating whether new token is a valid "method".
-It means that we need to validate substring in the list of predefined methods (constants).
+It means that we need to validate substring from the list of predefined methods.
 
 There is an easy way to do it: assign an unique number for each possible substring.
 This number can be named as "state".
 
-Empty - 0.
+Empty string - 0.
 "G" - 1, "GE" - 2, "GET" - 3.
 "P" - 4, "PO" - 5, "POS" - 6, "POST" - 7.
 "P" - 4, "PU" - 8, "PUT" - 9.
@@ -24,7 +24,7 @@ We can see the following dependency:
 Empty => "G" => "GE" => "GET".
 Empty (0) => "G" (1) => "GE" (2) => "GET" (3).
 
-We can keep dependency + last char only.
+We can keep dependency and last char only.
 Table can be updated into the following form:
 Empty (0) => "G" (1) => "E" (2) => "T" (3).
 Empty (0) => "P" (4) => "O" (5) => "S" (6) => "T" (7).
@@ -48,7 +48,7 @@ It can be named as "next_state_by_last_symbols".
 What is the alphabet for constants?
 Each token has its own alphabet, so we should maintain it for each set of constants.
 
-For example alphabet for methods will be "A-Z" plus "-" symbol:
+For example alphabet for methods will be "A-Z" plus "-" char:
 [
   0: "A"
   ...
@@ -56,7 +56,7 @@ For example alphabet for methods will be "A-Z" plus "-" symbol:
   26: "-"
 ]
 
-We are taking next char from stream and wants to work with its index.
+We are taking next char from stream and want to work with its index.
 Index of char in alphabet can be named as "symbol".
 
 We need to maintain mapping between symbol and char.
@@ -68,7 +68,7 @@ This mapping can be named as "symbol_by_chars":
   "-": 26
 ]
 
-It is possible that some chars in this mapping will not be defined.
+It is possible that some chars in this mapping wont be defined.
 We can use "255" as undefined symbol value if alphabet is not full.
 
 So "symbol_by_chars" can be updated into the following form:
@@ -80,7 +80,7 @@ So "symbol_by_chars" can be updated into the following form:
   "-": 26
 ]
 
-If alphabet will be full assignments will replace all default values ("[0 ... 255]: 255").
+If alphabet will be full - assignments will replace all default values ("[0 ... 255]: 255").
 
 Length of "symbol_by_chars" will be fixed - 255 elements.
 Memory consumption will be low and it will be easy to handle chars from stream.
@@ -110,7 +110,7 @@ Assignment of an unique state for substring can be done in any way, order is not
 So we can reassign states in the following way:
 1. assign first states for constants.
 2. assign "constants.length" as a state for empty string.
-3. assign next states for substrings.
+3. assign next states for not empty substrings.
 
 "next_state_by_last_symbols" can use "constants.length" offset for indexes.
 Lets update it:
@@ -131,7 +131,7 @@ We need to review the following subarray:
 ]
 
 Length of this array will be fixed - "alphabet.length" elements.
-It is possible to use "constants.length" as undefined value, because next state can't be "constants.length" (empty string).
+It is possible to use "constants.length" as undefined value, because next state cant be "constants.length" (empty string).
 
 Lets update "next_state_by_last_symbols" once again:
 [
@@ -293,7 +293,3 @@ How to process "Z" message from stream?
 Current state is "3".
 Next char is "Z", symbol is symbol_by_chars["Z"] => "255".
 Alphabet is not full, so symbol is undefined, token is invalid.
-
------
-
-How much memory will it consume?
