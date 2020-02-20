@@ -8,7 +8,7 @@
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml
 
-const char * CONSTANTS[] = {
+const char * OGHTTP_CONSTANTS[] = {
   // RFC 2616 - HTTP/1.1
   "OPTIONS",
   "GET",

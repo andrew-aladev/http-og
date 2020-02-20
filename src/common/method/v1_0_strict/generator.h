@@ -6,7 +6,7 @@
 #if !defined(OGHTTP_METHOD_v1_0_STRICT_GENERATOR_H)
 #define OGHTTP_METHOD_v1_0_STRICT_GENERATOR_H
 
-const char * CONSTANTS[] = {
+const char * OGHTTP_CONSTANTS[] = {
   // HTTP/1.0 RFC 1945
   "GET",
   "HEAD",
