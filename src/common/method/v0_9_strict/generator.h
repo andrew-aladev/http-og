@@ -6,8 +6,6 @@
 #if !defined(OGHTTP_METHOD_v0_9_STRICT_GENERATOR_H)
 #define OGHTTP_METHOD_v0_9_STRICT_GENERATOR_H
 
-const char * OGHTTP_CONSTANTS[] = {
-  "GET"
-};
+const char * OGHTTP_CONSTANT = "GET";
 
 #endif // OGHTTP_METHOD_v0_9_STRICT_GENERATOR_H

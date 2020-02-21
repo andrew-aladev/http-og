@@ -235,6 +235,11 @@ Lets finalize mappings for example.
   ]
 ]
 
+The only remaining question is state type.
+We need to maintain "max_state" and provide 2 types: minimal and fast.
+Minimal type will be used in "next_state_by_last_symbols" to optimize memory consumption.
+Fast type will be used across operations.
+
 -----
 
 How to process "GET" message from stream?
