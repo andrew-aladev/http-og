@@ -35,6 +35,7 @@ set (
   CMAKE_MODULE_PATH
   "${PROJECT_SOURCE_DIR}/cmake/checks"
   "${PROJECT_SOURCE_DIR}/cmake/functions"
+  "${PROJECT_SOURCE_DIR}/cmake/generators"
 )
 
 include (GetVerboseFlags)

@@ -3,8 +3,8 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(OGHTTP_METHOD_v1_1_STRICT_GENERATOR_H)
-#define OGHTTP_METHOD_v1_1_STRICT_GENERATOR_H
+#if !defined(OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_GENERATOR_H)
+#define OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_GENERATOR_H
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml
 
@@ -71,4 +71,4 @@ const char * OGHTTP_CONSTANTS[] = {
   "PRI"
 };
 
-#endif // OGHTTP_METHOD_v1_1_STRICT_GENERATOR_H
+#endif // OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_GENERATOR_H
