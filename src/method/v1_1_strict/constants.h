@@ -3,12 +3,12 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_GENERATOR_H)
-#define OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_GENERATOR_H
+#if !defined(OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_H)
+#define OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_H
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml
 
-const char * OGHTTP_CONSTANTS[] = {
+const char* OGHTTP_CONSTANTS[] = {
   // RFC 2616 - HTTP/1.1
   "OPTIONS",
   "GET",
@@ -68,7 +68,6 @@ const char * OGHTTP_CONSTANTS[] = {
   "MKCALENDAR",
 
   // RFC 7540 - HTTP/2
-  "PRI"
-};
+  "PRI"};
 
-#endif // OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_GENERATOR_H
+#endif // OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_H

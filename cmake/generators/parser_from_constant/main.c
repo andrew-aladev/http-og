@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "constant_generator.h"
+#include "constant.h"
 
 int main()
 {
@@ -11,16 +11,16 @@ int main()
   printf("%s;", OGHTTP_CONSTANT);
 
   size_t max_state = strlen(OGHTTP_CONSTANT) + 1;
-  char*  min_state_t;
+  char*  min_state_bits;
 
   if (max_state <= UINT8_MAX) {
-    min_state_t = "uint8_t";
+    min_state_bits = "8";
   }
   else if (max_state <= UINT16_MAX) {
-    min_state_t = "uint16_t";
+    min_state_bits = "16";
   }
   else if (max_state <= UINT32_MAX) {
-    min_state_t = "uint32_t";
+    min_state_bits = "32";
   }
   else {
     // Max state is too big.
@@ -28,7 +28,7 @@ int main()
   }
 
   // Output minimal state type.
-  puts(min_state_t);
+  fputs(min_state_bits, stdout);
 
   return 0;
 }
