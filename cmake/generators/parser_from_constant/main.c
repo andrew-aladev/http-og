@@ -5,11 +5,17 @@
 
 #include "constant.h"
 
-int main()
-{
-  // Output constant itself.
-  printf("%s;", OGHTTP_CONSTANT);
+#define GLUE ";"
 
+#define PRINT(string) fputs(string, stdout)
+
+void print_constant()
+{
+  PRINT(OGHTTP_CONSTANT);
+}
+
+int print_min_state_bits()
+{
   size_t max_state = strlen(OGHTTP_CONSTANT) + 1;
   char*  min_state_bits;
 
@@ -27,8 +33,19 @@ int main()
     return 1;
   }
 
-  // Output minimal state type.
-  fputs(min_state_bits, stdout);
+  PRINT(min_state_bits);
+
+  return 0;
+}
+
+int main()
+{
+  print_constant();
+  PRINT(GLUE);
+
+  if (print_min_state_bits() != 0) {
+    return 1;
+  }
 
   return 0;
 }

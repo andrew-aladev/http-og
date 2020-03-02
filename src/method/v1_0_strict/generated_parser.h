@@ -7,9 +7,18 @@
 #if !defined(OGHTTP_METHOD_v1_0_STRICT_GENERATED_PARSER_H)
 #define OGHTTP_METHOD_v1_0_STRICT_GENERATED_PARSER_H
 
+#include "../../macro.h"
 #include "../../parser/common.h"
+#include "../../parser/constants.h"
 
 OGHTTP_PARSER_GENERATE_STATE_TYPE(method_v1_0_strict, 8);
 OGHTTP_PARSER_GENERATE_FAST_STATE_TYPE(method_v1_0_strict, 8);
+
+OGHTTP_PARSER_GENERATE_CONSTANTS(
+  METHOD_v1_0_STRICT,
+  OGHTTP_COLLECT(
+    "GET",
+    "HEAD",
+    "POST"));
 
 #endif // OGHTTP_METHOD_v1_0_STRICT_GENERATED_PARSER_H
