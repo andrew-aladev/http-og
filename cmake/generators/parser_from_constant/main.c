@@ -9,12 +9,12 @@
 
 #define PRINT(string) fputs(string, stdout)
 
-void print_constant()
+static inline void print_constant()
 {
   PRINT(OGHTTP_CONSTANT);
 }
 
-int print_min_state_bits()
+static inline int print_min_state_bits()
 {
   size_t max_state = strlen(OGHTTP_CONSTANT) + 1;
   char*  min_state_bits;

@@ -4,6 +4,6 @@
 #if !defined(OGHTTP_MACRO_H)
 #define OGHTTP_MACRO_H
 
-#define OGHTTP_COLLECT(...) __VA_ARGS__
+#define OGHTTP_ARGUMENTS(...) __VA_ARGS__
 
 #endif // OGHTTP_MACRO_H

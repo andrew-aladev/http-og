@@ -9,7 +9,7 @@ The most basic example is "method" token.
   2: "PUT"
 ]
 
-We are taking next char from stream and validating whether new token is a valid "method".
+We are taking next byte from stream and validating whether new token is a valid "method".
 It means that we need to validate substring from the list of predefined methods.
 
 There is an easy way to do it: assign an unique number for each possible substring.
@@ -24,13 +24,13 @@ We can see the following dependency:
 Empty => "G" => "GE" => "GET".
 Empty (0) => "G" (1) => "GE" (2) => "GET" (3).
 
-We can keep dependency and last char only.
+We can keep dependency and last byte only.
 Table can be updated into the following form:
 Empty (0) => "G" (1) => "E" (2) => "T" (3).
 Empty (0) => "P" (4) => "O" (5) => "S" (6) => "T" (7).
 Empty (0) => "P" (4) => "U" (8) => "T" (9).
 
-This mapping can be implemented as an array of char arrays:
+This mapping can be implemented as an array of byte arrays:
 [
   0: [ "G": 1, "P": 4 ],
   1: [ "E": 2 ],
@@ -48,7 +48,7 @@ It can be named as "next_state_by_last_symbols".
 What is the alphabet for constants?
 Each token has its own alphabet, so we should maintain it for each set of constants.
 
-For example alphabet for methods will be "A-Z" plus "-" char:
+For example alphabet for methods will be "A-Z" plus "-" byte:
 [
   0: "A"
   ...
@@ -56,11 +56,11 @@ For example alphabet for methods will be "A-Z" plus "-" char:
   26: "-"
 ]
 
-We are taking next char from stream and want to work with its index.
-Index of char in alphabet can be named as "symbol".
+We are taking next byte from stream and want to work with its index.
+Index of byte in alphabet can be named as "symbol".
 
-We need to maintain mapping between symbol and char.
-This mapping can be named as "symbol_by_chars":
+We need to maintain mapping between symbol and byte.
+This mapping can be named as "symbol_by_bytes":
 [
   "A": 0,
   ...
@@ -68,10 +68,10 @@ This mapping can be named as "symbol_by_chars":
   "-": 26
 ]
 
-It is possible that some chars in this mapping wont be defined.
+It is possible that some bytes in this mapping wont be defined.
 We can use "255" as undefined symbol value if alphabet is not full.
 
-So "symbol_by_chars" can be updated into the following form:
+So "symbol_by_bytes" can be updated into the following form:
 [
   [0 ... 255]: 255,
   "A": 0,
@@ -82,13 +82,13 @@ So "symbol_by_chars" can be updated into the following form:
 
 If alphabet will be full - assignments will replace all default values ("[0 ... 255]: 255").
 
-Length of "symbol_by_chars" will be fixed - 255 elements.
-Memory consumption will be low and it will be easy to handle chars from stream.
+Length of "symbol_by_bytes" will be fixed - 255 elements.
+Memory consumption will be low and it will be easy to handle bytes from stream.
 
 -----
 
 Lets update "next_state_by_last_symbols" mapping.
-We can have some "sym" function that maps char to symbol using "symbol_by_chars":
+We can have some "sym" function that maps byte to symbol using "symbol_by_bytes":
 [
   0: [ [sym("G")]: 1, [sym("P")]: 4 ],
   1: [ [sym("E")]: 2 ],
@@ -180,7 +180,7 @@ Lets finalize mappings for example.
 
 "alphabet":
 [
-  0: "G"
+  0: "G",
   1: "E",
   2: "T",
   3: "P",
@@ -189,7 +189,7 @@ Lets finalize mappings for example.
   6: "U"
 ]
 
-"symbol_by_chars":
+"symbol_by_bytes":
 [
   [0 ... 255]: 255,
   "G": 0,
@@ -245,15 +245,15 @@ Fast type will be used across operations.
 How to process "GET" message from stream?
 
 Current state is "3".
-Next char is "G", symbol is symbol_by_chars["G"] => "0".
+Next byte is "G", symbol is symbol_by_bytes["G"] => "0".
 next_state_by_last_symbols[3 - 3][0] => "4".
 
 Current state is "4".
-Next char is "E", symbol is symbol_by_chars["E"] => "1".
+Next byte is "E", symbol is symbol_by_bytes["E"] => "1".
 next_state_by_last_symbols[4 - 3][1] => "5".
 
 Current state is "5".
-Next char is "T", symbol is symbol_by_chars["T"] => "2".
+Next byte is "T", symbol is symbol_by_bytes["T"] => "2".
 next_state_by_last_symbols[5 - 3][2] => "0".
 
 Token was completed, current state "0" < 3, so constant can be found using the following way:
@@ -264,11 +264,11 @@ constants[0] => "GET".
 How to process "PO" message from stream?
 
 Current state is "3".
-Next char is "P", symbol is symbol_by_chars["P"] => "3".
+Next byte is "P", symbol is symbol_by_bytes["P"] => "3".
 next_state_by_last_symbols[3 - 3][3] => "6".
 
 Current state is "6".
-Next char is "O", symbol is symbol_by_chars["O"] => "4".
+Next byte is "O", symbol is symbol_by_bytes["O"] => "4".
 next_state_by_last_symbols[6 - 3][4] => "7".
 
 Token was completed, current state "7" >= 3, so it is not valid.
@@ -278,15 +278,15 @@ Token was completed, current state "7" >= 3, so it is not valid.
 How to process "PUG" message from stream?
 
 Current state is "3".
-Next char is "P", symbol is symbol_by_chars["P"] => "3".
+Next byte is "P", symbol is symbol_by_bytes["P"] => "3".
 next_state_by_last_symbols[3 - 3][3] => "6".
 
 Current state is "6".
-Next char is "U", symbol is symbol_by_chars["U"] => "6".
+Next byte is "U", symbol is symbol_by_bytes["U"] => "6".
 next_state_by_last_symbols[6 - 3][6] => "9".
 
 Current state is "9".
-Next char is "G", symbol is symbol_by_chars["G"] => "0".
+Next byte is "G", symbol is symbol_by_bytes["G"] => "0".
 next_state_by_last_symbols[9 - 3][0] => "3".
 
 Next state "3" is undefined, so token is not valid.
@@ -296,5 +296,5 @@ Next state "3" is undefined, so token is not valid.
 How to process "Z" message from stream?
 
 Current state is "3".
-Next char is "Z", symbol is symbol_by_chars["Z"] => "255".
+Next byte is "Z", symbol is symbol_by_bytes["Z"] => "255".
 Alphabet is not full, so symbol is undefined, token is invalid.
