@@ -20,10 +20,14 @@
 static inline void print_constants()
 {
   for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
-    if (index != 0) {
+    if (index == 0) {
+      PRINT(CONSTANT_PREFIX);
+    }
+    else {
       PRINT(CONSTANT_TERMINATOR);
       PRINT(CONSTANT_PREFIX);
     }
+
     printf(CONSTANT_TEMPLATE, OGHTTP_CONSTANTS[index]);
   }
 }
@@ -80,8 +84,8 @@ int main()
   print_constants();
   PRINT(GLUE);
 
-  print_alphabet();
-  PRINT(GLUE);
+  // print_alphabet();
+  // PRINT(GLUE);
 
   PRINT("8");
 
