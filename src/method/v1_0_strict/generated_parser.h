@@ -20,5 +20,29 @@ OGHTTP_PARSER_GENERATE_CONSTANTS(
     "GET",
     "HEAD",
     "POST"));
+OGHTTP_PARSER_GENERATE_ALPHABET(
+  METHOD_v1_0_STRICT,
+  OGHTTP_ARGUMENTS(
+    71,
+    69,
+    84,
+    72,
+    65,
+    68,
+    80,
+    79,
+    83));
+OGHTTP_PARSER_GENERATE_SYMBOL_BY_BYTES(
+  METHOD_v1_0_STRICT,
+  OGHTTP_ARGUMENTS(
+    [71] = 0,
+    [69] = 1,
+    [84] = 2,
+    [72] = 3,
+    [65] = 4,
+    [68] = 5,
+    [80] = 6,
+    [79] = 7,
+    [83] = 8));
 
 #endif // OGHTTP_METHOD_v1_0_STRICT_GENERATED_PARSER_H

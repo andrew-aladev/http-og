@@ -39,10 +39,11 @@ static inline void print_constants()
 uint8_t alphabet[ALPHABET_MAX_LENGTH];
 size_t  alphabet_length = 0;
 
-#define UNDEFINED_SYMBOL UINT8_MAX
+#define SYMBOL_BY_BYTES_LENGTH ALPHABET_MAX_LENGTH
+#define UNDEFINED_SYMBOL SYMBOL_BY_BYTES_LENGTH - 1
 
-uint8_t symbol_by_bytes[ALPHABET_MAX_LENGTH] = {
-  [0 ... UINT8_MAX] = UNDEFINED_SYMBOL};
+uint8_t symbol_by_bytes[SYMBOL_BY_BYTES_LENGTH] = {
+  [0 ... SYMBOL_BY_BYTES_LENGTH - 1] = UNDEFINED_SYMBOL};
 
 static inline bool is_alphabet_full()
 {
@@ -74,9 +75,43 @@ static inline void init_alphabet()
   }
 }
 
+#define ALPHABET_PREFIX "    "
+#define ALPHABET_TEMPLATE "%u"
+#define ALPHABET_TERMINATOR ",\n"
+
 static inline void print_alphabet()
 {
-  init_alphabet();
+  for (size_t index = 0; index < alphabet_length; index++) {
+    if (index == 0) {
+      PRINT(ALPHABET_PREFIX);
+    }
+    else {
+      PRINT(ALPHABET_TERMINATOR);
+      PRINT(ALPHABET_PREFIX);
+    }
+
+    printf(ALPHABET_TEMPLATE, alphabet[index]);
+  }
+}
+
+#define SYMBOL_BY_BYTE_PREFIX "    "
+#define SYMBOL_BY_BYTE_TEMPLATE "[%u] = %u"
+#define SYMBOL_BY_BYTE_TERMINATOR ",\n"
+
+static inline void print_symbol_by_bytes()
+{
+  for (size_t index = 0; index < alphabet_length; index++) {
+    if (index == 0) {
+      PRINT(SYMBOL_BY_BYTE_PREFIX);
+    }
+    else {
+      PRINT(SYMBOL_BY_BYTE_TERMINATOR);
+      PRINT(SYMBOL_BY_BYTE_PREFIX);
+    }
+
+    uint8_t byte = alphabet[index];
+    printf(SYMBOL_BY_BYTE_TEMPLATE, byte, symbol_by_bytes[byte]);
+  }
 }
 
 int main()
@@ -84,8 +119,13 @@ int main()
   print_constants();
   PRINT(GLUE);
 
-  // print_alphabet();
-  // PRINT(GLUE);
+  init_alphabet();
+
+  print_alphabet();
+  PRINT(GLUE);
+
+  print_symbol_by_bytes();
+  PRINT(GLUE);
 
   PRINT("8");
 
