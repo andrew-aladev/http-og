@@ -45,5 +45,8 @@ function (generate_parser_from_constant PREFIX PREFIX_LOWER_CASE INCLUDE_PATH)
 
   FILE (REMOVE_RECURSE ${BINARY_DIR})
 
-  mark_as_advanced (${OUTPUT_CONSTANT} ${OUTPUT_MIN_STATE_BITS})
+  mark_as_advanced (
+    ${OUTPUT_CONSTANT}
+    ${OUTPUT_MIN_STATE_BITS}
+  )
 endfunction ()

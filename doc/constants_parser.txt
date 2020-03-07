@@ -1,5 +1,5 @@
 HTTP parser requires token parsing.
-Tokens can consist of list of predefined strings (constants).
+Tokens can consist of the list of predefined strings (constants).
 The most basic example is "method" token.
 
 "constants":
