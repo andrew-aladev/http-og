@@ -5,18 +5,24 @@
 
 #include "constant.h"
 
+#define CONSTANT OGHTTP_CONSTANT
 #define GLUE ";"
 
 #define PRINT(string) fputs(string, stdout)
+#define PRINT_ERROR(string) fputs(string, stderr)
+
+// -- constant --
 
 static inline void print_constant()
 {
-  PRINT(OGHTTP_CONSTANT);
+  PRINT(CONSTANT);
 }
+
+// -- min state bits --
 
 static inline int print_min_state_bits()
 {
-  size_t max_state = strlen(OGHTTP_CONSTANT) + 1;
+  size_t max_state = strlen(CONSTANT) + 1;
   char*  min_state_bits;
 
   if (max_state <= UINT8_MAX) {
@@ -29,7 +35,7 @@ static inline int print_min_state_bits()
     min_state_bits = "32";
   }
   else {
-    // Max state is too big.
+    PRINT_ERROR("max state is too big\n");
     return 1;
   }
 
@@ -40,8 +46,12 @@ static inline int print_min_state_bits()
 
 int main()
 {
+  // -- constant --
+
   print_constant();
   PRINT(GLUE);
+
+  // -- min state bits --
 
   if (print_min_state_bits() != 0) {
     return 1;
