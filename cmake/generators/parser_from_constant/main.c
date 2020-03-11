@@ -53,7 +53,8 @@ int main()
 
   // -- min state bits --
 
-  if (print_min_state_bits() != 0) {
+  int result = print_min_state_bits();
+  if (result != 0) {
     return 1;
   }
 

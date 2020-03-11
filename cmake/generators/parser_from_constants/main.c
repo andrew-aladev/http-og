@@ -46,21 +46,21 @@ uint8_t alphabet[ALPHABET_MAX_LENGTH];
 uint8_t symbol_by_bytes[SYMBOL_BY_BYTES_LENGTH] = {
   [0 ... SYMBOL_BY_BYTES_LENGTH - 1] = UNDEFINED_SYMBOL};
 
-static inline bool has_symbol_for_byte(const uint8_t byte)
+static inline bool has_symbol_for_byte(uint8_t byte)
 {
   return symbol_by_bytes[byte] != UNDEFINED_SYMBOL;
 }
 
-static inline void add_symbol(size_t* alphabet_length_ptr, const uint8_t byte)
+static inline void add_symbol(size_t* alphabet_length_ptr, uint8_t byte)
 {
-  const uint8_t symbol = *alphabet_length_ptr;
+  uint8_t symbol = *alphabet_length_ptr;
   (*alphabet_length_ptr)++;
 
   alphabet[symbol]      = byte;
   symbol_by_bytes[byte] = symbol;
 }
 
-static inline bool is_alphabet_full(const size_t alphabet_length)
+static inline bool is_alphabet_full(size_t alphabet_length)
 {
   return alphabet_length == ALPHABET_MAX_LENGTH;
 }
@@ -91,7 +91,7 @@ static inline void init_alphabet(size_t* alphabet_length_ptr)
 #define ALPHABET_TEMPLATE "%u"
 #define ALPHABET_TERMINATOR ",\n"
 
-static inline void print_alphabet(const size_t alphabet_length)
+static inline void print_alphabet(size_t alphabet_length)
 {
   for (size_t index = 0; index < alphabet_length; index++) {
     if (index == 0) {
@@ -110,7 +110,7 @@ static inline void print_alphabet(const size_t alphabet_length)
 #define SYMBOL_BY_BYTE_TEMPLATE "[%u] = %u"
 #define SYMBOL_BY_BYTE_TERMINATOR ",\n"
 
-static inline void print_symbol_by_bytes(const size_t alphabet_length)
+static inline void print_symbol_by_bytes(size_t alphabet_length)
 {
   for (size_t index = 0; index < alphabet_length; index++) {
     if (index == 0) {
@@ -133,7 +133,7 @@ typedef struct {
   size_t      length;
 } prefix_t;
 
-static inline bool has_prefix(const prefix_t* prefixes, const size_t prefixes_length, const char* constant, const size_t prefix_length)
+static inline bool has_prefix(const prefix_t* prefixes, size_t prefixes_length, char* constant, size_t prefix_length)
 {
   for (size_t index = 0; index < prefixes_length; index++) {
     const prefix_t* prefix = &prefixes[index];
@@ -146,7 +146,7 @@ static inline bool has_prefix(const prefix_t* prefixes, const size_t prefixes_le
   return false;
 }
 
-static inline void add_prefix(prefix_t* prefixes, size_t* prefixes_length_ptr, const char* constant, const size_t prefix_length)
+static inline void add_prefix(prefix_t* prefixes, size_t* prefixes_length_ptr, const char* constant, size_t prefix_length)
 {
   prefix_t* prefix = &prefixes[*prefixes_length_ptr];
   (*prefixes_length_ptr)++;
@@ -187,7 +187,47 @@ static inline int init_prefixes(size_t* prefixes_length_ptr)
   return 0;
 }
 
+// -- max state --
+
+static inline size_t get_max_state(size_t prefixes_length)
+{
+  // State consist of constants + empty string + prefixes.
+  return CONSTANTS_LENGTH + 1 + prefixes_length;
+}
+
 // -- next state by last symbols --
+
+#define INITIAL_STATE CONSTANTS_LENGTH
+
+static inline int print_next_state_by_last_symbols(size_t alphabet_length, size_t max_state)
+{
+  size_t next_state_by_last_symbols_length = max_state * alphabet_length;
+
+  size_t* next_state_by_last_symbols = malloc(next_state_by_last_symbols_length * sizeof(size_t));
+  if (next_state_by_last_symbols == NULL) {
+    PRINT_ERROR("failed to allocate memory for next state by last symbols\n");
+    return 1;
+  }
+
+  size_t index;
+  for (index = 0; index < next_state_by_last_symbols_length; index++) {
+    next_state_by_last_symbols[index] = INITIAL_STATE;
+  }
+
+  for (index = 0; index < CONSTANTS_LENGTH; index++) {
+    const char* constant = CONSTANTS[index];
+    size_t      state    = INITIAL_STATE;
+
+    for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
+      uint8_t symbol = symbol_by_bytes[constant[jndex]];
+      state++;
+    }
+  }
+
+  free(next_state_by_last_symbols);
+
+  return 0;
+}
 
 int main()
 {
@@ -210,11 +250,22 @@ int main()
   // -- prefixes --
 
   size_t prefixes_length;
-  if (init_prefixes(&prefixes_length) != 0) {
+
+  int result = init_prefixes(&prefixes_length);
+  if (result != 0) {
     return 1;
   }
 
+  // -- max state --
+
+  size_t max_state = get_max_state(prefixes_length);
+
   // -- next state by last symbols --
+
+  result = print_next_state_by_last_symbols(alphabet_length, max_state);
+  if (result != 0) {
+    return 2;
+  }
 
   // -- min state bits --
 
