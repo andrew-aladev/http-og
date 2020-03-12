@@ -3,8 +3,8 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(OGHTTP_METHOD_v1_0_STRICT_CONSTANTS_H)
-#define OGHTTP_METHOD_v1_0_STRICT_CONSTANTS_H
+#if !defined(OGHTTP_METHOD_v1_0_CONSTANTS_H)
+#define OGHTTP_METHOD_v1_0_CONSTANTS_H
 
 const char* OGHTTP_CONSTANTS[] = {
   // HTTP/1.0 RFC 1945
@@ -12,4 +12,4 @@ const char* OGHTTP_CONSTANTS[] = {
   "HEAD",
   "POST"};
 
-#endif // OGHTTP_METHOD_v1_0_STRICT_CONSTANTS_H
+#endif // OGHTTP_METHOD_v1_0_CONSTANTS_H

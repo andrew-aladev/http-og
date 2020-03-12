@@ -3,9 +3,9 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(OGHTTP_METHOD_v0_9_STRICT_CONSTANT_H)
-#define OGHTTP_METHOD_v0_9_STRICT_CONSTANT_H
+#if !defined(OGHTTP_METHOD_v0_9_CONSTANT_H)
+#define OGHTTP_METHOD_v0_9_CONSTANT_H
 
 const char* OGHTTP_CONSTANT = "GET";
 
-#endif // OGHTTP_METHOD_v0_9_STRICT_CONSTANT_H
+#endif // OGHTTP_METHOD_v0_9_CONSTANT_H

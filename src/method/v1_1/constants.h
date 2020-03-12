@@ -3,8 +3,8 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_H)
-#define OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_H
+#if !defined(OGHTTP_METHOD_v1_1_CONSTANTS_H)
+#define OGHTTP_METHOD_v1_1_CONSTANTS_H
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml
 
@@ -70,4 +70,4 @@ const char* OGHTTP_CONSTANTS[] = {
   // RFC 7540 - HTTP/2
   "PRI"};
 
-#endif // OGHTTP_METHOD_v1_1_STRICT_CONSTANTS_H
+#endif // OGHTTP_METHOD_v1_1_CONSTANTS_H

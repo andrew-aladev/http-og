@@ -1,4 +1,4 @@
-set (PARSER_PREFIX "METHOD_v1_0_STRICT")
+set (PARSER_PREFIX "METHOD_v1_1")
 string (TOLOWER ${PARSER_PREFIX} PARSER_PREFIX_LOWER_CASE)
 
 include (GenerateParserFromConstants)

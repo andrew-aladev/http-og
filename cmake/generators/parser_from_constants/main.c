@@ -15,6 +15,7 @@
 
 #define CONSTANTS OGHTTP_CONSTANTS
 #define CONSTANTS_LENGTH sizeof(CONSTANTS) / sizeof(CONSTANTS[0])
+
 #define CONSTANT_PREFIX "    "
 #define CONSTANT_TEMPLATE "\"%s\""
 #define CONSTANT_TERMINATOR ",\n"
@@ -223,23 +224,29 @@ static inline int print_next_state_by_last_symbols(size_t alphabet_length, size_
   }
 
   size_t index;
+
   for (index = 0; index < next_state_by_last_symbols_length; index++) {
     next_state_by_last_symbols[index] = INITIAL_STATE;
   }
+
+  size_t global_state = INITIAL_STATE;
 
   for (index = 0; index < CONSTANTS_LENGTH; index++) {
     const char* constant = CONSTANTS[index];
     size_t      state    = INITIAL_STATE;
 
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
-      uint8_t last_symbol = symbol_by_bytes[constant[jndex]];
-      size_t  next_state  = state + 1;
+      uint8_t last_symbol                           = symbol_by_bytes[constant[jndex]];
+      size_t  last_symbol_index                     = state * alphabet_length + last_symbol;
+      next_state_by_last_symbols[last_symbol_index] = ++global_state;
 
-      size_t last_symbol_index                      = state * alphabet_length + last_symbol;
-      next_state_by_last_symbols[last_symbol_index] = next_state;
-
-      state = next_state;
+      state = global_state;
     }
+  }
+
+  if (global_state != max_state) {
+    PRINT_ERROR("global state is not equal to max state\n");
+    return 2;
   }
 
   for (index = 0; index < next_state_by_last_symbols_length; index++) {
@@ -292,9 +299,6 @@ int main()
   // -- constants --
 
   print_constants();
-  PRINT(GLUE);
-
-  printf("%zu", CONSTANTS_LENGTH);
   PRINT(GLUE);
 
   // -- alphabet --
