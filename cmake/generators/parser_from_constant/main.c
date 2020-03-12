@@ -22,7 +22,7 @@ static inline void print_constant()
 
 static inline int print_min_state_bits()
 {
-  size_t max_state = strlen(CONSTANT) + 1;
+  size_t max_state = strlen(CONSTANT);
   char*  min_state_bits;
 
   if (max_state <= UINT8_MAX) {

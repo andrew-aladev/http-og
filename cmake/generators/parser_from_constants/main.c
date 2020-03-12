@@ -133,7 +133,7 @@ typedef struct {
   size_t      length;
 } prefix_t;
 
-static inline bool has_prefix(const prefix_t* prefixes, size_t prefixes_length, char* constant, size_t prefix_length)
+static inline bool has_prefix(const prefix_t* prefixes, size_t prefixes_length, const char* constant, size_t prefix_length)
 {
   for (size_t index = 0; index < prefixes_length; index++) {
     const prefix_t* prefix = &prefixes[index];
@@ -189,19 +189,32 @@ static inline int init_prefixes(size_t* prefixes_length_ptr)
 
 // -- max state --
 
-static inline size_t get_max_state(size_t prefixes_length)
+static inline int get_max_state(size_t* max_state_ptr)
 {
-  // State consist of constants + empty string + prefixes.
-  return CONSTANTS_LENGTH + 1 + prefixes_length;
+  size_t prefixes_length;
+
+  int result = init_prefixes(&prefixes_length);
+  if (result != 0) {
+    return 1;
+  }
+
+  // Max state will be equal to constants + empty string (1) + prefixes - 1.
+  *max_state_ptr = CONSTANTS_LENGTH + prefixes_length;
+
+  return 0;
 }
 
 // -- next state by last symbols --
 
 #define INITIAL_STATE CONSTANTS_LENGTH
 
+#define NEXT_STATE_BY_LAST_SYMBOLS_PREFIX "    "
+#define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
+#define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
+
 static inline int print_next_state_by_last_symbols(size_t alphabet_length, size_t max_state)
 {
-  size_t next_state_by_last_symbols_length = max_state * alphabet_length;
+  size_t next_state_by_last_symbols_length = (max_state + 1) * alphabet_length;
 
   size_t* next_state_by_last_symbols = malloc(next_state_by_last_symbols_length * sizeof(size_t));
   if (next_state_by_last_symbols == NULL) {
@@ -219,12 +232,57 @@ static inline int print_next_state_by_last_symbols(size_t alphabet_length, size_
     size_t      state    = INITIAL_STATE;
 
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
-      uint8_t symbol = symbol_by_bytes[constant[jndex]];
-      state++;
+      uint8_t last_symbol = symbol_by_bytes[constant[jndex]];
+      size_t  next_state  = state + 1;
+
+      size_t last_symbol_index                      = state * alphabet_length + last_symbol;
+      next_state_by_last_symbols[last_symbol_index] = next_state;
+
+      state = next_state;
+    }
+  }
+
+  for (index = 0; index < next_state_by_last_symbols_length; index++) {
+    if (index == 0) {
+      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
+    }
+    else {
+      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR);
+      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
+    }
+
+    size_t next_state = next_state_by_last_symbols[index];
+    if (next_state != INITIAL_STATE) {
+      printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
     }
   }
 
   free(next_state_by_last_symbols);
+
+  return 0;
+}
+
+// -- min state bits --
+
+static inline int print_min_state_bits(size_t max_state)
+{
+  char* min_state_bits;
+
+  if (max_state <= UINT8_MAX) {
+    min_state_bits = "8";
+  }
+  else if (max_state <= UINT16_MAX) {
+    min_state_bits = "16";
+  }
+  else if (max_state <= UINT32_MAX) {
+    min_state_bits = "32";
+  }
+  else {
+    PRINT_ERROR("max state is too big\n");
+    return 1;
+  }
+
+  PRINT(min_state_bits);
 
   return 0;
 }
@@ -234,6 +292,9 @@ int main()
   // -- constants --
 
   print_constants();
+  PRINT(GLUE);
+
+  printf("%zu", CONSTANTS_LENGTH);
   PRINT(GLUE);
 
   // -- alphabet --
@@ -247,18 +308,14 @@ int main()
   print_symbol_by_bytes(alphabet_length);
   PRINT(GLUE);
 
-  // -- prefixes --
+  // -- max state --
 
-  size_t prefixes_length;
+  size_t max_state;
 
-  int result = init_prefixes(&prefixes_length);
+  int result = get_max_state(&max_state);
   if (result != 0) {
     return 1;
   }
-
-  // -- max state --
-
-  size_t max_state = get_max_state(prefixes_length);
 
   // -- next state by last symbols --
 
@@ -267,9 +324,14 @@ int main()
     return 2;
   }
 
+  PRINT(GLUE);
+
   // -- min state bits --
 
-  PRINT("8");
+  result = print_min_state_bits(max_state);
+  if (result != 0) {
+    return 3;
+  }
 
   return 0;
 }

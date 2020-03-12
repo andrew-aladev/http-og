@@ -4,6 +4,6 @@ The most basic example is "GET" token for HTTP v0.9.
 "constant" = "GET"
 
 We can assign 0 state for empty string, 1 for "G", 2 for "E", 3 for "T".
-"max_state" will be "constant.length + 1".
+"max_state" will be "constant.length".
 
 We need to maintain only fast type for state.
