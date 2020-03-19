@@ -134,6 +134,20 @@ typedef struct {
   size_t      length;
 } prefix_t;
 
+// We need to check whether prefix doesn't equal to any constant.
+static inline bool is_prefix(const char* constant, size_t prefix_length)
+{
+  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
+    const char* target_constant = CONSTANTS[index];
+
+    if (strlen(target_constant) == prefix_length && strncmp(target_constant, constant, prefix_length) == 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 static inline bool has_prefix(const prefix_t* prefixes, size_t prefixes_length, const char* constant, size_t prefix_length)
 {
   for (size_t index = 0; index < prefixes_length; index++) {
@@ -177,6 +191,10 @@ static inline int init_prefixes(size_t* prefixes_length_ptr)
     const char* constant = CONSTANTS[index];
 
     for (size_t prefix_length = 1; prefix_length < strlen(constant); prefix_length++) {
+      if (!is_prefix(constant, prefix_length)) {
+        continue;
+      }
+
       if (!has_prefix(prefixes, *prefixes_length_ptr, constant, prefix_length)) {
         add_prefix(prefixes, prefixes_length_ptr, constant, prefix_length);
       }
@@ -190,7 +208,9 @@ static inline int init_prefixes(size_t* prefixes_length_ptr)
 
 // -- max state --
 
-static inline int get_max_state(size_t* max_state_ptr)
+#define MAX_STATE_TEMPLATE "%zu"
+
+static inline int print_max_state(size_t* max_state_ptr)
 {
   size_t prefixes_length;
 
@@ -201,100 +221,7 @@ static inline int get_max_state(size_t* max_state_ptr)
 
   // Max state will be equal to constants + empty string (1) + prefixes - 1.
   *max_state_ptr = CONSTANTS_LENGTH + prefixes_length;
-
-  return 0;
-}
-
-// -- next state by last symbols --
-
-#define INITIAL_STATE CONSTANTS_LENGTH
-
-#define NEXT_STATE_BY_LAST_SYMBOLS_PREFIX "    "
-#define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
-#define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
-
-static inline bool find_state_by_prefix(size_t* state_ptr, const char* constant, size_t prefix_length)
-{
-  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
-    const char* target_constant = CONSTANTS[index];
-
-    if (prefix_length == strlen(target_constant) && strncmp(constant, target_constant, prefix_length) == 0) {
-      *state_ptr = index;
-      return true;
-    }
-  }
-
-  return false;
-}
-
-static inline int print_next_state_by_last_symbols(size_t alphabet_length, size_t max_state)
-{
-  // Each state has alphabet length of possible last symbols.
-  size_t next_state_by_last_symbols_length = (max_state + 1) * alphabet_length;
-
-  size_t* next_state_by_last_symbols = malloc(next_state_by_last_symbols_length * sizeof(size_t));
-  if (next_state_by_last_symbols == NULL) {
-    PRINT_ERROR("failed to allocate memory for next state by last symbols\n");
-    return 1;
-  }
-
-  size_t index;
-
-  for (index = 0; index < next_state_by_last_symbols_length; index++) {
-    // Initialize all next states with initial state.
-    next_state_by_last_symbols[index] = INITIAL_STATE;
-  }
-
-  size_t global_state = INITIAL_STATE;
-
-  for (index = 0; index < CONSTANTS_LENGTH; index++) {
-    // Starting with empty string and initial state.
-    const char* constant = CONSTANTS[index];
-    size_t      state    = INITIAL_STATE;
-
-    for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
-      uint8_t last_symbol       = symbol_by_bytes[constant[jndex]];
-      size_t  last_symbol_index = state * alphabet_length + last_symbol;
-      size_t  last_symbol_state = next_state_by_last_symbols[last_symbol_index];
-
-      if (last_symbol_state == INITIAL_STATE) {
-        // We need to check whether current prefix matches constant.
-        if (!find_state_by_prefix(&state, constant, jndex + 1)) {
-          state = ++global_state;
-        }
-
-        next_state_by_last_symbols[last_symbol_index] = state;
-      }
-      else {
-        state = last_symbol_state;
-      }
-    }
-  }
-
-  if (global_state != max_state) {
-    PRINT_ERROR("global state is not equal to max state\n");
-
-    free(next_state_by_last_symbols);
-
-    return 2;
-  }
-
-  for (index = 0; index < next_state_by_last_symbols_length; index++) {
-    if (index == 0) {
-      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
-    }
-    else {
-      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR);
-      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
-    }
-
-    size_t next_state = next_state_by_last_symbols[index];
-    if (next_state != INITIAL_STATE) {
-      printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
-    }
-  }
-
-  free(next_state_by_last_symbols);
+  printf(MAX_STATE_TEMPLATE, *max_state_ptr);
 
   return 0;
 }
@@ -324,6 +251,109 @@ static inline int print_min_state_bits(size_t max_state)
   return 0;
 }
 
+// -- next state by last symbols --
+
+#define INITIAL_STATE CONSTANTS_LENGTH
+
+#define NEXT_STATE_BY_LAST_SYMBOLS_PREFIX "    "
+#define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
+#define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
+
+// We need to check whether current prefix matches constant.
+static inline bool find_state_from_constants(size_t* state_ptr, const char* constant, size_t prefix_length)
+{
+  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
+    const char* target_constant = CONSTANTS[index];
+
+    if (prefix_length == strlen(target_constant) && strncmp(constant, target_constant, prefix_length) == 0) {
+      *state_ptr = index;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+static inline int print_next_state_by_last_symbols(size_t alphabet_length, size_t max_state)
+{
+  // Each state has alphabet length of possible last symbols.
+  size_t next_state_by_last_symbols_length = (max_state + 1) * alphabet_length;
+
+  size_t* next_state_by_last_symbols = malloc(next_state_by_last_symbols_length * sizeof(size_t));
+  if (next_state_by_last_symbols == NULL) {
+    PRINT_ERROR("failed to allocate memory for next state by last symbols\n");
+    return 1;
+  }
+
+  size_t index;
+
+  // Initialize all next states with initial state.
+  for (index = 0; index < next_state_by_last_symbols_length; index++) {
+    next_state_by_last_symbols[index] = INITIAL_STATE;
+  }
+
+  size_t global_state = INITIAL_STATE;
+
+  for (index = 0; index < CONSTANTS_LENGTH; index++) {
+    // Starting with empty string and initial state.
+    const char* constant = CONSTANTS[index];
+    size_t      state    = INITIAL_STATE;
+
+    for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
+      uint8_t last_symbol       = symbol_by_bytes[constant[jndex]];
+      size_t  last_symbol_index = state * alphabet_length + last_symbol;
+      size_t  last_symbol_state = next_state_by_last_symbols[last_symbol_index];
+
+      if (last_symbol_state != INITIAL_STATE) {
+        state = last_symbol_state;
+        continue;
+      }
+
+      if (!find_state_from_constants(&state, constant, jndex + 1)) {
+        if (global_state >= max_state) {
+          PRINT_ERROR("global state should be less than max state\n");
+          free(next_state_by_last_symbols);
+          return 2;
+        }
+
+        state = ++global_state;
+      }
+
+      next_state_by_last_symbols[last_symbol_index] = state;
+    }
+  }
+
+  if (global_state != max_state) {
+    PRINT_ERROR("global state is not equal to max state\n");
+    free(next_state_by_last_symbols);
+    return 3;
+  }
+
+  bool first_state_printed = false;
+
+  for (index = 0; index < next_state_by_last_symbols_length; index++) {
+    size_t next_state = next_state_by_last_symbols[index];
+    if (next_state == INITIAL_STATE) {
+      continue;
+    }
+
+    if (first_state_printed) {
+      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR);
+      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
+    }
+    else {
+      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
+      first_state_printed = true;
+    }
+
+    printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
+  }
+
+  free(next_state_by_last_symbols);
+
+  return 0;
+}
+
 int main()
 {
   // -- constants --
@@ -346,16 +376,9 @@ int main()
 
   size_t max_state;
 
-  int result = get_max_state(&max_state);
+  int result = print_max_state(&max_state);
   if (result != 0) {
     return 1;
-  }
-
-  // -- next state by last symbols --
-
-  result = print_next_state_by_last_symbols(alphabet_length, max_state);
-  if (result != 0) {
-    return 2;
   }
 
   PRINT(GLUE);
@@ -363,6 +386,15 @@ int main()
   // -- min state bits --
 
   result = print_min_state_bits(max_state);
+  if (result != 0) {
+    return 2;
+  }
+
+  PRINT(GLUE);
+
+  // -- next state by last symbols --
+
+  result = print_next_state_by_last_symbols(alphabet_length, max_state);
   if (result != 0) {
     return 3;
   }

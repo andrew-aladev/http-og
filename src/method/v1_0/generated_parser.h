@@ -48,4 +48,21 @@ OGHTTP_PARSER_CONSTANTS_GENERATE_SYMBOL_BY_BYTES(
     [79] = 7,
     [83] = 8));
 
+OGHTTP_PARSER_CONSTANTS_GENERATE_NEXT_STATE_BY_LAST_SYMBOLS(
+  METHOD_v1_0,
+  method_v1_0,
+  11,
+  OGHTTP_ARGUMENTS(
+    [27] = 4,
+    [30] = 6,
+    [33] = 9,
+    [37] = 5,
+    [47] = 0,
+    [55] = 7,
+    [67] = 8,
+    [77] = 1,
+    [88] = 10,
+    [98] = 11,
+    [101] = 2));
+
 #endif // OGHTTP_METHOD_v1_0_GENERATED_PARSER_H

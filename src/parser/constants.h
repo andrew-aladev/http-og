@@ -27,4 +27,11 @@
     [0 ... OGHTTP_##PREFIX##_PARSER_SYMBOL_BY_BYTES_LENGTH - 1] = OGHTTP_##PREFIX##_PARSER_UNDEFINED_SYMBOL,          \
     SYMBOL_BY_BYTES};
 
+#define OGHTTP_PARSER_CONSTANTS_GENERATE_NEXT_STATE_BY_LAST_SYMBOLS(PREFIX, PREFIX_LOWER_CASE, MAX_STATE, NEXT_STATE_BY_LAST_SYMBOLS)                     \
+  const size_t OGHTTP_##PREFIX##_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH = (MAX_STATE + 1) * OGHTTP_##PREFIX##_PARSER_ALPHABET_LENGTH;                          \
+                                                                                                                                                          \
+  const oghttp_##PREFIX_LOWER_CASE##_parser_state_t OGHTTP_##PREFIX##_NEXT_STATE_BY_LAST_SYMBOLS[OGHTTP_##PREFIX##_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = { \
+    [0 ... OGHTTP_##PREFIX##_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = OGHTTP_##PREFIX##_PARSER_INITIAL_STATE,                                             \
+    NEXT_STATE_BY_LAST_SYMBOLS};
+
 #endif // OGHTTP_PARSER_CONSTANTS_H
