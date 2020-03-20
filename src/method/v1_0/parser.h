@@ -1,6 +1,8 @@
 // Old generation HTTP (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
+// This file was generated, do not edit manually.
+
 // It may not be possible to run generator while cross compiling.
 // So generated file should be shipped with its template.
 
@@ -53,16 +55,16 @@ OGHTTP_PARSER_CONSTANTS_GENERATE_NEXT_STATE_BY_LAST_SYMBOLS(
   method_v1_0,
   11,
   OGHTTP_ARGUMENTS(
-    [27] = 4,
-    [30] = 6,
-    [33] = 9,
-    [37] = 5,
-    [47] = 0,
-    [55] = 7,
-    [67] = 8,
-    [77] = 1,
-    [88] = 10,
-    [98] = 11,
+    [27]  = 4,
+    [30]  = 6,
+    [33]  = 9,
+    [37]  = 5,
+    [47]  = 0,
+    [55]  = 7,
+    [67]  = 8,
+    [77]  = 1,
+    [88]  = 10,
+    [98]  = 11,
     [101] = 2));
 
 #endif // OGHTTP_METHOD_v1_0_GENERATED_PARSER_H

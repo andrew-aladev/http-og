@@ -6,10 +6,6 @@
 #if !defined(OGHTTP_METHOD_v1_0_CONSTANTS_H)
 #define OGHTTP_METHOD_v1_0_CONSTANTS_H
 
-const char* OGHTTP_CONSTANTS[] = {
-  // HTTP/1.0 RFC 1945
-  "GET",
-  "HEAD",
-  "POST"};
+extern const char* OGHTTP_CONSTANTS[];
 
 #endif // OGHTTP_METHOD_v1_0_CONSTANTS_H
