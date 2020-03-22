@@ -8,6 +8,8 @@ int main()
 {
   print_data();
 
+  // -- min state bits --
+
   int result = print_min_state_bits();
   if (result != 0) {
     return 1;

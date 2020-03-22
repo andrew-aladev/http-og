@@ -12,7 +12,7 @@
 #define GLUE ";"
 
 #define PRINT(string) fputs(string, stdout)
-#define PRINT_GLUE() PRINT(GLUE)
 #define PRINT_ERROR(string) fputs(string, stderr)
+#define PRINT_GLUE() PRINT(GLUE)
 
 #endif // COMMON_H
