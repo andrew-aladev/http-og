@@ -3,9 +3,6 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(OGHTTP_METHOD_v1_1_CONSTANTS_H)
-#define OGHTTP_METHOD_v1_1_CONSTANTS_H
-
 #include "constants.h"
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml
@@ -72,4 +69,4 @@ const char* OGHTTP_CONSTANTS[] = {
   // RFC 7540 - HTTP/2
   "PRI"};
 
-#endif // OGHTTP_METHOD_v1_1_CONSTANTS_H
+const size_t OGHTTP_CONSTANTS_LENGTH = sizeof(OGHTTP_CONSTANTS) / sizeof(OGHTTP_CONSTANTS[0]);

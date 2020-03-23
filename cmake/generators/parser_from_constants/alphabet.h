@@ -4,10 +4,11 @@
 #if !defined(ALPHABET_H)
 #define ALPHABET_H
 
+#include <stdint.h>
 #include <stdlib.h>
 
-void init_alphabet(size_t* alphabet_length_ptr);
-void print_alphabet(size_t alphabet_length);
-void print_symbol_by_bytes(size_t alphabet_length);
+void init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t* alphabet_length_ptr);
+void print_alphabet(uint8_t* alphabet, size_t alphabet_length);
+void print_symbol_by_bytes(uint8_t* alphabet, uint8_t* symbol_by_bytes, size_t alphabet_length);
 
 #endif // ALPHABET_H

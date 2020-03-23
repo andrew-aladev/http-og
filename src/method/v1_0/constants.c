@@ -11,3 +11,5 @@ const char* OGHTTP_CONSTANTS[] = {
   "GET",
   "HEAD",
   "POST"};
+
+const size_t OGHTTP_CONSTANTS_LENGTH = sizeof(OGHTTP_CONSTANTS) / sizeof(OGHTTP_CONSTANTS[0]);

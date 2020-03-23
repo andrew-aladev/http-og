@@ -9,7 +9,7 @@
 #include "constants.h"
 
 #define CONSTANTS OGHTTP_CONSTANTS
-#define CONSTANTS_LENGTH sizeof(CONSTANTS) / sizeof(CONSTANTS[0])
+#define CONSTANTS_LENGTH OGHTTP_CONSTANTS_LENGTH
 #define GLUE ";"
 
 #define PRINT(string) fputs(string, stdout)

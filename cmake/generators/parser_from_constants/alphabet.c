@@ -4,7 +4,6 @@
 #include "alphabet.h"
 
 #include <stdbool.h>
-#include <stdint.h>
 #include <string.h>
 
 #include "common.h"
@@ -38,7 +37,7 @@ static inline bool is_alphabet_full(size_t alphabet_length)
   return alphabet_length == ALPHABET_MAX_LENGTH;
 }
 
-void init_alphabet(size_t* alphabet_length_ptr)
+void init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t* alphabet_length_ptr)
 {
   *alphabet_length_ptr = 0;
 
@@ -64,7 +63,7 @@ void init_alphabet(size_t* alphabet_length_ptr)
 #define ALPHABET_TEMPLATE "%u"
 #define ALPHABET_TERMINATOR ",\n"
 
-void print_alphabet(size_t alphabet_length)
+void print_alphabet(uint8_t* alphabet, size_t alphabet_length)
 {
   for (size_t index = 0; index < alphabet_length; index++) {
     if (index == 0) {
@@ -85,7 +84,7 @@ void print_alphabet(size_t alphabet_length)
 #define SYMBOL_BY_BYTE_TEMPLATE "[%u] = %u"
 #define SYMBOL_BY_BYTE_TERMINATOR ",\n"
 
-void print_symbol_by_bytes(size_t alphabet_length)
+void print_symbol_by_bytes(uint8_t* alphabet, uint8_t* symbol_by_bytes, size_t alphabet_length)
 {
   for (size_t index = 0; index < alphabet_length; index++) {
     if (index == 0) {

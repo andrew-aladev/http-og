@@ -6,6 +6,9 @@
 #if !defined(OGHTTP_METHOD_v1_0_CONSTANTS_H)
 #define OGHTTP_METHOD_v1_0_CONSTANTS_H
 
-extern const char* OGHTTP_CONSTANTS[];
+#include <stdlib.h>
+
+extern const char*  OGHTTP_CONSTANTS[];
+extern const size_t OGHTTP_CONSTANTS_LENGTH;
 
 #endif // OGHTTP_METHOD_v1_0_CONSTANTS_H

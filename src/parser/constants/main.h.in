@@ -1,0 +1,17 @@
+// Old generation HTTP (v0.9, v1.0, v1.1) C library.
+// Copyright (c) 2019 AUTHORS, MIT License.
+
+// This file was generated, do not edit manually.
+
+// It may not be possible to run generator while cross compiling.
+// So generated file should be shipped with its template.
+
+#if !defined(OGHTTP_@PARSER_PREFIX@_PARSER_H)
+#define OGHTTP_@PARSER_PREFIX@_PARSER_H
+
+#include <stdint.h>
+
+typedef uint@CMAKE_PARSER_MIN_STATE_BITS@_t      oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_t;
+typedef uint_fast@CMAKE_PARSER_MIN_STATE_BITS@_t oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t;
+
+#endif // OGHTTP_@PARSER_PREFIX@_PARSER_H

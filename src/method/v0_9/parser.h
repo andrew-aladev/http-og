@@ -6,14 +6,15 @@
 // It may not be possible to run generator while cross compiling.
 // So generated file should be shipped with its template.
 
-#if !defined(OGHTTP_METHOD_v0_9_GENERATED_PARSER_H)
-#define OGHTTP_METHOD_v0_9_GENERATED_PARSER_H
+#if !defined(OGHTTP_METHOD_v0_9_PARSER_H)
+#define OGHTTP_METHOD_v0_9_PARSER_H
 
-#include "../../parser/constant.h"
+#include <stdint.h>
 
-OGHTTP_PARSER_GENERATE_FAST_STATE_TYPE(method_v0_9, 8);
+typedef uint_fast8_t oghttp_method_v0_9_parser_state_fast_t;
 
-OGHTTP_PARSER_CONSTANT_GENERATE_DATA(METHOD_v0_9, "GET");
-OGHTTP_PARSER_CONSTANT_GENERATE_INITIAL_STATE(METHOD_v0_9, method_v0_9);
+extern const char* OGHTTP_METHOD_v0_9_PARSER_CONSTANT;
 
-#endif // OGHTTP_METHOD_v0_9_GENERATED_PARSER_H
+extern const oghttp_method_v0_9_parser_state_fast_t OGHTTP_METHOD_v0_9_PARSER_INITIAL_STATE;
+
+#endif // OGHTTP_METHOD_v0_9_PARSER_H
