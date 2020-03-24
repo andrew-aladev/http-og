@@ -13,6 +13,8 @@
 
 typedef uint_fast@CMAKE_PARSER_MIN_STATE_BITS@_t oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t;
 
+// -- constant --
+
 extern const char* OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT;
 
 extern const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t OGHTTP_@PARSER_PREFIX@_PARSER_INITIAL_STATE;

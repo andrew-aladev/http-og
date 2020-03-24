@@ -29,7 +29,7 @@ static inline bool find_state_from_constants(size_t* state_ptr, const char* cons
 #define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
 #define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
 
-int print_next_state_by_last_symbols(size_t alphabet_length, size_t max_state)
+int print_next_state_by_last_symbols(const uint8_t* alphabet_ptr, const uint8_t* symbol_by_bytes_ptr, size_t alphabet_length, size_t max_state)
 {
   // Each state has alphabet length of possible last symbols.
   size_t next_state_by_last_symbols_length = (max_state + 1) * alphabet_length;

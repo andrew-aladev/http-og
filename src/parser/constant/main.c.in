@@ -8,6 +8,8 @@
 
 #include "@PARSER_FILE_NAME@.h"
 
+// -- constant --
+
 const char* OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT = "@CMAKE_PARSER_CONSTANT@";
 
 const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t OGHTTP_@PARSER_PREFIX@_PARSER_INITIAL_STATE = 0;

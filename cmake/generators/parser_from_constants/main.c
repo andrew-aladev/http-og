@@ -14,41 +14,55 @@ int main()
 
   // -- alphabet --
 
-  size_t alphabet_length;
-  init_alphabet(&alphabet_length);
+  uint8_t* alphabet;
+  uint8_t* symbol_by_bytes;
+  size_t   alphabet_length;
 
-  print_alphabet(alphabet_length);
-  print_symbol_by_bytes(alphabet_length);
+  int result = init_alphabet(&alphabet, &symbol_by_bytes, &alphabet_length);
+  if (result != 0) {
+    return 1;
+  }
+
+  print_alphabet(alphabet, alphabet_length);
+  print_symbol_by_bytes(alphabet, symbol_by_bytes, alphabet_length);
 
   // -- prefixes --
 
   size_t prefixes_length;
 
-  int result = init_prefixes(&prefixes_length);
+  result = init_prefixes(&prefixes_length);
   if (result != 0) {
-    return 1;
+    free(alphabet);
+    free(symbol_by_bytes);
+    return 2;
   }
 
   // -- max state --
 
   size_t max_state;
   init_max_state(&max_state, prefixes_length);
-
   print_max_state(max_state);
 
   // -- min state bits --
 
   result = print_min_state_bits(max_state);
   if (result != 0) {
-    return 2;
+    free(alphabet);
+    free(symbol_by_bytes);
+    return 3;
   }
 
   // -- next state by last symbols --
 
   result = print_next_state_by_last_symbols(alphabet_length, max_state);
   if (result != 0) {
-    return 3;
+    free(alphabet);
+    free(symbol_by_bytes);
+    return 4;
   }
+
+  free(alphabet);
+  free(symbol_by_bytes);
 
   return 0;
 }

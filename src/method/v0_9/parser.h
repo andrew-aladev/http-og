@@ -13,6 +13,8 @@
 
 typedef uint_fast8_t oghttp_method_v0_9_parser_state_fast_t;
 
+// -- constant --
+
 extern const char* OGHTTP_METHOD_v0_9_PARSER_CONSTANT;
 
 extern const oghttp_method_v0_9_parser_state_fast_t OGHTTP_METHOD_v0_9_PARSER_INITIAL_STATE;

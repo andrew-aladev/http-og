@@ -14,4 +14,26 @@
 typedef uint@CMAKE_PARSER_MIN_STATE_BITS@_t      oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_t;
 typedef uint_fast@CMAKE_PARSER_MIN_STATE_BITS@_t oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t;
 
+// -- constants --
+
+extern const char*  OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANTS[];
+extern const size_t OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANTS_LENGTH;
+
+extern const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t OGHTTP_@PARSER_PREFIX@_PARSER_INITIAL_STATE;
+
+// -- alphabet --
+
+extern const uint8_t OGHTTP_@PARSER_PREFIX@_PARSER_ALPHABET[];
+extern const size_t  OGHTTP_@PARSER_PREFIX@_PARSER_ALPHABET_LENGTH;
+
+extern const uint_fast8_t OGHTTP_@PARSER_PREFIX@_PARSER_UNDEFINED_SYMBOL;
+extern const size_t       OGHTTP_@PARSER_PREFIX@_PARSER_SYMBOL_BY_BYTES_LENGTH;
+extern const uint8_t      OGHTTP_@PARSER_PREFIX@_PARSER_SYMBOL_BY_BYTES[];
+
+// -- next state by last symbols --
+
+extern const size_t OGHTTP_@PARSER_PREFIX@_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH;
+
+extern const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_t OGHTTP_@PARSER_PREFIX@_NEXT_STATE_BY_LAST_SYMBOLS;
+
 #endif // OGHTTP_@PARSER_PREFIX@_PARSER_H
