@@ -8,6 +8,8 @@
 
 #include "common.h"
 
+#define INITIAL_STATE CONSTANTS_LENGTH
+
 // We need to check whether current prefix matches constant.
 static inline bool find_state_from_constants(size_t* state_ptr, const char* constant, size_t prefix_length)
 {
@@ -23,19 +25,15 @@ static inline bool find_state_from_constants(size_t* state_ptr, const char* cons
   return false;
 }
 
-#define INITIAL_STATE CONSTANTS_LENGTH
-
-#define NEXT_STATE_BY_LAST_SYMBOLS_PREFIX "    "
-#define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
-#define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
-
-int print_next_state_by_last_symbols(const uint8_t* alphabet_ptr, const uint8_t* symbol_by_bytes_ptr, size_t alphabet_length, size_t max_state)
+int init_next_state_by_last_symbols(
+  size_t** next_state_by_last_symbols_ptr, size_t* next_state_by_last_symbols_length_ptr,
+  const uint8_t* symbol_by_bytes, size_t alphabet_length, size_t max_state)
 {
   // Each state has alphabet length of possible last symbols.
-  size_t next_state_by_last_symbols_length = (max_state + 1) * alphabet_length;
+  *next_state_by_last_symbols_length_ptr = (max_state + 1) * alphabet_length;
 
-  size_t* next_state_by_last_symbols = malloc(next_state_by_last_symbols_length * sizeof(size_t));
-  if (next_state_by_last_symbols == NULL) {
+  *next_state_by_last_symbols_ptr = malloc(*next_state_by_last_symbols_length_ptr * sizeof(size_t));
+  if (*next_state_by_last_symbols_ptr == NULL) {
     PRINT_ERROR("failed to allocate memory for next state by last symbols\n");
     return 1;
   }
@@ -43,8 +41,8 @@ int print_next_state_by_last_symbols(const uint8_t* alphabet_ptr, const uint8_t*
   size_t index;
 
   // Initialize all next states with initial state.
-  for (index = 0; index < next_state_by_last_symbols_length; index++) {
-    next_state_by_last_symbols[index] = INITIAL_STATE;
+  for (index = 0; index < *next_state_by_last_symbols_length_ptr; index++) {
+    (*next_state_by_last_symbols_ptr)[index] = INITIAL_STATE;
   }
 
   size_t global_state = INITIAL_STATE;
@@ -57,7 +55,7 @@ int print_next_state_by_last_symbols(const uint8_t* alphabet_ptr, const uint8_t*
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
       uint8_t last_symbol       = symbol_by_bytes[constant[jndex]];
       size_t  last_symbol_index = state * alphabet_length + last_symbol;
-      size_t  last_symbol_state = next_state_by_last_symbols[last_symbol_index];
+      size_t  last_symbol_state = (*next_state_by_last_symbols_ptr)[last_symbol_index];
 
       if (last_symbol_state != INITIAL_STATE) {
         state = last_symbol_state;
@@ -67,26 +65,35 @@ int print_next_state_by_last_symbols(const uint8_t* alphabet_ptr, const uint8_t*
       if (!find_state_from_constants(&state, constant, jndex + 1)) {
         if (global_state >= max_state) {
           PRINT_ERROR("global state should be less than max state\n");
-          free(next_state_by_last_symbols);
+          free(*next_state_by_last_symbols_ptr);
           return 2;
         }
 
         state = ++global_state;
       }
 
-      next_state_by_last_symbols[last_symbol_index] = state;
+      (*next_state_by_last_symbols_ptr)[last_symbol_index] = state;
     }
   }
 
   if (global_state != max_state) {
     PRINT_ERROR("global state is not equal to max state\n");
-    free(next_state_by_last_symbols);
+    free(*next_state_by_last_symbols_ptr);
     return 3;
   }
 
+  return 0;
+}
+
+#define NEXT_STATE_BY_LAST_SYMBOLS_PREFIX "  "
+#define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
+#define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
+
+void print_next_state_by_last_symbols(const size_t* next_state_by_last_symbols, size_t next_state_by_last_symbols_length)
+{
   bool first_state_printed = false;
 
-  for (index = 0; index < next_state_by_last_symbols_length; index++) {
+  for (size_t index = 0; index < next_state_by_last_symbols_length; index++) {
     size_t next_state = next_state_by_last_symbols[index];
     if (next_state == INITIAL_STATE) {
       continue;
@@ -104,7 +111,5 @@ int print_next_state_by_last_symbols(const uint8_t* alphabet_ptr, const uint8_t*
     printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
   }
 
-  free(next_state_by_last_symbols);
-
-  return 0;
+  PRINT_GLUE();
 }

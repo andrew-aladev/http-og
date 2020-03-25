@@ -7,7 +7,7 @@
 
 #include "common.h"
 
-#define CONSTANT_PREFIX "    "
+#define CONSTANT_PREFIX "  "
 #define CONSTANT_TEMPLATE "\"%s\""
 #define CONSTANT_TERMINATOR ",\n"
 

@@ -54,15 +54,24 @@ int main()
 
   // -- next state by last symbols --
 
-  result = print_next_state_by_last_symbols(alphabet_length, max_state);
+  size_t* next_state_by_last_symbols;
+  size_t  next_state_by_last_symbols_length;
+
+  result = init_next_state_by_last_symbols(
+    &next_state_by_last_symbols, &next_state_by_last_symbols_length,
+    symbol_by_bytes, alphabet_length, max_state);
+
   if (result != 0) {
     free(alphabet);
     free(symbol_by_bytes);
     return 4;
   }
 
+  print_next_state_by_last_symbols(next_state_by_last_symbols, next_state_by_last_symbols_length);
+
   free(alphabet);
   free(symbol_by_bytes);
+  free(next_state_by_last_symbols);
 
   return 0;
 }

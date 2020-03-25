@@ -73,7 +73,7 @@ int init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t*
   return 0;
 }
 
-#define ALPHABET_PREFIX "    "
+#define ALPHABET_PREFIX "  "
 #define ALPHABET_TEMPLATE "%u"
 #define ALPHABET_TERMINATOR ",\n"
 
@@ -94,7 +94,7 @@ void print_alphabet(const uint8_t* alphabet, size_t alphabet_length)
   PRINT_GLUE();
 }
 
-#define SYMBOL_BY_BYTE_PREFIX "    "
+#define SYMBOL_BY_BYTE_PREFIX "  "
 #define SYMBOL_BY_BYTE_TEMPLATE "[%u] = %u"
 #define SYMBOL_BY_BYTE_TERMINATOR ",\n"
 

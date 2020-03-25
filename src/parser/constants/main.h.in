@@ -10,6 +10,9 @@
 #define OGHTTP_@PARSER_PREFIX@_PARSER_H
 
 #include <stdint.h>
+#include <stdlib.h>
+
+#include "@PARSER_PATH@/../../common.h"
 
 typedef uint@CMAKE_PARSER_MIN_STATE_BITS@_t      oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_t;
 typedef uint_fast@CMAKE_PARSER_MIN_STATE_BITS@_t oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t;
@@ -23,12 +26,12 @@ extern const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t OGHTTP_@PARSE
 
 // -- alphabet --
 
-extern const uint8_t OGHTTP_@PARSER_PREFIX@_PARSER_ALPHABET[];
-extern const size_t  OGHTTP_@PARSER_PREFIX@_PARSER_ALPHABET_LENGTH;
+extern const oghttp_symbol_t OGHTTP_@PARSER_PREFIX@_PARSER_ALPHABET[];
+extern const size_t          OGHTTP_@PARSER_PREFIX@_PARSER_ALPHABET_LENGTH;
 
-extern const uint_fast8_t OGHTTP_@PARSER_PREFIX@_PARSER_UNDEFINED_SYMBOL;
-extern const size_t       OGHTTP_@PARSER_PREFIX@_PARSER_SYMBOL_BY_BYTES_LENGTH;
-extern const uint8_t      OGHTTP_@PARSER_PREFIX@_PARSER_SYMBOL_BY_BYTES[];
+extern const oghttp_symbol_fast_t OGHTTP_@PARSER_PREFIX@_PARSER_UNDEFINED_SYMBOL;
+extern const size_t               OGHTTP_@PARSER_PREFIX@_PARSER_SYMBOL_BY_BYTES_LENGTH;
+extern const oghttp_symbol_t      OGHTTP_@PARSER_PREFIX@_PARSER_SYMBOL_BY_BYTES[];
 
 // -- next state by last symbols --
 
