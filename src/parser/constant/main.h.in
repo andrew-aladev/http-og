@@ -9,14 +9,35 @@
 #if !defined(OGHTTP_@PARSER_PREFIX@_PARSER_H)
 #define OGHTTP_@PARSER_PREFIX@_PARSER_H
 
-#include <stdint.h>
+#include <stdbool.h>
+#include <string.h>
+
+#include "@PARSER_SOURCE_PATH@common.h"
+
+// clang-format off
 
 typedef uint_fast@CMAKE_PARSER_MIN_STATE_BITS@_t oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t;
 
 // -- constant --
 
 extern const char* OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT;
-
 extern const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t OGHTTP_@PARSER_PREFIX@_PARSER_INITIAL_STATE;
+
+// clang-format on
+
+inline oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t oghttp_@PARSER_PREFIX_LOWER_CASE@_get_next_state(
+  oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t state, oghttp_symbol_fast_t byte)
+{
+  if (OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT[state] != byte) {
+    return OGHTTP_@PARSER_PREFIX@_PARSER_INITIAL_STATE;
+  }
+
+  return state + 1;
+}
+
+inline bool oghttp_@PARSER_PREFIX_LOWER_CASE@_is_finished(oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t state)
+{
+  return state == strlen(OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT);
+}
 
 #endif // OGHTTP_@PARSER_PREFIX@_PARSER_H

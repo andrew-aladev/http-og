@@ -6,7 +6,8 @@ generate_parser_from_constant (${PARSER_PREFIX} ${PARSER_PREFIX_LOWER_CASE} ${CM
 
 if (DEFINED CMAKE_PARSER_CONSTANT)
   set (PARSER_FILE_NAME "parser")
-  file (RELATIVE_PATH PARSER_PATH ${CMAKE_CURRENT_SOURCE_DIR} "${PROJECT_SOURCE_DIR}/src/parser/constant")
+  file (RELATIVE_PATH PARSER_SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR} "${PROJECT_SOURCE_DIR}/src")
+  set (PARSER_PATH "${PARSER_SOURCE_PATH}/parser/constant")
 
   configure_file ("${PARSER_PATH}/main.h.in" "${CMAKE_CURRENT_SOURCE_DIR}/${PARSER_FILE_NAME}.h")
   configure_file ("${PARSER_PATH}/main.c.in" "${CMAKE_CURRENT_SOURCE_DIR}/${PARSER_FILE_NAME}.c")

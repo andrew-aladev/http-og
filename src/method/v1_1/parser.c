@@ -8,6 +8,8 @@
 
 #include "parser.h"
 
+// clang-format off
+
 // -- constants --
 
 const char* OGHTTP_METHOD_v1_1_PARSER_CONSTANTS[] = {
@@ -52,7 +54,6 @@ const char* OGHTTP_METHOD_v1_1_PARSER_CONSTANTS[] = {
   "PRI"};
 
 const size_t OGHTTP_METHOD_v1_1_PARSER_CONSTANTS_LENGTH = sizeof(OGHTTP_METHOD_v1_1_PARSER_CONSTANTS) / sizeof(OGHTTP_METHOD_v1_1_PARSER_CONSTANTS[0]);
-
 const oghttp_method_v1_1_parser_state_fast_t OGHTTP_METHOD_v1_1_PARSER_INITIAL_STATE = OGHTTP_METHOD_v1_1_PARSER_CONSTANTS_LENGTH;
 
 // -- alphabet --
@@ -82,14 +83,14 @@ const oghttp_symbol_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET[] = {
   45,
   87};
 
-const size_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET_LENGTH = sizeof(OGHTTP_METHOD_v1_1_PARSER_ALPHABET) / sizeof(OGHTTP_METHOD_v1_1_PARSER_ALPHABET[0]);
+const size_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET_LENGTH     = sizeof(OGHTTP_METHOD_v1_1_PARSER_ALPHABET) / sizeof(OGHTTP_METHOD_v1_1_PARSER_ALPHABET[0]);
+const size_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET_MAX_LENGTH = OGHTTP_MAX_SYMBOL + 1;
 
-const oghttp_symbol_fast_t OGHTTP_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL       = OGHTTP_SYMBOL_MAX;
-const size_t               OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH = OGHTTP_SYMBOL_MAX + 1;
+const oghttp_symbol_fast_t OGHTTP_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL       = OGHTTP_MAX_SYMBOL;
+const size_t               OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH = OGHTTP_MAX_SYMBOL + 1;
 
 const oghttp_symbol_t OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES[OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH] = {
   [0 ... OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH - 1] = OGHTTP_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL,
-
   [79] = 0,
   [80] = 1,
   [84] = 2,
@@ -120,7 +121,6 @@ const size_t OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH = (223 + 1) * 
 
 const oghttp_method_v1_1_parser_state_t OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS[OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
   [0 ... OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = OGHTTP_METHOD_v1_1_PARSER_INITIAL_STATE,
-
   [680] = 200,
   [897] = 40,
   [898] = 51,
@@ -344,3 +344,10 @@ const oghttp_method_v1_1_parser_state_t OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SY
   [5093] = 222,
   [5115] = 223,
   [5142] = 37};
+
+// clang-format on
+
+extern inline oghttp_method_v1_1_parser_state_fast_t oghttp_method_v1_1_get_next_state(
+  oghttp_method_v1_1_parser_state_fast_t state, oghttp_symbol_fast_t byte);
+
+extern inline bool oghttp_method_v1_1_is_finished(oghttp_method_v1_1_parser_state_fast_t state);

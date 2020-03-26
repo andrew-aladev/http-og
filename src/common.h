@@ -20,6 +20,6 @@ typedef uint_fast8_t oghttp_result_t;
 typedef uint8_t      oghttp_symbol_t;
 typedef uint_fast8_t oghttp_symbol_fast_t;
 
-#define OGHTTP_SYMBOL_MAX UINT8_MAX
+#define OGHTTP_MAX_SYMBOL UINT8_MAX
 
 #endif // OGHTTP_COMMON_H

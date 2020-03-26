@@ -8,8 +8,16 @@
 
 #include "parser.h"
 
+// clang-format off
+
 // -- constant --
 
 const char* OGHTTP_METHOD_v0_9_PARSER_CONSTANT = "GET";
-
 const oghttp_method_v0_9_parser_state_fast_t OGHTTP_METHOD_v0_9_PARSER_INITIAL_STATE = 0;
+
+// clang-format on
+
+extern inline oghttp_method_v0_9_parser_state_fast_t oghttp_method_v0_9_get_next_state(
+  oghttp_method_v0_9_parser_state_fast_t state, oghttp_symbol_fast_t byte);
+
+extern inline bool oghttp_method_v0_9_is_finished(oghttp_method_v0_9_parser_state_fast_t state);

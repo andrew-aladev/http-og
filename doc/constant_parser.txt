@@ -1,3 +1,5 @@
+Please read "constants_parser" doc first.
+
 Token parsing should be available for single constant.
 The most basic example is "GET" token for HTTP v0.9.
 
