@@ -10,7 +10,7 @@
 #define OGHTTP_METHOD_v0_9_PARSER_H
 
 #include <stdbool.h>
-#include <string.h>
+#include <stdlib.h>
 
 #include "../../common.h"
 
@@ -20,7 +20,8 @@ typedef uint_fast8_t oghttp_method_v0_9_parser_state_fast_t;
 
 // -- constant --
 
-extern const char* OGHTTP_METHOD_v0_9_PARSER_CONSTANT;
+extern const char*  OGHTTP_METHOD_v0_9_PARSER_CONSTANT;
+extern const size_t OGHTTP_METHOD_v0_9_PARSER_CONSTANT_LENGTH;
 extern const oghttp_method_v0_9_parser_state_fast_t OGHTTP_METHOD_v0_9_PARSER_INITIAL_STATE;
 
 // clang-format on
@@ -37,7 +38,7 @@ inline oghttp_method_v0_9_parser_state_fast_t oghttp_method_v0_9_get_next_state(
 
 inline bool oghttp_method_v0_9_is_finished(oghttp_method_v0_9_parser_state_fast_t state)
 {
-  return state == strlen(OGHTTP_METHOD_v0_9_PARSER_CONSTANT);
+  return state == OGHTTP_METHOD_v0_9_PARSER_CONSTANT_LENGTH;
 }
 
 #endif // OGHTTP_METHOD_v0_9_PARSER_H

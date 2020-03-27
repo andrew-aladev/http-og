@@ -10,7 +10,7 @@
 #define OGHTTP_@PARSER_PREFIX@_PARSER_H
 
 #include <stdbool.h>
-#include <string.h>
+#include <stdlib.h>
 
 #include "@PARSER_SOURCE_PATH@common.h"
 
@@ -20,7 +20,8 @@ typedef uint_fast@CMAKE_PARSER_MIN_STATE_BITS@_t oghttp_@PARSER_PREFIX_LOWER_CAS
 
 // -- constant --
 
-extern const char* OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT;
+extern const char*  OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT;
+extern const size_t OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT_LENGTH;
 extern const oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t OGHTTP_@PARSER_PREFIX@_PARSER_INITIAL_STATE;
 
 // clang-format on
@@ -37,7 +38,7 @@ inline oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t oghttp_@PARSER_PREF
 
 inline bool oghttp_@PARSER_PREFIX_LOWER_CASE@_is_finished(oghttp_@PARSER_PREFIX_LOWER_CASE@_parser_state_fast_t state)
 {
-  return state == strlen(OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT);
+  return state == OGHTTP_@PARSER_PREFIX@_PARSER_CONSTANT_LENGTH;
 }
 
 #endif // OGHTTP_@PARSER_PREFIX@_PARSER_H
