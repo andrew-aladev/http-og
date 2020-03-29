@@ -4,5 +4,25 @@ HTTP parser requires generic parser.
 Token values consist of variable amount of symbols.
 The most basic example is "Host: example.com" token.
 
-Host parser consist of generic domain level parser and variable amount of points.
-Generic domain level parser can be reused after another point.
+-----
+
+We won't validate data provided by generic parser, this task is not related to HTTP parser.
+We will just define allowed alphabet and min/max length of data.
+
+For example domain "example.com":
+
+"alphabet" = [
+  "a" - "z",
+  "A" - "Z",
+  ".",
+  "-"
+]
+"min_length" = 1
+"max_length" = 63
+
+-----
+
+We can assign 0 state for empty string (initial state), 1 for "e", 2 for "x", etc.
+"max_state" will be "max_length".
+
+We need to maintain only fast type for state.
