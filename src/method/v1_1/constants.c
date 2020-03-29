@@ -1,4 +1,4 @@
-// Old generation HTTP (v0.9, v1.0, v1.1) C library.
+// HTTP old generation (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 // This file is intended to be used by generator only.
@@ -7,7 +7,7 @@
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml
 
-const char* OGHTTP_CONSTANTS[] = {
+const char* HOG_CONSTANTS[] = {
   // RFC 2616 - HTTP/1.1
   "OPTIONS",
   "GET",
@@ -69,4 +69,4 @@ const char* OGHTTP_CONSTANTS[] = {
   // RFC 7540 - HTTP/2
   "PRI"};
 
-const size_t OGHTTP_CONSTANTS_LENGTH = sizeof(OGHTTP_CONSTANTS) / sizeof(OGHTTP_CONSTANTS[0]);
+const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

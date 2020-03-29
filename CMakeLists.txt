@@ -1,11 +1,11 @@
 cmake_minimum_required (VERSION 3.9)
-project ("oghttp" "C")
+project ("hog" "C")
 
 if (PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message (FATAL_ERROR "In-source builds are not allowed")
 endif ()
 
-set (OGHTTP_VERSION "0.1.0")
+set (HOG_VERSION "0.1.0")
 
 if (NOT DEFINED CMAKE_INSTALL_LIBDIR)
   set (CMAKE_INSTALL_LIBDIR "lib" CACHE PATH "output directory for libraries")
@@ -17,17 +17,17 @@ if (NOT DEFINED CMAKE_INSTALL_BINDIR)
   set (CMAKE_INSTALL_BINDIR "bin" CACHE PATH "output directory for binaries")
 endif ()
 
-if (NOT DEFINED OGHTTP_TARGET)
-  set (OGHTTP_TARGET ${PROJECT_NAME})
+if (NOT DEFINED HOG_TARGET)
+  set (HOG_TARGET ${PROJECT_NAME})
 endif ()
 
-option (OGHTTP_SHARED   "build shared libs" ON)
-option (OGHTTP_STATIC   "build static libs" OFF)
-option (OGHTTP_TESTS    "build tests"       ON)
-option (OGHTTP_COVERAGE "enable coverage"   OFF)
-option (OGHTTP_EXAMPLES "build examples"    OFF)
+option (HOG_SHARED   "build shared libs" ON)
+option (HOG_STATIC   "build static libs" OFF)
+option (HOG_TESTS    "build tests"       ON)
+option (HOG_COVERAGE "enable coverage"   OFF)
+option (HOG_EXAMPLES "build examples"    OFF)
 
-if (NOT OGHTTP_SHARED AND NOT OGHTTP_STATIC)
+if (NOT HOG_SHARED AND NOT HOG_STATIC)
   message (FATAL_ERROR "Please enable building of shared or static libraries.")
 endif ()
 
@@ -44,7 +44,7 @@ cmake_get_verbose_flags ()
 include (GetPipeFlags)
 cmake_get_pipe_flags ()
 
-if (OGHTTP_COVERAGE)
+if (HOG_COVERAGE)
   include (GetCoverageFlags)
   cmake_get_coverage_flags ()
 endif ()
@@ -57,7 +57,7 @@ cmake_check_ipo ()
 
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_VERBOSE_C_FLAGS} ${CMAKE_PIPE_C_FLAGS} ${CMAKE_C11_C_FLAGS}")
 
-if (OGHTTP_COVERAGE)
+if (HOG_COVERAGE)
   set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_COVERAGE_C_FLAGS}")
 endif ()
 
@@ -75,7 +75,7 @@ else ()
   set (CMAKE_INTERPROCEDURAL_OPTIMIZATION false CACHE BOOL "status of IPO")
 endif ()
 
-if (OGHTTP_TESTS)
+if (HOG_TESTS)
   enable_testing ()
 endif ()
 

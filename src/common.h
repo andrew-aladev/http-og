@@ -1,8 +1,8 @@
-// Old generation HTTP (v0.9, v1.0, v1.1) C library.
+// HTTP old generation (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
-#if !defined(OGHTTP_COMMON_H)
-#define OGHTTP_COMMON_H
+#if !defined(HOG_COMMON_H)
+#define HOG_COMMON_H
 
 #include <stdint.h>
 
@@ -15,11 +15,11 @@
 // We will use precise types for source, destination and constants to optimize memory consumption.
 // We will try to use fast types in all other cases.
 
-typedef uint_fast8_t oghttp_result_t;
+typedef uint_fast8_t hog_result_t;
 
-typedef uint8_t      oghttp_symbol_t;
-typedef uint_fast8_t oghttp_symbol_fast_t;
+typedef uint8_t      hog_symbol_t;
+typedef uint_fast8_t hog_symbol_fast_t;
 
-#define OGHTTP_MAX_SYMBOL UINT8_MAX
+#define HOG_MAX_SYMBOL UINT8_MAX
 
-#endif // OGHTTP_COMMON_H
+#endif // HOG_COMMON_H

@@ -1,4 +1,4 @@
-// Old generation HTTP (v0.9, v1.0, v1.1) C library.
+// HTTP old generation (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 // This file was generated, do not edit manually.
@@ -12,7 +12,7 @@
 
 // -- constants --
 
-const char* OGHTTP_METHOD_v1_1_PARSER_CONSTANTS[] = {
+const char* HOG_METHOD_v1_1_PARSER_CONSTANTS[] = {
   "OPTIONS",
   "GET",
   "HEAD",
@@ -53,12 +53,12 @@ const char* OGHTTP_METHOD_v1_1_PARSER_CONSTANTS[] = {
   "MKCALENDAR",
   "PRI"};
 
-const size_t OGHTTP_METHOD_v1_1_PARSER_CONSTANTS_LENGTH = sizeof(OGHTTP_METHOD_v1_1_PARSER_CONSTANTS) / sizeof(OGHTTP_METHOD_v1_1_PARSER_CONSTANTS[0]);
-const oghttp_method_v1_1_parser_state_fast_t OGHTTP_METHOD_v1_1_PARSER_INITIAL_STATE = OGHTTP_METHOD_v1_1_PARSER_CONSTANTS_LENGTH;
+const size_t HOG_METHOD_v1_1_PARSER_CONSTANTS_LENGTH = sizeof(HOG_METHOD_v1_1_PARSER_CONSTANTS) / sizeof(HOG_METHOD_v1_1_PARSER_CONSTANTS[0]);
+const hog_method_v1_1_parser_state_fast_t HOG_METHOD_v1_1_PARSER_INITIAL_STATE = HOG_METHOD_v1_1_PARSER_CONSTANTS_LENGTH;
 
 // -- alphabet --
 
-const oghttp_symbol_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET[] = {
+const hog_symbol_t HOG_METHOD_v1_1_PARSER_ALPHABET[] = {
   79,
   80,
   84,
@@ -83,14 +83,14 @@ const oghttp_symbol_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET[] = {
   45,
   87};
 
-const size_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET_LENGTH     = sizeof(OGHTTP_METHOD_v1_1_PARSER_ALPHABET) / sizeof(OGHTTP_METHOD_v1_1_PARSER_ALPHABET[0]);
-const size_t OGHTTP_METHOD_v1_1_PARSER_ALPHABET_MAX_LENGTH = OGHTTP_MAX_SYMBOL + 1;
+const size_t HOG_METHOD_v1_1_PARSER_ALPHABET_LENGTH     = sizeof(HOG_METHOD_v1_1_PARSER_ALPHABET) / sizeof(HOG_METHOD_v1_1_PARSER_ALPHABET[0]);
+const size_t HOG_METHOD_v1_1_PARSER_ALPHABET_MAX_LENGTH = HOG_MAX_SYMBOL + 1;
 
-const oghttp_symbol_fast_t OGHTTP_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL       = OGHTTP_MAX_SYMBOL;
-const size_t               OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH = OGHTTP_MAX_SYMBOL + 1;
+const hog_symbol_fast_t HOG_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL       = HOG_MAX_SYMBOL;
+const size_t            HOG_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH = HOG_MAX_SYMBOL + 1;
 
-const oghttp_symbol_t OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES[OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH] = {
-  [0 ... OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH - 1] = OGHTTP_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL,
+const hog_symbol_t HOG_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES[HOG_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH] = {
+  [0 ... HOG_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES_LENGTH - 1] = HOG_METHOD_v1_1_PARSER_UNDEFINED_SYMBOL,
   [79] = 0,
   [80] = 1,
   [84] = 2,
@@ -117,10 +117,10 @@ const oghttp_symbol_t OGHTTP_METHOD_v1_1_PARSER_SYMBOL_BY_BYTES[OGHTTP_METHOD_v1
 
 // -- next state by last symbols --
 
-const size_t OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH = (223 + 1) * OGHTTP_METHOD_v1_1_PARSER_ALPHABET_LENGTH;
+const size_t HOG_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH = (223 + 1) * HOG_METHOD_v1_1_PARSER_ALPHABET_LENGTH;
 
-const oghttp_method_v1_1_parser_state_t OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS[OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
-  [0 ... OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = OGHTTP_METHOD_v1_1_PARSER_INITIAL_STATE,
+const hog_method_v1_1_parser_state_t HOG_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS[HOG_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
+  [0 ... HOG_METHOD_v1_1_NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = HOG_METHOD_v1_1_PARSER_INITIAL_STATE,
   [680] = 200,
   [897] = 40,
   [898] = 51,
@@ -347,7 +347,7 @@ const oghttp_method_v1_1_parser_state_t OGHTTP_METHOD_v1_1_NEXT_STATE_BY_LAST_SY
 
 // clang-format on
 
-extern inline oghttp_method_v1_1_parser_state_fast_t oghttp_method_v1_1_get_next_state(
-  oghttp_method_v1_1_parser_state_fast_t state, oghttp_symbol_fast_t byte);
+extern inline hog_method_v1_1_parser_state_fast_t hog_method_v1_1_get_next_state(
+  hog_method_v1_1_parser_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool oghttp_method_v1_1_is_finished(oghttp_method_v1_1_parser_state_fast_t state);
+extern inline bool hog_method_v1_1_is_finished(hog_method_v1_1_parser_state_fast_t state);

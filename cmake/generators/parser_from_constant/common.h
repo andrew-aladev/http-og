@@ -1,4 +1,4 @@
-// Old generation HTTP (v0.9, v1.0, v1.1) C library.
+// HTTP old generation (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 #if !defined(COMMON_H)
@@ -8,7 +8,7 @@
 
 #include "constant.h"
 
-#define CONSTANT OGHTTP_CONSTANT
+#define CONSTANT HOG_CONSTANT
 #define GLUE ";"
 
 #define PRINT(string) fputs(string, stdout)
