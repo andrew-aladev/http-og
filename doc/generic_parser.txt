@@ -1,0 +1,8 @@
+Please read "constants_parser" and "constant_parser" docs first.
+
+HTTP parser requires generic parser.
+Token values consist of variable amount of symbols.
+The most basic example is "Host: example.com" token.
+
+Host parser consist of generic domain level parser and variable amount of points.
+Generic domain level parser can be reused after another point.
