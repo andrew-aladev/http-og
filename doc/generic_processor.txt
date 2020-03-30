@@ -1,4 +1,4 @@
-Please read "constants" and "constant" docs first.
+Please read "constants_processor" and "constant_processor" docs first.
 
 HTTP requires generic data processing.
 Token values consist of variable amount of symbols.
