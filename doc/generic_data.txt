@@ -1,0 +1,41 @@
+Please read "constants" and "constant" docs first.
+
+HTTP requires generic data processing.
+Token values consist of variable amount of symbols.
+The most basic example is "Host: example.com" token.
+
+-----
+
+We won't validate generic data, this task is not related to HTTP processor.
+We will just define allowed alphabet and min/max length of data.
+
+For example we want to process domains:
+
+"alphabet" = [
+  "a" - "z",
+  "A" - "Z",
+  "0" - "9",
+  "[",
+  "]",
+  ".",
+  "-"
+]
+
+"symbol_by_bytes":
+[
+  [0 ... 255]: 255,
+  ["a"]: 0,
+  ["b"]: 1,
+  ["c"]: 2,
+  ...
+]
+
+"min_length" = 1
+"max_length" = 63
+
+-----
+
+We can assign "0" state for empty string (initial state), "1" for "e", "2" for "x", etc.
+"max_state" will be "max_length".
+
+We need to maintain only fast type for state.

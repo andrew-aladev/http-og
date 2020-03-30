@@ -1,4 +1,4 @@
-HTTP parser requires token parsing.
+HTTP requires token processing.
 Tokens can consist of the list of predefined strings (constants).
 The most basic example is "method" token.
 
