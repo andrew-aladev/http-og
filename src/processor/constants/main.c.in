@@ -1,0 +1,44 @@
+// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Copyright (c) 2019 AUTHORS, MIT License.
+
+// This file was generated, do not edit manually.
+
+// It may not be possible to run generator while cross compiling.
+// So generated file should be shipped with its template.
+
+#include "@PROCESSOR_FILE_NAME@.h"
+
+// clang-format off
+
+// -- constants --
+
+const size_t HOG_@PROCESSOR_PREFIX@_PROCESSOR_CONSTANTS_LENGTH = @CMAKE_PROCESSOR_CONSTANTS_LENGTH@;
+const hog_@PROCESSOR_PREFIX_LOWER_CASE@_processor_state_fast_t HOG_@PROCESSOR_PREFIX@_PROCESSOR_INITIAL_STATE = HOG_@PROCESSOR_PREFIX@_PROCESSOR_CONSTANTS_LENGTH;
+
+// -- alphabet --
+
+const size_t HOG_@PROCESSOR_PREFIX@_PROCESSOR_ALPHABET_LENGTH     = @CMAKE_PROCESSOR_ALPHABET_LENGTH@;
+const size_t HOG_@PROCESSOR_PREFIX@_PROCESSOR_ALPHABET_MAX_LENGTH = HOG_MAX_SYMBOL + 1;
+
+const hog_symbol_fast_t HOG_@PROCESSOR_PREFIX@_PROCESSOR_UNDEFINED_SYMBOL = HOG_MAX_SYMBOL;
+
+#define PROCESSOR_SYMBOL_BY_BYTES_LENGTH HOG_MAX_SYMBOL + 1
+
+const hog_symbol_t HOG_@PROCESSOR_PREFIX@_PROCESSOR_SYMBOL_BY_BYTES[PROCESSOR_SYMBOL_BY_BYTES_LENGTH] = {
+  [0 ... PROCESSOR_SYMBOL_BY_BYTES_LENGTH - 1] = HOG_@PROCESSOR_PREFIX@_PROCESSOR_UNDEFINED_SYMBOL,
+@CMAKE_PROCESSOR_SYMBOL_BY_BYTES@};
+
+// -- next state by last symbols --
+
+#define NEXT_STATE_BY_LAST_SYMBOLS_LENGTH (@CMAKE_PROCESSOR_MAX_STATE@ + 1) * HOG_@PROCESSOR_PREFIX@_PROCESSOR_ALPHABET_LENGTH
+
+const hog_@PROCESSOR_PREFIX_LOWER_CASE@_processor_state_t HOG_@PROCESSOR_PREFIX@_NEXT_STATE_BY_LAST_SYMBOLS[NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
+  [0 ... NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = HOG_@PROCESSOR_PREFIX@_PROCESSOR_INITIAL_STATE,
+@CMAKE_PROCESSOR_NEXT_STATE_BY_LAST_SYMBOLS@};
+
+// clang-format on
+
+extern inline hog_@PROCESSOR_PREFIX_LOWER_CASE@_processor_state_fast_t hog_@PROCESSOR_PREFIX_LOWER_CASE@_get_next_state(
+  hog_@PROCESSOR_PREFIX_LOWER_CASE@_processor_state_fast_t state, hog_symbol_fast_t byte);
+
+extern inline bool hog_@PROCESSOR_PREFIX_LOWER_CASE@_is_finished(hog_@PROCESSOR_PREFIX_LOWER_CASE@_processor_state_fast_t state);

@@ -12,13 +12,10 @@ We will just define allowed alphabet and min/max length of data.
 For example we want to process domains:
 
 "alphabet" = [
-  "a" - "z",
-  "A" - "Z",
-  "0" - "9",
-  "[",
-  "]",
-  ".",
-  "-"
+  "a",
+  "b",
+  "c",
+  ...
 ]
 
 "symbol_by_bytes":
