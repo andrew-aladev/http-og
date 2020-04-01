@@ -7,15 +7,17 @@
 
 #include <stdint.h>
 
+const char HOG_ALPHABET[] = {
+  '-'};
+const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
+
 const hog_alphabet_range HOG_ALPHABET_RANGES[] = {
   {'a', 'z'},
   {'A', 'Z'},
   {'0', '9'}};
-
-const char HOG_ALPHABET[] = {
-  '-'};
+const size_t HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
 const size_t HOG_MIN_LENGTH = 1;
 
-// We can fail if custom HTTP method length is greater than max symbol.
+// We can fail if custom HTTP method is too big.
 const size_t HOG_MAX_LENGTH = UINT8_MAX;

@@ -1,7 +1,7 @@
 Please read "constants_processor" and "constant_processor" docs first.
 
 HTTP requires generic data processing.
-Token values consist of variable amount of symbols.
+Token values consist of variable amount of bytes.
 The most basic example is "Host: example.com" token.
 
 -----
@@ -9,21 +9,25 @@ The most basic example is "Host: example.com" token.
 We won't validate generic data, this task is not related to HTTP processor.
 We will just define allowed alphabet and min/max length of data.
 
+We need only to maintain boolean match for allowed bytes.
+This match can be named as "allowed_bytes".
+
 For example we want to process domains:
 
-"alphabet" = [
-  "a",
-  "b",
-  "c",
+"alphabet":
+[
+  0: "a",
+  1: "b",
+  2: "c",
   ...
 ]
 
-"symbol_by_bytes":
+"allowed_bytes":
 [
-  [0 ... 255]: 255,
-  ["a"]: 0,
-  ["b"]: 1,
-  ["c"]: 2,
+  [0 ... 255]: false,
+  ["a"]: true,
+  ["b"]: true,
+  ["c"]: true,
   ...
 ]
 

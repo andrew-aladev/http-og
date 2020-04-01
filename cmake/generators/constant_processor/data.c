@@ -7,13 +7,13 @@
 
 #include "common.h"
 
-#define CONSTANT_LENGTH "%zu"
+#define CONSTANT_LENGTH_TEMPLATE "%zu"
 
 void print_data()
 {
   PRINT(CONSTANT);
   PRINT_GLUE();
 
-  printf(CONSTANT_LENGTH, strlen(CONSTANT));
+  printf(CONSTANT_LENGTH_TEMPLATE, strlen(CONSTANT));
   PRINT_GLUE();
 }

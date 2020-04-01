@@ -3,8 +3,6 @@
 
 #include "data.h"
 
-#include <stdlib.h>
-
 #include "common.h"
 
 #define CONSTANTS_LENGTH_TEMPLATE "%zu"

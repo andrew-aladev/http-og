@@ -10,6 +10,7 @@
 
 #define CONSTANTS HOG_CONSTANTS
 #define CONSTANTS_LENGTH HOG_CONSTANTS_LENGTH
+
 #define GLUE ";"
 
 #define PRINT(string) fputs(string, stdout)
