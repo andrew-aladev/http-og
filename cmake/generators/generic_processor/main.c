@@ -3,7 +3,7 @@
 
 #include "alphabet.h"
 #include "data.h"
-#include "min_state_bits.h"
+#include "max_state.h"
 
 int main()
 {
@@ -13,9 +13,9 @@ int main()
 
   print_allowed_bytes();
 
-  // -- min state bits --
+  // -- max state --
 
-  int result = print_min_state_bits();
+  int result = check_max_state();
   if (result != 0) {
     return 1;
   }

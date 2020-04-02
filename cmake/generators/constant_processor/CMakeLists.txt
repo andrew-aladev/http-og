@@ -9,5 +9,5 @@ add_executable (
   "${CMAKE_GENERATOR_PATH}/options.c"
   "data.c"
   "main.c"
-  "min_state_bits.c"
+  "max_state.c"
 )

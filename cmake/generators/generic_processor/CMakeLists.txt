@@ -10,5 +10,5 @@ add_executable (
   "alphabet.c"
   "data.c"
   "main.c"
-  "min_state_bits.c"
+  "max_state.c"
 )

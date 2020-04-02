@@ -1,0 +1,19 @@
+// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Copyright (c) 2019 AUTHORS, MIT License.
+
+// This file was generated, do not edit manually.
+
+// It may not be possible to run generator while cross compiling.
+// So generated file should be shipped with its template.
+
+#include "@FILE_NAME@.h"
+
+const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE = 0;
+
+const char*  HOG_PROCESSOR_@PREFIX@_CONSTANT        = "@CMAKE_CONSTANT@";
+const size_t HOG_PROCESSOR_@PREFIX@_CONSTANT_LENGTH = @CMAKE_CONSTANT_LENGTH@;
+
+extern inline hog_processor_state_fast_t hog_processor_@PREFIX_LOWER_CASE@_get_next_state(
+  hog_processor_state_fast_t state, hog_symbol_fast_t byte);
+
+extern inline bool hog_processor_@PREFIX_LOWER_CASE@_is_finished(hog_processor_state_fast_t state);

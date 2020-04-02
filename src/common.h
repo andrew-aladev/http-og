@@ -20,6 +20,9 @@ typedef uint_fast8_t hog_result_t;
 typedef uint8_t      hog_symbol_t;
 typedef uint_fast8_t hog_symbol_fast_t;
 
+// Unified fast processor state type.
+typedef uint_fast32_t hog_processor_state_fast_t;
+
 #define HOG_MAX_SYMBOL UINT8_MAX
 
 #endif // HOG_COMMON_H

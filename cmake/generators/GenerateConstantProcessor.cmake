@@ -1,7 +1,6 @@
 function (generate_constant_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH)
-  set (OUTPUT_CONSTANT "CMAKE_PROCESSOR_CONSTANT")
-  set (OUTPUT_CONSTANT_LENGTH "CMAKE_PROCESSOR_CONSTANT_LENGTH")
-  set (OUTPUT_MIN_STATE_BITS "CMAKE_PROCESSOR_MIN_STATE_BITS")
+  set (OUTPUT_CONSTANT "CMAKE_CONSTANT")
+  set (OUTPUT_CONSTANT_LENGTH "CMAKE_CONSTANT_LENGTH")
 
   set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_constant_processor")
   set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/constant_processor")
@@ -32,19 +31,15 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH)
       set (${OUTPUT_CONSTANT} ${CONSTANT} PARENT_SCOPE)
       list (GET RUN_OUTPUT 1 CONSTANT_LENGTH)
       set (${OUTPUT_CONSTANT_LENGTH} ${CONSTANT_LENGTH} PARENT_SCOPE)
-      list (GET RUN_OUTPUT 2 MIN_STATE_BITS)
-      set (${OUTPUT_MIN_STATE_BITS} ${MIN_STATE_BITS} PARENT_SCOPE)
       message (STATUS "${MESSAGE_PREFIX} - generated")
     else ()
       unset (${OUTPUT_CONSTANT} PARENT_SCOPE)
       unset (${OUTPUT_CONSTANT_LENGTH} PARENT_SCOPE)
-      unset (${OUTPUT_MIN_STATE_BITS} PARENT_SCOPE)
       message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
     endif ()
   else ()
     unset (${OUTPUT_CONSTANT} PARENT_SCOPE)
     unset (${OUTPUT_CONSTANT_LENGTH} PARENT_SCOPE)
-    unset (${OUTPUT_MIN_STATE_BITS} PARENT_SCOPE)
     message (STATUS "${MESSAGE_PREFIX} - compilation failed, using default")
   endif ()
 
@@ -53,6 +48,5 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH)
   mark_as_advanced (
     ${OUTPUT_CONSTANT}
     ${OUTPUT_CONSTANT_LENGTH}
-    ${OUTPUT_MIN_STATE_BITS}
   )
 endfunction ()
