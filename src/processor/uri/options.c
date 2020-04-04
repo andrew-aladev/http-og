@@ -10,7 +10,6 @@
 // Real world URIs are far away from any RFC.
 // We need to collect real world statistics about what characters can be used.
 // Free statistics is available from terabytes of accidentally published webserver logs.
-// See "scripts/uri-collector".
 
 const char   HOG_ALPHABET[]      = {':'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
