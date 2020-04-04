@@ -19,9 +19,7 @@ const size_t HOG_PROCESSOR_URI_MAX_LENGTH = 65535;
 
 const bool HOG_PROCESSOR_URI_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
-  [45] = true,
   [58] = true,
-  [46] = true,
   [97] = true,
   [98] = true,
   [99] = true,

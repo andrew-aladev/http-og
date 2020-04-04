@@ -5,10 +5,23 @@
 
 #include "common.h"
 
-#define CONSTANTS_LENGTH_TEMPLATE "%zu"
+#define CONSTANTS_PREFIX "  "
+#define CONSTANTS_TEMPLATE "\"%s\""
+#define CONSTANTS_TERMINATOR ",\n"
 
 void print_data()
 {
-  printf(CONSTANTS_LENGTH_TEMPLATE, CONSTANTS_LENGTH);
+  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
+    if (index == 0) {
+      PRINT(CONSTANTS_PREFIX);
+    }
+    else {
+      PRINT(CONSTANTS_TERMINATOR);
+      PRINT(CONSTANTS_PREFIX);
+    }
+
+    printf(CONSTANTS_TEMPLATE, CONSTANTS[index]);
+  }
+
   PRINT_GLUE();
 }
