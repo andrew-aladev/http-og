@@ -1,3 +1,5 @@
 build/*
 src/config.h
 tmp/*
+Gemfile.lock
+.rebuild_date
