@@ -13,21 +13,24 @@ PAGE_WITH_LOGS_REGEXP = Regexp.new(
     (?:
         '
         (
-          [^']+
+          [^']*
           log
+          [^']*
         )
         '
       |
         \"
         (
-          [^\"]+
+          [^\"]*
           log
+          [^\"]*
         )
         \"
       |
         (
-          [^[:space:]>]+
+          [^[:space:]>]*
           log
+          [^[:space:]>]*
         )
         [[:space:]>]
     )
@@ -40,8 +43,9 @@ PAGE_WITH_LOGS_REGEXP = Regexp.new(
 LISTING_WITH_LOGS_REGEXP = Regexp.new(
   "
     (
-      [^[:space:]]+
+      [^[:space:]]*
       log
+      [^[:space:]]*
     )
     (?:
         [[:space:]]
@@ -82,10 +86,20 @@ def get_log_urls_from_page_url(url)
     .compact
     .map do |log_url|
       begin
-        Addressable::URI.parse(url).join(log_url).to_s
+        uri = Addressable::URI.parse(url).join log_url
       rescue StandardError => error
         warn error
         next nil
+      end
+
+      scheme = uri.scheme
+
+      case scheme
+      when "ftp", "http", "https"
+        uri.to_s
+      else
+        warn "unknown uri scheme: #{scheme}"
+        nil
       end
     end
     .compact

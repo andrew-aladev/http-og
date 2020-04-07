@@ -17,7 +17,9 @@ log_urls          = read_list log_urls_path
 search_urls = get_search_urls
 page_urls   = get_page_urls search_urls
 
-page_urls -= valid_page_urls + invalid_page_urls
+page_urls -= valid_page_urls
+page_urls -= invalid_page_urls
+page_urls -= log_urls
 
 text = colorize_length page_urls.length
 warn "-- processing #{text} page urls"
