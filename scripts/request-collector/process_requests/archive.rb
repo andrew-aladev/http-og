@@ -21,7 +21,7 @@ class ArchiveReader < Archive::BaseArchive
     end
   end
 
-  def next_header
+  protected def next_header
     header_ptr = FFI::MemoryPointer.new :pointer
 
     case C.archive_read_next_header archive, header_ptr
@@ -35,48 +35,53 @@ class ArchiveReader < Archive::BaseArchive
     end
   end
 
-  def read(&_block)
+  protected def read_data(&_block)
     buffer = FFI::MemoryPointer.new BUFFER_SIZE
 
-    until next_header.nil?
-      loop do
-        length = C.archive_read_data archive, buffer, BUFFER_SIZE
+    loop do
+      length = C.archive_read_data archive, buffer, BUFFER_SIZE
 
-        break if length.zero?
-        raise Error, @archive if length < 0
+      break if length.zero?
+      raise Error, @archive if length < 0
 
-        yield buffer.get_bytes(0, length)
-      end
+      yield buffer.get_bytes(0, length)
     end
+
+    nil
   end
 
-  def self.read(file_path, &block)
+  def read_lines(&_block)
+    until next_header.nil?
+      data = String.new :encoding => ::Encoding::BINARY
+
+      read_data do |bytes|
+        data << bytes
+
+        loop do
+          index = data.index LINE_TERMINATOR
+          break if index.nil?
+
+          line = data.byteslice 0, index
+          yield line unless line.length.zero?
+
+          next_index = index + LINE_TERMINATOR.length
+          data       = data.byteslice next_index, data.length - next_index
+        end
+      end
+
+      yield data unless data.length.zero?
+    end
+
+    nil
+  end
+
+  def self.read_lines(file_path, &block)
     instance = new file_path
 
     begin
-      instance.read(&block)
+      instance.read_lines(&block)
     ensure
       instance.close
     end
-  end
-
-  def self.read_lines(file_path, &_block)
-    data = String.new :encoding => ::Encoding::BINARY
-
-    read(file_path) do |bytes|
-      data << bytes
-
-      loop do
-        index = data.index LINE_TERMINATOR
-        break if index.nil?
-
-        yield data.byteslice(0, index)
-
-        next_index = index + 1
-        data       = data.byteslice next_index, data.length - next_index
-      end
-    end
-
-    yield data
   end
 end

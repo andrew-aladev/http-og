@@ -7,8 +7,8 @@
 
 #include <stdint.h>
 
-// Real world URIs are far away from any RFC.
-// We need to collect real world statistics about what bytes can be used.
+// We won't try to mix old/new RFC and other information.
+// It is better to collect real world statistics about what bytes can be used in request URI.
 // Statistics can be collected from terabytes of accidentally published webserver logs.
 // See "scripts/request-collector".
 
