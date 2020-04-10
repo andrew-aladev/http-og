@@ -1,1 +1,7 @@
-*.xz filter=lfs diff=lfs merge=lfs -text
+invalid_log_urls.xz filter=lfs diff=lfs merge=lfs -text
+invalid_page_urls.xz filter=lfs diff=lfs merge=lfs -text
+log_urls.xz filter=lfs diff=lfs merge=lfs -text
+request_methods.xz filter=lfs diff=lfs merge=lfs -text
+request_uris_with_unique_symbols.xz filter=lfs diff=lfs merge=lfs -text
+valid_log_urls.xz filter=lfs diff=lfs merge=lfs -text
+valid_page_urls.xz filter=lfs diff=lfs merge=lfs -text
