@@ -25,8 +25,6 @@ REQUEST_REGEXP = Regexp.new(
 
       HTTP/
       (?:
-          0\.9
-        |
           1\.0
         |
           1\.1
