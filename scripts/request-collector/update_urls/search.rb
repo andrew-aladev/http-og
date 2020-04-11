@@ -9,26 +9,17 @@ require_relative "../common/query"
 # We can make a queue of search urls and process urls one-by-one instead.
 # This method provides better results.
 
-# "error.log"|"error_log" "access.log"|"access_log" index|directory|listing|http|ftp
-MAIN_TEXTS = [
-  %w[error.log error_log],
-  %w[access.log access_log]
-]
-.freeze
+# "access.log"|"access_log" index|directory|listing|http|ftp
+MAIN_TEXTS       = %w[access.log access_log].freeze
 ADDITIONAL_TEXTS = %w[index directory listing http ftp].freeze
 
 def get_text
   [
-    *MAIN_TEXTS
+    MAIN_TEXTS
       .shuffle
       .slice(0, rand(1..MAIN_TEXTS.length))
-      .map do |texts|
-        texts
-          .shuffle
-          .slice(0, rand(1..texts.length))
-          .map { |text| "\"#{text}\"" }
-          .join("|")
-      end,
+      .map { |text| "\"#{text}\"" }
+      .join("|"),
     ADDITIONAL_TEXTS
       .shuffle
       .slice(0, rand(0..ADDITIONAL_TEXTS.length))
