@@ -17,7 +17,7 @@ const char HOG_ALPHABET[] = {
   ']',
   '@',
 
-  // RFC 3986 gen-delims.
+  // RFC 3986 sub-delims.
   '!',
   '$',
   '&',
@@ -40,14 +40,17 @@ const char HOG_ALPHABET[] = {
   '%',
 
   // There are several symbols invalid for RFC 3986 but used often in real world.
+  // These symbols are described as unsafe in old RFC 1738.
   // See "scripts/request-collector" research.
-  '\\',
   '<',
   '>',
-  '`',
+  '"',
   '{',
+  '}',
   '|',
-  '}'};
+  '\\',
+  '^',
+  '`'};
 
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
