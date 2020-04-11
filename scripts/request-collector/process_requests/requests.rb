@@ -9,7 +9,7 @@ require_relative "./archive"
 TEMP_DIRECTORY = File.join(File.dirname(__FILE__), "..", "..", "..", "tmp").freeze
 LOG_PATH       = File.join(TEMP_DIRECTORY, "log").freeze
 
-# Request: "GET /a/b HTTP/1.0".
+# Request: "GET /a/b HTTP/1.0" 200 .
 REQUEST_REGEXP = Regexp.new(
   "
     ['\"]
@@ -30,6 +30,11 @@ REQUEST_REGEXP = Regexp.new(
           1\.1
       )
     ['\"]
+    [ ]
+
+    [123]
+    [0-9]{2}
+    [ ]
   ",
   Regexp::MULTILINE | Regexp::EXTENDED
 )
@@ -79,10 +84,13 @@ def process_archive(file_path, request_methods, request_uris, request_symbols_ha
           request_method = match[0]
           request_uri    = match[1]
 
-          begin
-            URI request_uri
-          rescue StandardError => error
-            warn error
+          unless request_method.ascii_only?
+            warn "request method: #{request_method} is not ascii only"
+            next
+          end
+
+          unless request_uri.ascii_only?
+            warn "request uri: #{request_uri} is not ascii only"
             next
           end
 
