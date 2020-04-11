@@ -5,9 +5,8 @@
 
 #include "options.h"
 
-// HTTP/1.0 RFC 1945
-
 const char* HOG_CONSTANTS[] = {
+  // HTTP/1.0 RFC 1945.
   "GET",
   "HEAD",
   "POST"};
