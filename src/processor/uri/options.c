@@ -17,7 +17,7 @@ const char HOG_ALPHABET[] = {
   ']',
   '@',
 
-  // RFC 3986 gen-delims.
+  // RFC 3986 sub-delims.
   '!',
   '$',
   '&',
