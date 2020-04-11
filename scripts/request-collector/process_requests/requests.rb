@@ -14,7 +14,7 @@ REQUEST_REGEXP = Regexp.new(
   "
     \"
       (
-        [^[:space:]]+
+        [^\"[:space:]]+
       )
       [ ]
 
