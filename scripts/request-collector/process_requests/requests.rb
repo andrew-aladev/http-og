@@ -12,9 +12,9 @@ LOG_PATH       = File.join(TEMP_DIRECTORY, "log").freeze
 # Request: "GET /a/b HTTP/1.0" 200 .
 REQUEST_REGEXP = Regexp.new(
   "
-    \"
+    ['\"]
       (
-        [^\"[:space:]]+
+        [^'\"[:space:]]+
       )
       [ ]
 
@@ -29,7 +29,7 @@ REQUEST_REGEXP = Regexp.new(
         |
           1\.1
       )
-    \"
+    ['\"]
     [ ]
 
     [123]
