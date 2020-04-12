@@ -18,5 +18,29 @@ special_symbols_data = requests.each_with_object({}) do |request, data|
   end
 end
 
+puts "- special symbols:"
 pp special_symbols_data.keys
+puts
+
+puts "- special symbols requests count:"
+count = special_symbols_data.each_with_object({}) do |value, data|
+  data[value[0]] = value[1].length
+  data
+end
+pp count
+puts
+
+puts "- special symbols log urls count:"
+count = special_symbols_data.each_with_object({}) do |value, data|
+  data[value[0]] = value[1]
+    .map { |request| request[:log_url] }
+    .sort
+    .uniq
+    .length
+  data
+end
+pp count
+puts
+
+puts "- full data:"
 pp special_symbols_data
