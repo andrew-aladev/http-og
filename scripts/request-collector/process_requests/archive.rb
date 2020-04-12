@@ -9,6 +9,8 @@ class ArchiveReader < Archive::BaseArchive
   BUFFER_SIZE     = C::DATA_BUFFER_SIZE
   LINE_TERMINATOR = "\n".freeze
 
+  C.attach_function :archive_read_data, %i[pointer pointer ssize_t], :ssize_t
+
   def initialize(file_path)
     super C.method(:archive_read_new), C.method(:archive_read_finish)
 
