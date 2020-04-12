@@ -18,4 +18,5 @@ special_symbols_data = requests.each_with_object({}) do |request, data|
   end
 end
 
+pp special_symbols_data.keys
 pp special_symbols_data
