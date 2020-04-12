@@ -50,6 +50,7 @@ const bool HOG_PROCESSOR_URI_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [124] = true,
   [96] = true,
   [94] = true,
+  [34] = true,
   [97] = true,
   [98] = true,
   [99] = true,

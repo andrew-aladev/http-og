@@ -49,7 +49,8 @@ const char HOG_ALPHABET[] = {
   '>',
   '|',
   '`',
-  '^'};
+  '^',
+  '"'};
 
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
