@@ -10,5 +10,4 @@ cd ".."
   "data/log_urls.xz" \
   "data/valid_log_urls.xz" \
   "data/invalid_log_urls.xz" \
-  "data/request_methods.xz" \
-  "data/request_uris_with_unique_symbols.xz"
+  "data/requests_with_special_symbols.xz"

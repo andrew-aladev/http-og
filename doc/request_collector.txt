@@ -42,15 +42,13 @@ It is possible to view these lists by using "less data/valid_log_urls.xz".
 
 -----
 
-HTTP request methods will be stored in "data/request_methods.xz".
-
 We don't need to store all URIs.
-We need just to store URIs that have at least one unique symbol.
-HTTP request URIs with unique symbols will be stored in "data/request_uris_with_unique_symbols.xz".
+We need just to store URIs that have at least one special symbol.
+HTTP request URIs with special symbols will be stored in "data/requests_with_special_symbols.xz".
 
-It is possible to view these lists by using "less data/request_methods.xz".
+It is possible to view these lists by using "less data/requests_with_special_symbols.xz".
 
-There is a special script "scripts/request_uri_special_symbols.sh".
+There is a special script "scripts/requests_with_special_symbols.sh".
 It outputs a list of special symbols used in URIs.
 
 -----
@@ -83,7 +81,7 @@ forward-socks5t / 127.0.0.1:9050 .
 ./scripts/process_requests.sh
 
 8. List special symbols from URIs
-./scripts/request_uri_special_symbols.sh
+./scripts/requests_with_special_symbols.sh
 
 -----
 

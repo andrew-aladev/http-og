@@ -4,6 +4,7 @@ require "uri"
 
 require_relative "../common/format"
 require_relative "../common/query"
+require_relative "../common/requests"
 require_relative "./archive"
 
 TEMP_DIRECTORY = File.join(File.dirname(__FILE__), "..", "..", "..", "tmp").freeze
@@ -13,14 +14,10 @@ LOG_PATH       = File.join(TEMP_DIRECTORY, "log").freeze
 REQUEST_REGEXP = Regexp.new(
   "
     ['\"]
-      (
-        [^'\"[:space:]]+
-      )
+      [^'\"[:space:]]+
       [ ]
 
-      (
-        [^[:space:]]+
-      )
+      ([^ ]+)
       [ ]
 
       HTTP/
@@ -62,16 +59,9 @@ def download_log(url)
   LOG_PATH
 end
 
-def get_request_uris_symbols(request_uris)
-  request_uris.each_with_object({}) do |request_uri, request_uris_symbols|
-    request_uri.each_char { |char| request_uris_symbols[char] = true }
-  end
-end
-
-def process_archive(file_path, request_methods, request_uris, request_symbols_hash)
-  requests_length        = 0
-  request_methods_length = 0
-  request_uris_length    = 0
+def process_archive(log_url, file_path, requests)
+  is_valid        = false
+  requests_length = 0
 
   begin
     ArchiveReader.read_lines(file_path) do |line|
@@ -79,34 +69,27 @@ def process_archive(file_path, request_methods, request_uris, request_symbols_ha
         .scan(REQUEST_REGEXP)
         .compact
         .each do |match|
-          next if match.length != 2
+          next if match.length != 1
 
-          request_method = match[0]
-          request_uri    = match[1]
-
-          unless request_method.ascii_only?
-            warn "request method: #{request_method} is not ascii only"
-            next
-          end
+          request_uri = match[0]
 
           unless request_uri.ascii_only?
             warn "request uri: #{request_uri} is not ascii only"
             next
           end
 
-          unless request_methods.include? request_method
-            request_methods.add request_method
-            request_methods_length += 1
-          end
+          is_new_request_uri = request_uri.chars.any? { |char| !REQUEST_URI_REGULAR_CHARS.include?(char) }
 
-          is_new_request_uri = request_uri.chars.any? { |char| request_symbols_hash[char].nil? }
           if is_new_request_uri
-            request_uri.each_char { |char| request_symbols_hash[char] = true }
-            request_uris.add request_uri
-            request_uris_length += 1
+            requests << {
+              :request_uri => request_uri,
+              :log_url     => log_url
+            }
+            requests_length += 1
           end
 
-          requests_length += 1
+          # We need at least one request.
+          is_valid = true
         end
     end
 
@@ -114,35 +97,21 @@ def process_archive(file_path, request_methods, request_uris, request_symbols_ha
     warn error
   end
 
-  result = requests_length != 0
-
-  if result
-    requests_text        = colorize_length requests_length
-    request_methods_text = colorize_length request_methods_length
-    request_uris_text    = colorize_length request_uris_length
-
-    warn(
-      "log is valid, received " \
-      "#{requests_text} requests, " \
-      "#{request_methods_text} new request methods, " \
-      "#{request_uris_text} new request uris"
-    )
+  if is_valid
+    warn "log is valid, received #{colorize_length(requests_length)} requests"
   else
     warn "log is invalid"
   end
 
-  [result, request_methods_length, request_uris_length]
+  [is_valid, requests_length]
 end
 
-def process_requests(log_urls, valid_log_urls, invalid_log_urls, request_methods, request_uris)
-  request_uris_symbols = get_request_uris_symbols request_uris
-
+def process_requests(log_urls, valid_log_urls, invalid_log_urls, requests)
   logs_size = 0
 
   invalid_log_urls_length = 0
   valid_log_urls_length   = 0
-  request_methods_length  = 0
-  request_uris_length     = 0
+  requests_length         = 0
 
   log_urls
     .shuffle
@@ -157,9 +126,9 @@ def process_requests(log_urls, valid_log_urls, invalid_log_urls, request_methods
         size = File.size file_path
         warn "downloaded log, size: #{Filesize.new(size).pretty}"
 
-        result, new_request_methods_length, new_request_uris_length = process_archive file_path, request_methods, request_uris, request_uris_symbols
+        is_valid, new_requests_length = process_archive log_url, file_path, requests
 
-        if result
+        if is_valid
           valid_log_urls_length += 1
           valid_log_urls << log_url
         else
@@ -167,9 +136,8 @@ def process_requests(log_urls, valid_log_urls, invalid_log_urls, request_methods
           invalid_log_urls << log_url
         end
 
-        request_methods_length += new_request_methods_length
-        request_uris_length    += new_request_uris_length
-        logs_size              += size
+        requests_length += new_requests_length
+        logs_size       += size
 
       ensure
         File.delete file_path
@@ -180,15 +148,13 @@ def process_requests(log_urls, valid_log_urls, invalid_log_urls, request_methods
 
   invalid_log_urls_text = colorize_length invalid_log_urls_length
   valid_log_urls_text   = colorize_length valid_log_urls_length
-  request_methods_text  = colorize_length request_methods_length
-  request_uris_text     = colorize_length request_uris_length
+  requests_text         = colorize_length requests_length
 
   warn(
     "-- processed #{logs_size_text} logs size, received " \
     "#{invalid_log_urls_text} invalid logs, " \
     "#{valid_log_urls_text} valid logs, " \
-    "#{request_methods_text} request methods, " \
-    "#{request_uris_text} request uris"
+    "#{requests_text} requests"
   )
 
   nil
