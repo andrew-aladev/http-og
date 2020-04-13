@@ -5,11 +5,4 @@
 
 #include "options.h"
 
-// HTTP/1.0 RFC 1945.
-
-const char* HOG_CONSTANTS[] = {
-  "GET",
-  "HEAD",
-  "POST"};
-
-const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);
+const char* HOG_CONSTANT = "HTTP/1.0";
