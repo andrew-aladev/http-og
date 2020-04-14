@@ -3,10 +3,10 @@ project ("cmake_generate_constants_processor" "C")
 
 include ("../toolchain.cmake")
 
-include_directories (${CMAKE_GENERATOR_PATH})
+include_directories (${GENERATOR_PATH})
 add_executable (
   "main"
-  "${CMAKE_TARGET_PATH}/options.c"
+  "${TARGET_PATH}/options.c"
   "alphabet.c"
   "data.c"
   "main.c"
