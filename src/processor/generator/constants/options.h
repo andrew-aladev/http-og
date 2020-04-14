@@ -3,12 +3,12 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(HOG_PROCESSOR_METHOD_v1_1_OPTIONS_H)
-#define HOG_PROCESSOR_METHOD_v1_1_OPTIONS_H
+#if !defined(HOG_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H)
+#define HOG_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H
 
 #include <stdlib.h>
 
 extern const char*  HOG_CONSTANTS[];
 extern const size_t HOG_CONSTANTS_LENGTH;
 
-#endif // HOG_PROCESSOR_METHOD_v1_1_OPTIONS_H
+#endif // HOG_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H

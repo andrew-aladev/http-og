@@ -12,8 +12,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "@SOURCE_PATH@common.h"
-#include "@SOURCE_PATH@log.h"
+#include "@RELATIVE_SOURCE_PATH@common.h"
+#include "@RELATIVE_SOURCE_PATH@log.h"
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE;
 

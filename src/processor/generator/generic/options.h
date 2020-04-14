@@ -3,8 +3,8 @@
 
 // This file is intended to be used by generator only.
 
-#if !defined(HOG_PROCESSOR_URI_OPTIONS_H)
-#define HOG_PROCESSOR_URI_OPTIONS_H
+#if !defined(HOG_PROCESSOR_GENERATOR_GENERIC_OPTIONS_H)
+#define HOG_PROCESSOR_GENERATOR_GENERIC_OPTIONS_H
 
 #include <stdlib.h>
 
@@ -22,4 +22,4 @@ extern const size_t             HOG_ALPHABET_RANGES_LENGTH;
 extern const size_t HOG_MIN_LENGTH;
 extern const size_t HOG_MAX_LENGTH;
 
-#endif // HOG_PROCESSOR_URI_OPTIONS_H
+#endif // HOG_PROCESSOR_GENERATOR_GENERIC_OPTIONS_H

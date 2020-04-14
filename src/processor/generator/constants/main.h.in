@@ -12,8 +12,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "@SOURCE_PATH@common.h"
-#include "@SOURCE_PATH@log.h"
+#include "@RELATIVE_SOURCE_PATH@common.h"
+#include "@RELATIVE_SOURCE_PATH@log.h"
 
 typedef uint@CMAKE_MIN_STATE_BITS@_t hog_processor_@PREFIX_LOWER_CASE@_state_t;
 

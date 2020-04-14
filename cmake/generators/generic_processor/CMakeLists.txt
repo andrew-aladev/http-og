@@ -6,7 +6,7 @@ include ("../toolchain.cmake")
 include_directories (${CMAKE_GENERATOR_PATH})
 add_executable (
   "main"
-  "${CMAKE_GENERATOR_PATH}/options.c"
+  "${CMAKE_TARGET_PATH}/options.c"
   "alphabet.c"
   "data.c"
   "main.c"
