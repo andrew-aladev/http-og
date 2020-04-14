@@ -17,13 +17,13 @@
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_v1_0_INITIAL_STATE;
 
-extern const char*  HOG_PROCESSOR_VERSION_v1_0_CONSTANT;
-extern const size_t HOG_PROCESSOR_VERSION_v1_0_CONSTANT_LENGTH;
+extern const hog_symbol_t HOG_PROCESSOR_VERSION_v1_0_CONSTANT_SYMBOLS[];
+extern const size_t       HOG_PROCESSOR_VERSION_v1_0_CONSTANT_LENGTH;
 
 inline hog_processor_state_fast_t hog_processor_version_v1_0_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)
 {
-  if (HOG_PROCESSOR_VERSION_v1_0_CONSTANT[state] != byte) {
+  if (HOG_PROCESSOR_VERSION_v1_0_CONSTANT_SYMBOLS[state] != byte) {
     HOG_LOG_ERROR("version_v1_0 processor received invalid byte: %u", byte);
     return HOG_PROCESSOR_VERSION_v1_0_INITIAL_STATE;
   }

@@ -98,7 +98,7 @@ def process_archive(log_url, file_path, requests)
   end
 
   if is_valid
-    warn "log is valid, received #{colorize_length(requests_length)} requests"
+    warn "log is #{'valid'.light_green}, received #{colorize_length(requests_length)} requests"
   else
     warn "log is invalid"
   end

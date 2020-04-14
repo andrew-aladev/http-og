@@ -3,17 +3,33 @@
 
 #include "data.h"
 
+#include <stdint.h>
 #include <string.h>
 
 #include "common.h"
 
-#define CONSTANT_LENGTH_TEMPLATE "%zu"
+#define SYMBOL_PREFIX "  "
+#define SYMBOL_TEMPLATE "0x%02x"
+#define SYMBOL_TERMINATOR ",\n"
+
+#define LENGTH_TEMPLATE "%zu"
 
 void print_data()
 {
-  PRINT(CONSTANT);
+  for (size_t index = 0; index < strlen(CONSTANT); index++) {
+    if (index == 0) {
+      PRINT(SYMBOL_PREFIX);
+    }
+    else {
+      PRINT(SYMBOL_TERMINATOR);
+      PRINT(SYMBOL_PREFIX);
+    }
+
+    printf(SYMBOL_TEMPLATE, (uint8_t)CONSTANT[index]);
+  }
+
   PRINT_GLUE();
 
-  printf(CONSTANT_LENGTH_TEMPLATE, strlen(CONSTANT));
+  printf(LENGTH_TEMPLATE, strlen(CONSTANT));
   PRINT_GLUE();
 }

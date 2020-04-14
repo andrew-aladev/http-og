@@ -5,8 +5,7 @@
 
 #include "options.h"
 
-const char* HOG_CONSTANTS[] = {
-  "HTTP/1.0",
-  "HTTP/1.1"};
+// RFC 2616.
 
+const char*  HOG_CONSTANTS[]      = {"1.0", "1.1"};
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

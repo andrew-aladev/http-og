@@ -10,7 +10,11 @@
 
 const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_v0_9_INITIAL_STATE = 0;
 
-const char*  HOG_PROCESSOR_METHOD_v0_9_CONSTANT        = "GET";
+const hog_symbol_t HOG_PROCESSOR_METHOD_v0_9_CONSTANT_SYMBOLS[] = {
+  0x47,
+  0x45,
+  0x54};
+
 const size_t HOG_PROCESSOR_METHOD_v0_9_CONSTANT_LENGTH = 3;
 
 extern inline hog_processor_state_fast_t hog_processor_method_v0_9_get_next_state(

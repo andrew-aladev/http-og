@@ -10,8 +10,12 @@
 
 const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_v1_0_INITIAL_STATE = 0;
 
-const char*  HOG_PROCESSOR_VERSION_v1_0_CONSTANT        = "HTTP/1.0";
-const size_t HOG_PROCESSOR_VERSION_v1_0_CONSTANT_LENGTH = 8;
+const hog_symbol_t HOG_PROCESSOR_VERSION_v1_0_CONSTANT_SYMBOLS[] = {
+  0x31,
+  0x2e,
+  0x30};
+
+const size_t HOG_PROCESSOR_VERSION_v1_0_CONSTANT_LENGTH = 3;
 
 extern inline hog_processor_state_fast_t hog_processor_version_v1_0_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);

@@ -5,4 +5,6 @@
 
 #include "options.h"
 
-const char* HOG_CONSTANT = "HTTP/1.0";
+// RFC 1945.
+
+const char* HOG_CONSTANT = "1.0";

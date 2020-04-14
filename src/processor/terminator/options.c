@@ -5,10 +5,7 @@
 
 #include "options.h"
 
-// HTTP/1.1 RFC 2616.
+// RFC 2616.
 
-const char* HOG_CONSTANTS[] = {
-  "\n",
-  "\r\n"};
-
+const char*  HOG_CONSTANTS[]      = {"\n", "\r\n"};
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

@@ -9,11 +9,11 @@
 
 // RFC 2616.
 
-const char   HOG_ALPHABET[]      = {' ', '\t'};
+const char   HOG_ALPHABET[]      = {'.'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
-const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {};
-const size_t             HOG_ALPHABET_RANGES_LENGTH = 0;
+const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {{'0', '9'}};
+const size_t             HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
 const size_t HOG_MIN_LENGTH = 1;
 const size_t HOG_MAX_LENGTH = UINT8_MAX;

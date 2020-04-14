@@ -8,13 +8,7 @@
 
 #include "processor.h"
 
-const char* HOG_PROCESSOR_TERMINATOR_CONSTANTS = {
-  "
-",
-  "
-"};
-
-const size_t HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH = sizeof(HOG_PROCESSOR_TERMINATOR_CONSTANTS) / sizeof(HOG_PROCESSOR_TERMINATOR_CONSTANTS[0]);
+const size_t HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH = 2;
 
 const hog_processor_state_fast_t HOG_PROCESSOR_TERMINATOR_INITIAL_STATE = HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH;
 
@@ -50,5 +44,3 @@ extern inline hog_processor_state_fast_t hog_processor_terminator_get_next_state
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
 extern inline bool hog_processor_terminator_is_finished(hog_processor_state_fast_t state);
-
-extern inline const char* hog_processor_terminator_get_data(hog_processor_state_fast_t state);

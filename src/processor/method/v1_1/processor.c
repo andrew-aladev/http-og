@@ -8,48 +8,7 @@
 
 #include "processor.h"
 
-const char* HOG_PROCESSOR_METHOD_v1_1_CONSTANTS = {
-  "OPTIONS",
-  "GET",
-  "HEAD",
-  "POST",
-  "PUT",
-  "DELETE",
-  "TRACE",
-  "CONNECT",
-  "PATCH",
-  "LINK",
-  "UNLINK",
-  "PROPFIND",
-  "PROPPATCH",
-  "MKCOL",
-  "COPY",
-  "MOVE",
-  "LOCK",
-  "UNLOCK",
-  "BIND",
-  "UNBIND",
-  "REBIND",
-  "ACL",
-  "REPORT",
-  "SEARCH",
-  "VERSION-CONTROL",
-  "CHECKOUT",
-  "CHECKIN",
-  "UNCHECKOUT",
-  "MKWORKSPACE",
-  "UPDATE",
-  "LABEL",
-  "MERGE",
-  "BASELINE-CONTROL",
-  "MKACTIVITY",
-  "MKREDIRECTREF",
-  "UPDATEREDIRECTREF",
-  "ORDERPATCH",
-  "MKCALENDAR",
-  "PRI"};
-
-const size_t HOG_PROCESSOR_METHOD_v1_1_CONSTANTS_LENGTH = sizeof(HOG_PROCESSOR_METHOD_v1_1_CONSTANTS) / sizeof(HOG_PROCESSOR_METHOD_v1_1_CONSTANTS[0]);
+const size_t HOG_PROCESSOR_METHOD_v1_1_CONSTANTS_LENGTH = 39;
 
 const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_v1_1_INITIAL_STATE = HOG_PROCESSOR_METHOD_v1_1_CONSTANTS_LENGTH;
 
@@ -326,5 +285,3 @@ extern inline hog_processor_state_fast_t hog_processor_method_v1_1_get_next_stat
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
 extern inline bool hog_processor_method_v1_1_is_finished(hog_processor_state_fast_t state);
-
-extern inline const char* hog_processor_method_v1_1_get_data(hog_processor_state_fast_t state);

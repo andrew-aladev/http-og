@@ -10,7 +10,9 @@
 
 const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE = 0;
 
-const char*  HOG_PROCESSOR_@PREFIX@_CONSTANT        = "@CMAKE_CONSTANT@";
+const hog_symbol_t HOG_PROCESSOR_@PREFIX@_CONSTANT_SYMBOLS[] = {
+@CMAKE_CONSTANT_SYMBOLS@};
+
 const size_t HOG_PROCESSOR_@PREFIX@_CONSTANT_LENGTH = @CMAKE_CONSTANT_LENGTH@;
 
 extern inline hog_processor_state_fast_t hog_processor_@PREFIX_LOWER_CASE@_get_next_state(

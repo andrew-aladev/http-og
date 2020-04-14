@@ -19,7 +19,6 @@ typedef uint@CMAKE_MIN_STATE_BITS@_t hog_processor_@PREFIX_LOWER_CASE@_state_t;
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE;
 
-extern const char*  HOG_PROCESSOR_@PREFIX@_CONSTANTS[];
 extern const size_t HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH;
 extern const size_t HOG_PROCESSOR_@PREFIX@_ALPHABET_LENGTH;
 extern const size_t HOG_PROCESSOR_@PREFIX@_ALPHABET_MAX_LENGTH;
@@ -44,15 +43,6 @@ inline hog_processor_state_fast_t hog_processor_@PREFIX_LOWER_CASE@_get_next_sta
 inline bool hog_processor_@PREFIX_LOWER_CASE@_is_finished(hog_processor_state_fast_t state)
 {
   return state < HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH;
-}
-
-inline const char* hog_processor_@PREFIX_LOWER_CASE@_get_data(hog_processor_state_fast_t state)
-{
-  if (!hog_processor_@PREFIX_LOWER_CASE@_is_finished(state)) {
-    return NULL;
-  }
-
-  return HOG_PROCESSOR_@PREFIX@_CONSTANTS[state];
 }
 
 #endif // HOG_PROCESSOR_@PREFIX@_H

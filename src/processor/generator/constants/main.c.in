@@ -8,10 +8,7 @@
 
 #include "@FILE_NAME@.h"
 
-const char* HOG_PROCESSOR_@PREFIX@_CONSTANTS = {
-@CMAKE_CONSTANTS@};
-
-const size_t HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH = sizeof(HOG_PROCESSOR_@PREFIX@_CONSTANTS) / sizeof(HOG_PROCESSOR_@PREFIX@_CONSTANTS[0]);
+const size_t HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH = @CMAKE_CONSTANTS_LENGTH@;
 
 const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE = HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH;
 
@@ -44,5 +41,3 @@ extern inline hog_processor_state_fast_t hog_processor_@PREFIX_LOWER_CASE@_get_n
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
 extern inline bool hog_processor_@PREFIX_LOWER_CASE@_is_finished(hog_processor_state_fast_t state);
-
-extern inline const char* hog_processor_@PREFIX_LOWER_CASE@_get_data(hog_processor_state_fast_t state);

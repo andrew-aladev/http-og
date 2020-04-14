@@ -8,12 +8,7 @@
 
 #include "processor.h"
 
-const char* HOG_PROCESSOR_METHOD_v1_0_CONSTANTS = {
-  "GET",
-  "HEAD",
-  "POST"};
-
-const size_t HOG_PROCESSOR_METHOD_v1_0_CONSTANTS_LENGTH = sizeof(HOG_PROCESSOR_METHOD_v1_0_CONSTANTS) / sizeof(HOG_PROCESSOR_METHOD_v1_0_CONSTANTS[0]);
+const size_t HOG_PROCESSOR_METHOD_v1_0_CONSTANTS_LENGTH = 3;
 
 const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_v1_0_INITIAL_STATE = HOG_PROCESSOR_METHOD_v1_0_CONSTANTS_LENGTH;
 
@@ -64,5 +59,3 @@ extern inline hog_processor_state_fast_t hog_processor_method_v1_0_get_next_stat
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
 extern inline bool hog_processor_method_v1_0_is_finished(hog_processor_state_fast_t state);
-
-extern inline const char* hog_processor_method_v1_0_get_data(hog_processor_state_fast_t state);

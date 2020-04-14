@@ -8,15 +8,11 @@
 
 #include "processor.h"
 
-const char* HOG_PROCESSOR_VERSION_v1_1_CONSTANTS = {
-  "HTTP/1.0",
-  "HTTP/1.1"};
-
-const size_t HOG_PROCESSOR_VERSION_v1_1_CONSTANTS_LENGTH = sizeof(HOG_PROCESSOR_VERSION_v1_1_CONSTANTS) / sizeof(HOG_PROCESSOR_VERSION_v1_1_CONSTANTS[0]);
+const size_t HOG_PROCESSOR_VERSION_v1_1_CONSTANTS_LENGTH = 2;
 
 const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_v1_1_INITIAL_STATE = HOG_PROCESSOR_VERSION_v1_1_CONSTANTS_LENGTH;
 
-const size_t HOG_PROCESSOR_VERSION_v1_1_ALPHABET_LENGTH     = 7;
+const size_t HOG_PROCESSOR_VERSION_v1_1_ALPHABET_LENGTH     = 3;
 const size_t HOG_PROCESSOR_VERSION_v1_1_ALPHABET_MAX_LENGTH = HOG_MAX_SYMBOL + 1;
 
 const hog_symbol_fast_t HOG_PROCESSOR_VERSION_v1_1_UNDEFINED_SYMBOL = HOG_MAX_SYMBOL;
@@ -27,31 +23,22 @@ const hog_symbol_fast_t HOG_PROCESSOR_VERSION_v1_1_UNDEFINED_SYMBOL = HOG_MAX_SY
 
 const hog_symbol_t HOG_PROCESSOR_VERSION_v1_1_SYMBOL_BY_BYTES[SYMBOL_BY_BYTES_LENGTH] = {
   [0 ... SYMBOL_BY_BYTES_LENGTH - 1] = HOG_PROCESSOR_VERSION_v1_1_UNDEFINED_SYMBOL,
-  [72] = 0,
-  [84] = 1,
-  [80] = 2,
-  [47] = 3,
-  [49] = 4,
-  [46] = 5,
-  [48] = 6};
+  [49] = 0,
+  [46] = 1,
+  [48] = 2};
 
 // clang-format on
 
-#define NEXT_STATE_BY_LAST_SYMBOLS_LENGTH (9 + 1) * HOG_PROCESSOR_VERSION_v1_1_ALPHABET_LENGTH
+#define NEXT_STATE_BY_LAST_SYMBOLS_LENGTH (4 + 1) * HOG_PROCESSOR_VERSION_v1_1_ALPHABET_LENGTH
 
 // clang-format off
 
 const hog_processor_version_v1_1_state_t HOG_PROCESSOR_VERSION_v1_1_NEXT_STATE_BY_LAST_SYMBOLS[NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
   [0 ... NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = HOG_PROCESSOR_VERSION_v1_1_INITIAL_STATE,
-  [14] = 3,
-  [22] = 4,
-  [29] = 5,
-  [37] = 6,
-  [45] = 7,
-  [53] = 8,
-  [61] = 9,
-  [67] = 1,
-  [69] = 0};
+  [6] = 3,
+  [10] = 4,
+  [12] = 1,
+  [14] = 0};
 
 // clang-format on
 
@@ -59,5 +46,3 @@ extern inline hog_processor_state_fast_t hog_processor_version_v1_1_get_next_sta
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
 extern inline bool hog_processor_version_v1_1_is_finished(hog_processor_state_fast_t state);
-
-extern inline const char* hog_processor_version_v1_1_get_data(hog_processor_state_fast_t state);

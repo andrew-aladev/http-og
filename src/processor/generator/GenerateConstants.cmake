@@ -4,7 +4,7 @@ function (generate_constants PREFIX)
   include (GenerateConstantsProcessor)
   generate_constants_processor (${PREFIX} ${PREFIX_LOWER_CASE} ${CMAKE_CURRENT_SOURCE_DIR})
 
-  if (DEFINED CMAKE_CONSTANTS)
+  if (DEFINED CMAKE_CONSTANTS_LENGTH)
     set (FILE_NAME "processor")
     file (RELATIVE_PATH SOURCE_PATH ${CMAKE_CURRENT_SOURCE_DIR} "${PROJECT_SOURCE_DIR}/src")
     set (GENERATOR_PATH "${SOURCE_PATH}/processor/generator/constants")

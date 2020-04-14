@@ -19,7 +19,6 @@ typedef uint8_t hog_processor_terminator_state_t;
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_TERMINATOR_INITIAL_STATE;
 
-extern const char*  HOG_PROCESSOR_TERMINATOR_CONSTANTS[];
 extern const size_t HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH;
 extern const size_t HOG_PROCESSOR_TERMINATOR_ALPHABET_LENGTH;
 extern const size_t HOG_PROCESSOR_TERMINATOR_ALPHABET_MAX_LENGTH;
@@ -44,15 +43,6 @@ inline hog_processor_state_fast_t hog_processor_terminator_get_next_state(
 inline bool hog_processor_terminator_is_finished(hog_processor_state_fast_t state)
 {
   return state < HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH;
-}
-
-inline const char* hog_processor_terminator_get_data(hog_processor_state_fast_t state)
-{
-  if (!hog_processor_terminator_is_finished(state)) {
-    return NULL;
-  }
-
-  return HOG_PROCESSOR_TERMINATOR_CONSTANTS[state];
 }
 
 #endif // HOG_PROCESSOR_TERMINATOR_H
