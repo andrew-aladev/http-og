@@ -7,10 +7,9 @@
 
 #include <stdint.h>
 
-// RFC 1945 - 3.1 HTTP Version.
-// RFC 7230 - 2.6 Protocol Versioning.
+// RFC 7231 - 6.1 Overview of Status Codes.
 
-const char   HOG_ALPHABET[]      = {'.'};
+const char   HOG_ALPHABET[]      = {};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
 const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {{'0', '9'}};

@@ -5,7 +5,14 @@
 
 #include "options.h"
 
-// RFC 7230 - 3.5 Message Parsing Robustness.
+const char* HOG_CONSTANTS[] = {
+  // RFC 1945 - 8.1 GET.
+  "GET",
 
-const char*  HOG_CONSTANTS[]      = {"\n", "\r\n"};
+  // RFC 1945 - 8.2 HEAD.
+  "HEAD",
+
+  // RFC 1945 - 8.3 POST.
+  "POST"};
+
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

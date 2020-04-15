@@ -6,6 +6,5 @@
 #include "options.h"
 
 // RFC 1945 - 3.1 HTTP Version.
-// RFC 7230 - 2.6 Protocol Versioning.
 
-const char* HOG_CONSTANT = "HTTP/";
+const char* HOG_CONSTANT = "1.0";

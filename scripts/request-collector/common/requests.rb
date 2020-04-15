@@ -3,12 +3,12 @@ require "set"
 require_relative "list"
 
 REQUEST_URI_REGULAR_CHARS = [
-  # RFC 3986 digits and letters.
+  # RFC 3986 - 2.3 Unreserved Characters.
   *("0".."9"),
   *("a".."z"),
   *("A".."Z"),
 
-  # RFC 3986 gen-delims.
+  # RFC 3986 - 2.2 Reserved Characters.
   ":",
   "/",
   "?",
@@ -17,7 +17,7 @@ REQUEST_URI_REGULAR_CHARS = [
   "]",
   "@",
 
-  # RFC 3986 sub-delims.
+  # RFC 3986 - 2.2 Reserved Characters.
   "!",
   "$",
   "&",
@@ -30,13 +30,13 @@ REQUEST_URI_REGULAR_CHARS = [
   ";",
   "=",
 
-  # RFC 3986 unreserved.
+  # RFC 3986 - 2.3 Unreserved Characters.
   "-",
   ".",
   "_",
   "~",
 
-  # RFC 3986 pct-encoded.
+  # RFC 3986 - 2.1 Percent-Encoding.
   "%"
 ]
 .to_set

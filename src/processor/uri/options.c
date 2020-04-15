@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 const char HOG_ALPHABET[] = {
-  // RFC 3986 gen-delims.
+  // RFC 3986 - 2.2 Reserved Characters.
   ':',
   '/',
   '?',
@@ -17,7 +17,7 @@ const char HOG_ALPHABET[] = {
   ']',
   '@',
 
-  // RFC 3986 sub-delims.
+  // RFC 3986 - 2.2 Reserved Characters.
   '!',
   '$',
   '&',
@@ -30,13 +30,13 @@ const char HOG_ALPHABET[] = {
   ';',
   '=',
 
-  // RFC 3986 unreserved.
+  // RFC 3986 - 2.3 Unreserved Characters.
   '-',
   '.',
   '_',
   '~',
 
-  // RFC 3986 pct-encoded.
+  // RFC 3986 - 2.1 Percent-Encoding.
   '%',
 
   // There are several symbols invalid for RFC 3986 but used often in real world.
@@ -54,7 +54,7 @@ const char HOG_ALPHABET[] = {
 
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
-// RFC 3986 digits and letters.
+// RFC 3986 - 2.3 Unreserved Characters.
 
 const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {{'a', 'z'}, {'A', 'Z'}, {'0', '9'}};
 const size_t             HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);

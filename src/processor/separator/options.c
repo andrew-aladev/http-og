@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 
-// RFC 2616.
+// RFC 7230 - 3.5 Message Parsing Robustness.
 
 const char   HOG_ALPHABET[]      = {' ', '\t'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
