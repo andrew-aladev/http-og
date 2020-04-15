@@ -6,7 +6,7 @@
 // It may not be possible to run generator while cross compiling.
 // So generated file should be shipped with its template.
 
-#include ".h"
+#include "main.h"
 
 const size_t HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH = 2;
 

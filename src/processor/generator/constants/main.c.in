@@ -6,7 +6,7 @@
 // It may not be possible to run generator while cross compiling.
 // So generated file should be shipped with its template.
 
-#include "@FILE_NAME@.h"
+#include "main.h"
 
 const size_t HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH = @CMAKE_CONSTANTS_LENGTH@;
 

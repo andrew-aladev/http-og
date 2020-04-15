@@ -6,7 +6,7 @@
 // It may not be possible to run generator while cross compiling.
 // So generated file should be shipped with its template.
 
-#include ".h"
+#include "main.h"
 
 const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_GENERIC_INITIAL_STATE = 0;
 
