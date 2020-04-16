@@ -15,34 +15,25 @@
 #include "../../../common.h"
 #include "../../../log.h"
 
-typedef uint8_t hog_processor_version_1_1_state_t;
-
 extern const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_1_1_INITIAL_STATE;
 
-extern const size_t HOG_PROCESSOR_VERSION_1_1_CONSTANTS_LENGTH;
-extern const size_t HOG_PROCESSOR_VERSION_1_1_ALPHABET_LENGTH;
-extern const size_t HOG_PROCESSOR_VERSION_1_1_ALPHABET_MAX_LENGTH;
-
-extern const hog_symbol_fast_t HOG_PROCESSOR_VERSION_1_1_UNDEFINED_SYMBOL;
-extern const hog_symbol_t      HOG_PROCESSOR_VERSION_1_1_SYMBOL_BY_BYTES[];
-
-extern const hog_processor_version_1_1_state_t HOG_PROCESSOR_VERSION_1_1_NEXT_STATE_BY_LAST_SYMBOLS[];
+extern const hog_symbol_t HOG_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[];
+extern const size_t       HOG_PROCESSOR_VERSION_1_1_CONSTANT_LENGTH;
 
 inline hog_processor_state_fast_t hog_processor_version_1_1_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)
 {
-  hog_symbol_fast_t symbol = HOG_PROCESSOR_VERSION_1_1_SYMBOL_BY_BYTES[byte];
-  if (HOG_PROCESSOR_VERSION_1_1_ALPHABET_LENGTH != HOG_PROCESSOR_VERSION_1_1_ALPHABET_MAX_LENGTH && symbol == HOG_PROCESSOR_VERSION_1_1_UNDEFINED_SYMBOL) {
+  if (HOG_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[state] != byte) {
     HOG_LOG_ERROR("version_1_1 processor received invalid byte: %u", byte);
     return HOG_PROCESSOR_VERSION_1_1_INITIAL_STATE;
   }
 
-  return HOG_PROCESSOR_VERSION_1_1_NEXT_STATE_BY_LAST_SYMBOLS[state * HOG_PROCESSOR_VERSION_1_1_ALPHABET_LENGTH + symbol];
+  return state + 1;
 }
 
 inline bool hog_processor_version_1_1_is_finished(hog_processor_state_fast_t state)
 {
-  return state < HOG_PROCESSOR_VERSION_1_1_CONSTANTS_LENGTH;
+  return state == HOG_PROCESSOR_VERSION_1_1_CONSTANT_LENGTH;
 }
 
 #endif // HOG_PROCESSOR_VERSION_1_1_H

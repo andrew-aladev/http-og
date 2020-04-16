@@ -19,9 +19,6 @@ const size_t HOG_PROCESSOR_STATUS_DESCRIPTION_GENERIC_MAX_LENGTH = 255;
 
 const bool HOG_PROCESSOR_STATUS_DESCRIPTION_GENERIC_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
-  [40] = true,
-  [41] = true,
-  [32] = true,
   [97] = true,
   [98] = true,
   [99] = true,

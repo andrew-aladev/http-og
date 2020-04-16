@@ -7,5 +7,4 @@
 
 // RFC 7230 - 2.6 Protocol Versioning.
 
-const char*  HOG_CONSTANTS[]      = {"1.0", "1.1"};
-const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);
+const char* HOG_CONSTANT = "1.1";

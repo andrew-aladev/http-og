@@ -5,7 +5,8 @@
 
 #include "options.h"
 
-// https://www.iana.org/assignments/http-status-codes/http-status-codes.xml
+// RFC 1945 - 3.1 HTTP Version.
+// RFC 7230 - 2.6 Protocol Versioning.
 
-const char*  HOG_CONSTANTS[]      = {};
+const char*  HOG_CONSTANTS[]      = {"1.0", "1.1"};
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

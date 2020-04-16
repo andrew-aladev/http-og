@@ -8,9 +8,6 @@
 
 #include <stdlib.h>
 
-extern const char   HOG_ALPHABET[];
-extern const size_t HOG_ALPHABET_LENGTH;
-
 typedef struct {
   char from;
   char to;
@@ -18,6 +15,9 @@ typedef struct {
 
 extern const hog_alphabet_range HOG_ALPHABET_RANGES[];
 extern const size_t             HOG_ALPHABET_RANGES_LENGTH;
+
+extern const char   HOG_ALPHABET[];
+extern const size_t HOG_ALPHABET_LENGTH;
 
 extern const size_t HOG_MIN_LENGTH;
 extern const size_t HOG_MAX_LENGTH;

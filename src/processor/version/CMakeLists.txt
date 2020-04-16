@@ -1,3 +1,4 @@
 add_subdirectory ("1_0")
+add_subdirectory ("1_0_and_1_1")
 add_subdirectory ("1_1")
-add_subdirectory ("generic")
+add_subdirectory ("any_standard")

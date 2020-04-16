@@ -31,16 +31,16 @@ void print_allowed_bytes()
   size_t index;
   bool   first_byte_printed = false;
 
-  for (index = 0; index < ALPHABET_LENGTH; index++) {
-    print_allowed_byte(&first_byte_printed, ALPHABET[index]);
-  }
-
   for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
     hog_alphabet_range alphabet_range = HOG_ALPHABET_RANGES[index];
 
     for (char byte = alphabet_range.from; byte <= alphabet_range.to; byte++) {
       print_allowed_byte(&first_byte_printed, byte);
     }
+  }
+
+  for (index = 0; index < ALPHABET_LENGTH; index++) {
+    print_allowed_byte(&first_byte_printed, ALPHABET[index]);
   }
 
   PRINT_GLUE();

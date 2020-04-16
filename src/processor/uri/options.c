@@ -7,6 +7,13 @@
 
 #include <stdint.h>
 
+// RFC 3986 - 2.3 Unreserved Characters.
+
+const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {{'a', 'z'}, {'A', 'Z'}, {'0', '9'}};
+const size_t             HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
+
+const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
+
 const char HOG_ALPHABET[] = {
   // RFC 3986 - 2.2 Reserved Characters.
   ':',
@@ -51,13 +58,6 @@ const char HOG_ALPHABET[] = {
   '`',
   '^',
   '"'};
-
-const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
-
-// RFC 3986 - 2.3 Unreserved Characters.
-
-const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {{'a', 'z'}, {'A', 'Z'}, {'0', '9'}};
-const size_t             HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
 const size_t HOG_MIN_LENGTH = 1;
 const size_t HOG_MAX_LENGTH = UINT16_MAX;

@@ -9,11 +9,11 @@
 
 // RFC 7230 - 3.5 Message Parsing Robustness.
 
-const char   HOG_ALPHABET[]      = {' ', '\t'};
-const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
-
 const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {};
 const size_t             HOG_ALPHABET_RANGES_LENGTH = 0;
+
+const char   HOG_ALPHABET[]      = {' ', '\t'};
+const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
 const size_t HOG_MIN_LENGTH = 1;
 const size_t HOG_MAX_LENGTH = UINT8_MAX;

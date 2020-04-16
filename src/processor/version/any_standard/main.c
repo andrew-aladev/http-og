@@ -8,18 +8,17 @@
 
 #include "main.h"
 
-const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_GENERIC_INITIAL_STATE = 0;
+const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_ANY_STANDARD_INITIAL_STATE = 0;
 
-const size_t HOG_PROCESSOR_VERSION_GENERIC_MIN_LENGTH = 1;
-const size_t HOG_PROCESSOR_VERSION_GENERIC_MAX_LENGTH = 255;
+const size_t HOG_PROCESSOR_VERSION_ANY_STANDARD_MIN_LENGTH = 1;
+const size_t HOG_PROCESSOR_VERSION_ANY_STANDARD_MAX_LENGTH = 255;
 
 #define ALLOWED_BYTES_LENGTH HOG_MAX_SYMBOL + 1
 
 // clang-format off
 
-const bool HOG_PROCESSOR_VERSION_GENERIC_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
+const bool HOG_PROCESSOR_VERSION_ANY_STANDARD_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
-  [46] = true,
   [48] = true,
   [49] = true,
   [50] = true,
@@ -29,11 +28,12 @@ const bool HOG_PROCESSOR_VERSION_GENERIC_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [54] = true,
   [55] = true,
   [56] = true,
-  [57] = true};
+  [57] = true,
+  [46] = true};
 
 // clang-format on
 
-extern inline hog_processor_state_fast_t hog_processor_version_generic_get_next_state(
+extern inline hog_processor_state_fast_t hog_processor_version_any_standard_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_version_generic_is_finished(hog_processor_state_fast_t state);
+extern inline bool hog_processor_version_any_standard_is_finished(hog_processor_state_fast_t state);
