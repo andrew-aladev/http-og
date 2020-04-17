@@ -4,6 +4,7 @@
 #include "alphabet.h"
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #include "common.h"
@@ -23,7 +24,7 @@ static inline void print_allowed_byte(bool* first_byte_printed_ptr, char byte)
     *first_byte_printed_ptr = true;
   }
 
-  printf(ALLOWED_BYTES_TEMPLATE, byte);
+  printf(ALLOWED_BYTES_TEMPLATE, (uint8_t)byte);
 }
 
 void print_allowed_bytes()
@@ -34,9 +35,11 @@ void print_allowed_bytes()
   for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
     hog_alphabet_range alphabet_range = HOG_ALPHABET_RANGES[index];
 
-    for (char byte = alphabet_range.from; byte <= alphabet_range.to; byte++) {
+    for (char byte = alphabet_range.from; byte < alphabet_range.to; byte++) {
       print_allowed_byte(&first_byte_printed, byte);
     }
+
+    print_allowed_byte(&first_byte_printed, alphabet_range.to);
   }
 
   for (index = 0; index < ALPHABET_LENGTH; index++) {

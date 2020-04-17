@@ -7,8 +7,7 @@
 
 #include <limits.h>
 
-// Version should be a part of both request and response status lines.
-// So we can use any bytes except separator or terminator.
+// Any bytes except separator or terminator.
 
 const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {{CHAR_MIN, CHAR_MAX}};
 const size_t             HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
