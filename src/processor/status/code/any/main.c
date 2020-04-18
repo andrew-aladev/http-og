@@ -156,11 +156,8 @@ const bool HOG_PROCESSOR_STATUS_CODE_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [6] = true,
   [7] = true,
   [8] = true,
-  [9] = true,
-  [10] = true,
   [11] = true,
   [12] = true,
-  [13] = true,
   [14] = true,
   [15] = true,
   [16] = true,
@@ -179,7 +176,6 @@ const bool HOG_PROCESSOR_STATUS_CODE_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [29] = true,
   [30] = true,
   [31] = true,
-  [32] = true,
   [33] = true,
   [34] = true,
   [35] = true,
@@ -274,11 +270,7 @@ const bool HOG_PROCESSOR_STATUS_CODE_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [124] = true,
   [125] = true,
   [126] = true,
-  [127] = true,
-  [32] = true,
-  [9] = true,
-  [13] = true,
-  [10] = true};
+  [127] = true};
 
 // clang-format on
 

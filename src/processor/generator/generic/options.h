@@ -12,10 +12,10 @@
 typedef struct {
   char from;
   char to;
-} hog_alphabet_range;
+} hog_alphabet_range_t;
 
-extern const hog_alphabet_range HOG_ALPHABET_RANGES[];
-extern const size_t             HOG_ALPHABET_RANGES_LENGTH;
+extern const hog_alphabet_range_t HOG_ALPHABET_RANGES[];
+extern const size_t               HOG_ALPHABET_RANGES_LENGTH;
 
 extern const char   HOG_ALPHABET[];
 extern const size_t HOG_ALPHABET_LENGTH;

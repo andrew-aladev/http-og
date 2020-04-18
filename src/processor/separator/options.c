@@ -7,8 +7,8 @@
 
 // RFC 7230 - 3.5 Message Parsing Robustness.
 
-const hog_alphabet_range HOG_ALPHABET_RANGES[]      = {};
-const size_t             HOG_ALPHABET_RANGES_LENGTH = 0;
+const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {};
+const size_t               HOG_ALPHABET_RANGES_LENGTH = 0;
 
 const char   HOG_ALPHABET[]      = {' ', '\t'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
