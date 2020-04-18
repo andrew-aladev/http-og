@@ -6,7 +6,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 typedef struct {
   const char* constant;
@@ -16,8 +17,8 @@ typedef struct {
 // We need to check whether prefix is not equal to any constant.
 static inline bool is_prefix(const char* constant, size_t prefix_length)
 {
-  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
-    const char* target_constant = CONSTANTS[index];
+  for (size_t index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
+    const char* target_constant = HOG_CONSTANTS[index];
 
     if (strlen(target_constant) == prefix_length && strncmp(target_constant, constant, prefix_length) == 0) {
       return false;
@@ -54,8 +55,8 @@ int init_prefixes(size_t* prefixes_length_ptr)
   // We can limit max possible prefixes length.
   size_t max_prefixes_length = 0;
 
-  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
-    max_prefixes_length += strlen(CONSTANTS[index]) - 1;
+  for (size_t index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
+    max_prefixes_length += strlen(HOG_CONSTANTS[index]) - 1;
   }
 
   prefix_t* prefixes = malloc(max_prefixes_length * sizeof(prefix_t));
@@ -66,8 +67,8 @@ int init_prefixes(size_t* prefixes_length_ptr)
 
   *prefixes_length_ptr = 0;
 
-  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
-    const char* constant = CONSTANTS[index];
+  for (size_t index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
+    const char* constant = HOG_CONSTANTS[index];
 
     for (size_t prefix_length = 1; prefix_length < strlen(constant); prefix_length++) {
       if (!is_prefix(constant, prefix_length)) {

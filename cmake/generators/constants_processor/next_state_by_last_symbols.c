@@ -6,15 +6,16 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
-#define INITIAL_STATE CONSTANTS_LENGTH
+#define INITIAL_STATE HOG_CONSTANTS_LENGTH
 
 // We need to check whether current prefix matches constant.
 static inline bool find_state_from_constants(size_t* state_ptr, const char* constant, size_t prefix_length)
 {
-  for (size_t index = 0; index < CONSTANTS_LENGTH; index++) {
-    const char* target_constant = CONSTANTS[index];
+  for (size_t index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
+    const char* target_constant = HOG_CONSTANTS[index];
 
     if (prefix_length == strlen(target_constant) && strncmp(constant, target_constant, prefix_length) == 0) {
       *state_ptr = index;
@@ -47,9 +48,9 @@ int init_next_state_by_last_symbols(
 
   size_t global_state = INITIAL_STATE;
 
-  for (index = 0; index < CONSTANTS_LENGTH; index++) {
+  for (index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
     // Starting with empty string and initial state.
-    const char* constant = CONSTANTS[index];
+    const char* constant = HOG_CONSTANTS[index];
     size_t      state    = INITIAL_STATE;
 
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {

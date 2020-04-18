@@ -5,7 +5,7 @@
 
 #include <stdint.h>
 
-#include "common.h"
+#include "print.h"
 
 int print_min_state_bits(size_t max_state)
 {

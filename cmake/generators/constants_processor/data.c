@@ -3,12 +3,13 @@
 
 #include "data.h"
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 #define LENGTH_TEMPLATE "%zu"
 
 void print_data()
 {
-  printf(LENGTH_TEMPLATE, CONSTANTS_LENGTH);
+  printf(LENGTH_TEMPLATE, HOG_CONSTANTS_LENGTH);
   PRINT_GLUE();
 }

@@ -3,12 +3,13 @@
 
 #include "max_state.h"
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 void init_max_state(size_t* max_state_ptr, size_t prefixes_length)
 {
   // Max state will be equal to constants + empty string (1) + prefixes - 1.
-  *max_state_ptr = CONSTANTS_LENGTH + prefixes_length;
+  *max_state_ptr = HOG_CONSTANTS_LENGTH + prefixes_length;
 }
 
 #define MAX_STATE_TEMPLATE "%zu"

@@ -3,7 +3,8 @@
 
 #include "data.h"
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 #define LENGTH_TEMPLATE "%zu"
 
@@ -15,6 +16,6 @@ static inline void print_length(size_t length)
 
 void print_data()
 {
-  print_length(MIN_LENGTH);
-  print_length(MAX_LENGTH);
+  print_length(HOG_MIN_LENGTH);
+  print_length(HOG_MAX_LENGTH);
 }

@@ -6,7 +6,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 #define ALPHABET_MAX_LENGTH UINT8_MAX + 1
 
@@ -53,8 +54,8 @@ int init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t*
 
   *alphabet_length_ptr = 0;
 
-  for (index = 0; index < CONSTANTS_LENGTH; index++) {
-    const char* constant = CONSTANTS[index];
+  for (index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
+    const char* constant = HOG_CONSTANTS[index];
 
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
       uint8_t byte = constant[jndex];

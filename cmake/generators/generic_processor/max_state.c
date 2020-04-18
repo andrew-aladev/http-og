@@ -5,11 +5,12 @@
 
 #include <stdint.h>
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 int check_max_state()
 {
-  if (MAX_LENGTH > UINT32_MAX) {
+  if (HOG_MAX_LENGTH > UINT32_MAX) {
     PRINT_ERROR("max length is too big\n");
     return 1;
   }

@@ -7,7 +7,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 #define ALLOWED_BYTES_PREFIX "  "
 #define ALLOWED_BYTES_TEMPLATE "[%u] = true"
@@ -31,8 +32,8 @@ static inline void print_allowed_byte(bool* first_byte_printed_ptr, char byte)
 
 static inline bool find_byte_in_ranges(char target_byte)
 {
-  for (size_t index = 0; index < ALPHABET_RANGES_LENGTH; index++) {
-    alphabet_range_t range = ALPHABET_RANGES[index];
+  for (size_t index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
+    hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
     if (target_byte >= range.from && target_byte <= range.to) {
       return true;
@@ -48,8 +49,8 @@ static inline void print_alphabet_including_bytes_into_ranges()
   char   byte;
   bool   first_byte_printed = false;
 
-  for (index = 0; index < ALPHABET_RANGES_LENGTH; index++) {
-    alphabet_range_t range = ALPHABET_RANGES[index];
+  for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
+    hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
     for (byte = range.from; byte < range.to; byte++) {
       print_allowed_byte(&first_byte_printed, byte);
@@ -59,8 +60,8 @@ static inline void print_alphabet_including_bytes_into_ranges()
     print_allowed_byte(&first_byte_printed, byte);
   }
 
-  for (index = 0; index < ALPHABET_LENGTH; index++) {
-    byte = ALPHABET[index];
+  for (index = 0; index < HOG_ALPHABET_LENGTH; index++) {
+    byte = HOG_ALPHABET[index];
 
     if (!find_byte_in_ranges(byte)) {
       print_allowed_byte(&first_byte_printed, byte);
@@ -72,8 +73,8 @@ static inline void print_alphabet_including_bytes_into_ranges()
 
 static inline bool find_byte_in_bytes(char target_byte)
 {
-  for (size_t index = 0; index < ALPHABET_LENGTH; index++) {
-    char byte = ALPHABET[index];
+  for (size_t index = 0; index < HOG_ALPHABET_LENGTH; index++) {
+    char byte = HOG_ALPHABET[index];
 
     if (target_byte == byte) {
       return true;
@@ -89,8 +90,8 @@ static inline void print_alphabet_excluding_bytes_from_ranges()
   char   byte;
   bool   first_byte_printed = false;
 
-  for (index = 0; index < ALPHABET_RANGES_LENGTH; index++) {
-    alphabet_range_t range = ALPHABET_RANGES[index];
+  for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
+    hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
     for (byte = range.from; byte < range.to; byte++) {
       if (!find_byte_in_bytes(byte)) {
@@ -108,7 +109,7 @@ static inline void print_alphabet_excluding_bytes_from_ranges()
 
 void print_allowed_bytes()
 {
-  if (ALPHABET_MODE == ALPHABET_INCLUDING_BYTES_INTO_RANGES) {
+  if (HOG_ALPHABET_MODE == HOG_ALPHABET_INCLUDING_BYTES_INTO_RANGES) {
     print_alphabet_including_bytes_into_ranges();
   }
   else {

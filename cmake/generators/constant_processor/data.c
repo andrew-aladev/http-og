@@ -6,7 +6,8 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "common.h"
+#include "options.h"
+#include "print.h"
 
 #define SYMBOL_PREFIX "  "
 #define SYMBOL_TEMPLATE "0x%02x"
@@ -16,7 +17,7 @@
 
 void print_data()
 {
-  for (size_t index = 0; index < strlen(CONSTANT); index++) {
+  for (size_t index = 0; index < strlen(HOG_CONSTANT); index++) {
     if (index == 0) {
       PRINT(SYMBOL_PREFIX);
     }
@@ -25,11 +26,11 @@ void print_data()
       PRINT(SYMBOL_PREFIX);
     }
 
-    printf(SYMBOL_TEMPLATE, (uint8_t)CONSTANT[index]);
+    printf(SYMBOL_TEMPLATE, (uint8_t)HOG_CONSTANT[index]);
   }
 
   PRINT_GLUE();
 
-  printf(LENGTH_TEMPLATE, strlen(CONSTANT));
+  printf(LENGTH_TEMPLATE, strlen(HOG_CONSTANT));
   PRINT_GLUE();
 }
