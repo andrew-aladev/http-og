@@ -4,7 +4,7 @@ set -e
 DIR=$(dirname "${BASH_SOURCE[0]}")
 cd "$DIR"
 
-cd "../registry"
+cd "../../registry"
 
 wget "https://www.iana.org/assignments/http-methods/http-methods.xml" \
   -O "http-methods.xml"
