@@ -1,11 +1,11 @@
 function (generate_constants PREFIX)
   string (TOLOWER ${PREFIX} PREFIX_LOWER_CASE)
 
-  set (TARGET_PATH ${CMAKE_CURRENT_SOURCE_DIR})
   set (GENERATOR_PATH "${SOURCE_PATH}/processor/generator/constants")
+  set (TARGET_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
   include (GenerateConstantsProcessor)
-  generate_constants_processor (${PREFIX} ${PREFIX_LOWER_CASE} ${TARGET_PATH} ${GENERATOR_PATH})
+  generate_constants_processor (${PREFIX} ${PREFIX_LOWER_CASE} ${GENERATOR_PATH} ${TARGET_PATH})
 
   if (DEFINED CMAKE_CONSTANTS_LENGTH)
     file (RELATIVE_PATH RELATIVE_SOURCE_PATH ${TARGET_PATH} ${SOURCE_PATH})
