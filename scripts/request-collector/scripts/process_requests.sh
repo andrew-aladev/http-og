@@ -6,7 +6,7 @@ cd "$DIR"
 
 cd ".."
 
-../mount_tmp.sh
+../mount_tmp.sh "1024"
 
 ./process_requests/main.rb \
   "data/log_urls.xz" \
