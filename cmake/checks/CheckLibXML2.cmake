@@ -3,7 +3,7 @@ function (cmake_check_libxml2)
     return ()
   endif ()
 
-  find_package (LIBXML2 REQUIRED)
+  find_package (LibXML2 REQUIRED)
 
   include (GetVerboseFlags)
   cmake_get_verbose_flags ()
@@ -14,8 +14,8 @@ function (cmake_check_libxml2)
   include (CheckRunnable)
   cmake_check_runnable ()
 
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/check_LIBXML2")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/checks/LIBXML2")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/check_LibXML2")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/checks/LibXML2")
   set (NAME "cmake_check_libxml2")
 
   set (MESSAGE_PREFIX "Status of XML2 support")
@@ -23,7 +23,7 @@ function (cmake_check_libxml2)
   try_compile (
     CHECK_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}
     CMAKE_FLAGS
-      "-DCMAKE_C_FLAGS=${CMAKE_C_FLAGS} ${CMAKE_VERBOSE_C_FLAGS} ${CMAKE_C11_C_FLAGS} ${CMAKE_WERROR_C_FLAGS}"
+      "-DCMAKE_C_FLAGS=${CMAKE_VERBOSE_C_FLAGS} ${CMAKE_C11_C_FLAGS} ${CMAKE_WERROR_C_FLAGS}"
       "-DCMAKE_VERBOSE_MAKEFILE=${CMAKE_VERBOSE_MAKEFILE}"
       "-DCMAKE_LIBXML2_INCLUDE_DIRS=${LIBXML2_INCLUDE_DIRS}"
       "-DCMAKE_LIBXML2_LIBRARIES=${LIBXML2_LIBRARIES}"

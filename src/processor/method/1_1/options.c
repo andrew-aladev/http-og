@@ -7,5 +7,5 @@
 
 // HTTP Method Registry https://www.iana.org/assignments/http-methods/http-methods.xml.
 
-const char*  HOG_CONSTANTS[]      = {};
-const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);
+const char*  HOG_CONSTANTS[]      = {0};
+const size_t HOG_CONSTANTS_LENGTH = 0;

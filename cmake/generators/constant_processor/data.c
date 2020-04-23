@@ -9,9 +9,9 @@
 #include "options.h"
 #include "print.h"
 
-#define SYMBOL_PREFIX "  "
-#define SYMBOL_TEMPLATE "0x%02x"
-#define SYMBOL_TERMINATOR ",\n"
+#define BYTE_PREFIX "  "
+#define BYTE_TEMPLATE "0x%02x"
+#define BYTE_TERMINATOR ",\n"
 
 #define LENGTH_TEMPLATE "%zu"
 
@@ -19,14 +19,15 @@ void print_data()
 {
   for (size_t index = 0; index < strlen(HOG_CONSTANT); index++) {
     if (index == 0) {
-      PRINT(SYMBOL_PREFIX);
+      PRINT(BYTE_PREFIX);
     }
     else {
-      PRINT(SYMBOL_TERMINATOR);
-      PRINT(SYMBOL_PREFIX);
+      PRINT(BYTE_TERMINATOR);
+      PRINT(BYTE_PREFIX);
     }
 
-    printf(SYMBOL_TEMPLATE, (uint8_t)HOG_CONSTANT[index]);
+    uint8_t byte = HOG_CONSTANT[index];
+    printf(BYTE_TEMPLATE, byte);
   }
 
   PRINT_GLUE();

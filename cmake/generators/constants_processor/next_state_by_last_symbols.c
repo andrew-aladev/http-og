@@ -54,7 +54,8 @@ int init_next_state_by_last_symbols(
     size_t      state    = INITIAL_STATE;
 
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
-      uint8_t last_symbol       = symbol_by_bytes[constant[jndex]];
+      uint8_t byte              = constant[jndex];
+      uint8_t last_symbol       = symbol_by_bytes[byte];
       size_t  last_symbol_index = state * alphabet_length + last_symbol;
       size_t  last_symbol_state = (*next_state_by_last_symbols_ptr)[last_symbol_index];
 

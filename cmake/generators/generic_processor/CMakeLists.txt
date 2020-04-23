@@ -1,15 +1,15 @@
 cmake_minimum_required (VERSION 3.9)
 project ("cmake_generate_generic_processor" "C")
 
-set (GENERATOR_PATH "" CACHE STRING "generator path")
-set (TARGET_PATH    "" CACHE STRING "target path")
+set (CMAKE_GENERATOR_PATH "" CACHE STRING "generator path")
+set (CMAKE_TARGET_PATH    "" CACHE STRING "target path")
 
 include ("../toolchain.cmake")
 
-include_directories (${GENERATOR_PATH})
+include_directories (${CMAKE_GENERATOR_PATH})
 add_executable (
   "main"
-  "${TARGET_PATH}/options.c"
+  "${CMAKE_TARGET_PATH}/options.c"
   "alphabet.c"
   "data.c"
   "main.c"

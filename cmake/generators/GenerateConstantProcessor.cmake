@@ -1,19 +1,26 @@
 function (generate_constant_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH TARGET_PATH)
-  set (OUTPUT_CONSTANT_SYMBOLS "CMAKE_CONSTANT_SYMBOLS")
-  set (OUTPUT_CONSTANT_LENGTH "CMAKE_CONSTANT_LENGTH")
+  include (GetVerboseFlags)
+  cmake_get_verbose_flags ()
+
+  include (CheckC11)
+  cmake_check_c11 ()
 
   set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_constant_processor")
   set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/constant_processor")
   set (NAME "cmake_generate_constant_processor")
+
+  set (OUTPUT_CONSTANT_SYMBOLS "CMAKE_CONSTANT_SYMBOLS")
+  set (OUTPUT_CONSTANT_LENGTH "CMAKE_CONSTANT_LENGTH")
 
   set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} constant processor")
 
   try_compile (
     COMPILE_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}
     CMAKE_FLAGS
+      "-DCMAKE_C_FLAGS=${CMAKE_VERBOSE_C_FLAGS} ${CMAKE_C11_C_FLAGS} ${CMAKE_WERROR_C_FLAGS}"
       "-DCMAKE_VERBOSE_MAKEFILE=${CMAKE_VERBOSE_MAKEFILE}"
-      "-DGENERATOR_PATH=${GENERATOR_PATH}"
-      "-DTARGET_PATH=${TARGET_PATH}"
+      "-DCMAKE_GENERATOR_PATH=${GENERATOR_PATH}"
+      "-DCMAKE_TARGET_PATH=${TARGET_PATH}"
     OUTPUT_VARIABLE COMPILE_OUTPUT
   )
   if (CMAKE_VERBOSE_MAKEFILE)

@@ -1,20 +1,27 @@
 function (generate_generic_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH TARGET_PATH)
-  set (OUTPUT_MIN_LENGTH "CMAKE_MIN_LENGTH")
-  set (OUTPUT_MAX_LENGTH "CMAKE_MAX_LENGTH")
-  set (OUTPUT_ALLOWED_BYTES "CMAKE_ALLOWED_BYTES")
+  include (GetVerboseFlags)
+  cmake_get_verbose_flags ()
+
+  include (CheckC11)
+  cmake_check_c11 ()
 
   set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_generic_processor")
   set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/generic_processor")
   set (NAME "cmake_generate_generic_processor")
+
+  set (OUTPUT_MIN_LENGTH "CMAKE_MIN_LENGTH")
+  set (OUTPUT_MAX_LENGTH "CMAKE_MAX_LENGTH")
+  set (OUTPUT_ALLOWED_BYTES "CMAKE_ALLOWED_BYTES")
 
   set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} generic processor")
 
   try_compile (
     COMPILE_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}
     CMAKE_FLAGS
+      "-DCMAKE_C_FLAGS=${CMAKE_VERBOSE_C_FLAGS} ${CMAKE_C11_C_FLAGS} ${CMAKE_WERROR_C_FLAGS}"
       "-DCMAKE_VERBOSE_MAKEFILE=${CMAKE_VERBOSE_MAKEFILE}"
-      "-DGENERATOR_PATH=${GENERATOR_PATH}"
-      "-DTARGET_PATH=${TARGET_PATH}"
+      "-DCMAKE_GENERATOR_PATH=${GENERATOR_PATH}"
+      "-DCMAKE_TARGET_PATH=${TARGET_PATH}"
     OUTPUT_VARIABLE COMPILE_OUTPUT
   )
   if (CMAKE_VERBOSE_MAKEFILE)

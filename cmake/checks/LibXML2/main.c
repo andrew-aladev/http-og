@@ -13,19 +13,41 @@ const char DATA[] =
     </root>\
   ";
 
+const char XPATH[]           = "/root/element";
+const char ATTRIBUTE_KEY[]   = "key";
+const char ATTRIBUTE_VALUE[] = "value";
+const char TEXT[]            = "text";
+
 int main()
 {
   xmlInitParser();
-  LIBXML_TEST_VERSION();
+  LIBXML_TEST_VERSION
 
-  xmlDocPtr doc = xmlParseMemory(DATA, strlen(DATA));
+  const xmlDocPtr doc = xmlParseMemory(DATA, strlen(DATA));
   assert(doc != NULL);
 
-  xmlXPathContextPtr xpath_ctx = xmlXPathNewContext(doc);
+  const xmlXPathContextPtr xpath_ctx = xmlXPathNewContext(doc);
   assert(xpath_ctx != NULL);
 
-  xmlXPathObjectPtr xpath_obj = xmlXPathEvalExpression("/element", xpath_ctx);
+  const xmlXPathObjectPtr xpath_obj = xmlXPathEvalExpression((const xmlChar*)XPATH, xpath_ctx);
   assert(xpath_obj != NULL);
+
+  const xmlNodeSetPtr nodes = xpath_obj->nodesetval;
+  assert(nodes->nodeNr == 1);
+
+  const xmlNodePtr node = nodes->nodeTab[0];
+  assert(node != NULL);
+
+  const xmlAttrPtr attribute = xmlHasProp(node, (const xmlChar*)ATTRIBUTE_KEY);
+  assert(attribute != NULL);
+
+  const char* attribute_value = (const char*)xmlGetProp(node, (const xmlChar*)ATTRIBUTE_KEY);
+  assert(attribute_value != NULL);
+  assert(strcmp(attribute_value, ATTRIBUTE_VALUE) == 0);
+
+  const char* text = (const char*)xmlNodeGetContent(node);
+  assert(text != NULL);
+  assert(strcmp(text, TEXT) == 0);
 
   xmlXPathFreeObject(xpath_obj);
   xmlXPathFreeContext(xpath_ctx);
