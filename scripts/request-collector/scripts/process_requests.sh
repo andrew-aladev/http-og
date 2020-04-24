@@ -6,7 +6,10 @@ cd "$DIR"
 
 cd ".."
 
-../mount_tmp.sh "1024"
+TMP_PATH="$(pwd)/tmp"
+TMP_SIZE="1024"
+
+../mount_tmp.sh "$TMP_PATH" "$TMP_SIZE"
 
 ./process_requests/main.rb \
   "data/log_urls.xz" \

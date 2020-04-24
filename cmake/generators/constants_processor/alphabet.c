@@ -37,11 +37,13 @@ int init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t*
 {
   *alphabet_ptr = malloc(ALPHABET_MAX_LENGTH);
   if (*alphabet_ptr == NULL) {
+    PRINT_ERROR("failed to allocate memory for alphabet\n");
     return 1;
   }
 
   *symbol_by_bytes_ptr = malloc(SYMBOL_BY_BYTES_LENGTH);
   if (*symbol_by_bytes_ptr == NULL) {
+    PRINT_ERROR("failed to allocate memory for symbol by bytes\n");
     free(*alphabet_ptr);
     return 2;
   }

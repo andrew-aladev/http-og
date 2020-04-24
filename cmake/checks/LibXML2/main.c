@@ -23,16 +23,16 @@ int main()
   xmlInitParser();
   LIBXML_TEST_VERSION
 
-  const xmlDocPtr doc = xmlParseMemory(DATA, strlen(DATA));
-  assert(doc != NULL);
+  const xmlDocPtr document = xmlParseMemory(DATA, strlen(DATA));
+  assert(document != NULL);
 
-  const xmlXPathContextPtr xpath_ctx = xmlXPathNewContext(doc);
-  assert(xpath_ctx != NULL);
+  const xmlXPathContextPtr xpath_context = xmlXPathNewContext(document);
+  assert(xpath_context != NULL);
 
-  const xmlXPathObjectPtr xpath_obj = xmlXPathEvalExpression((const xmlChar*)XPATH, xpath_ctx);
-  assert(xpath_obj != NULL);
+  const xmlXPathObjectPtr xpath = xmlXPathEvalExpression((const xmlChar*)XPATH, xpath_context);
+  assert(xpath != NULL);
 
-  const xmlNodeSetPtr nodes = xpath_obj->nodesetval;
+  const xmlNodeSetPtr nodes = xpath->nodesetval;
   assert(nodes->nodeNr == 1);
 
   const xmlNodePtr node = nodes->nodeTab[0];
@@ -49,9 +49,9 @@ int main()
   assert(text != NULL);
   assert(strcmp(text, TEXT) == 0);
 
-  xmlXPathFreeObject(xpath_obj);
-  xmlXPathFreeContext(xpath_ctx);
-  xmlFreeDoc(doc);
+  xmlXPathFreeObject(xpath);
+  xmlXPathFreeContext(xpath_context);
+  xmlFreeDoc(document);
   xmlCleanupParser();
 
   return 0;
