@@ -7,7 +7,8 @@ include_directories (${CMAKE_LIBXML2_INCLUDE_DIRS})
 
 add_executable (
   "main"
-  "data.c"
+  "alphabet.c"
+  "constants.c"
   "file.c"
   "main.c"
 )

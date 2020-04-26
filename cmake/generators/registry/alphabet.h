@@ -6,6 +6,6 @@
 
 #include <libxml/xpath.h>
 
-void print_constants(const xmlNodeSetPtr nodes);
+void print_alphabet(const xmlNodeSetPtr nodes);
 
 #endif // DATA_H

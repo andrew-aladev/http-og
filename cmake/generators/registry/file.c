@@ -5,12 +5,12 @@
 
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
+#include <string.h>
 
-#include "data.h"
+#include "alphabet.h"
+#include "constants.h"
 
-const char XPATH[] = "//record/value";
-
-int print_data_from_file(const char* file_path)
+int print_data_from_file(const char* file_path, const char* xpath, const char* mode)
 {
   xmlInitParser();
   LIBXML_TEST_VERSION
@@ -30,8 +30,8 @@ int print_data_from_file(const char* file_path)
     return 2;
   }
 
-  const xmlXPathObjectPtr xpath = xmlXPathEvalExpression((const xmlChar*)XPATH, xpath_context);
-  if (xpath != NULL) {
+  const xmlXPathObjectPtr xpath_object = xmlXPathEvalExpression((const xmlChar*)xpath, xpath_context);
+  if (xpath_object != NULL) {
     PRINT_ERROR("failed to create xpath\n");
     xmlXPathFreeContext(xpath_context);
     xmlFreeDoc(document);
@@ -39,10 +39,16 @@ int print_data_from_file(const char* file_path)
     return 3;
   }
 
-  const xmlNodeSetPtr nodes = xpath->nodesetval;
-  print_constants(nodes);
+  const xmlNodeSetPtr nodes = xpath_object->nodesetval;
 
-  xmlXPathFreeObject(xpath);
+  if (strcmp(mode, "alphabet") == 0) {
+    print_alphabet(nodes);
+  }
+  else {
+    print_constants(nodes);
+  }
+
+  xmlXPathFreeObject(xpath_object);
   xmlXPathFreeContext(xpath_context);
   xmlFreeDoc(document);
   xmlCleanupParser();

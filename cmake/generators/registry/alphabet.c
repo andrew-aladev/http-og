@@ -1,19 +1,15 @@
 // HTTP old generation (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
-#include "data.h"
+#include "alphabet.h"
 
 #include <stdlib.h>
 
 #include "print.h"
 
-#define CONSTANT_PREFIX "  "
-#define CONSTANT_TEMPLATE "\"%s\""
-#define CONSTANT_TERMINATOR ",\n"
+#define ALPHABET_MAX_LENGTH UINT8_MAX + 1
 
-#define LENGTH_TEMPLATE "%zu"
-
-void print_constants(const xmlNodeSetPtr nodes)
+void print_alphabet(const xmlNodeSetPtr nodes)
 {
   size_t nodes_length = nodes->nodeNr;
 
@@ -31,9 +27,4 @@ void print_constants(const xmlNodeSetPtr nodes)
 
     printf(CONSTANT_TEMPLATE, text);
   }
-
-  PRINT_GLUE();
-
-  printf(LENGTH_TEMPLATE, nodes_length);
-  PRINT_GLUE();
 }
