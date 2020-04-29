@@ -6,6 +6,7 @@ set (CMAKE_TARGET_PATH "" CACHE STRING "target path")
 include ("../toolchain.cmake")
 
 include_directories (${CMAKE_CURRENT_SOURCE_DIR})
+
 add_executable (
   "main"
   "${CMAKE_TARGET_PATH}/options.c"

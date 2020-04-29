@@ -3,14 +3,22 @@
 
 #include "alphabet.h"
 
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #include "print.h"
 
 #define ALPHABET_MAX_LENGTH UINT8_MAX + 1
 
-void print_alphabet(const xmlNodeSetPtr nodes)
+int print_alphabet(const xmlNodeSetPtr nodes)
 {
+  bool* alphabet = malloc(ALPHABET_MAX_LENGTH);
+  if (alphabet == NULL) {
+    PRINT_ERROR("failed to allocate memory for alphabet\n");
+    return 1;
+  }
+
   size_t nodes_length = nodes->nodeNr;
 
   for (size_t index = 0; index < nodes_length; index++) {
@@ -27,4 +35,8 @@ void print_alphabet(const xmlNodeSetPtr nodes)
 
     printf(CONSTANT_TEMPLATE, text);
   }
+
+  free(alphabet);
+
+  return 0;
 }

@@ -10,6 +10,19 @@
 #include "alphabet.h"
 #include "constants.h"
 
+static inline int print_data(const xmlXPathObjectPtr xpath_object, const char* mode)
+{
+  const xmlNodeSetPtr nodes = xpath_object->nodesetval;
+
+  if (strcmp(mode, "alphabet") == 0) {
+    return print_alphabet(nodes);
+  }
+
+  print_constants(nodes);
+
+  return 0;
+}
+
 int print_data_from_file(const char* file_path, const char* xpath, const char* mode)
 {
   xmlInitParser();
@@ -39,19 +52,16 @@ int print_data_from_file(const char* file_path, const char* xpath, const char* m
     return 3;
   }
 
-  const xmlNodeSetPtr nodes = xpath_object->nodesetval;
-
-  if (strcmp(mode, "alphabet") == 0) {
-    print_alphabet(nodes);
-  }
-  else {
-    print_constants(nodes);
-  }
+  int result = print_data(xpath_object, mode);
 
   xmlXPathFreeObject(xpath_object);
   xmlXPathFreeContext(xpath_context);
   xmlFreeDoc(document);
   xmlCleanupParser();
+
+  if (result != 0) {
+    return 4;
+  }
 
   return 0;
 }
