@@ -1,4 +1,4 @@
-function (generate_generic_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH TARGET_PATH)
+function (generate_generic_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
   include (GetVerboseFlags)
   cmake_get_verbose_flags ()
 
@@ -20,7 +20,6 @@ function (generate_generic_processor PREFIX PREFIX_LOWER_CASE GENERATOR_PATH TAR
     CMAKE_FLAGS
       "-DCMAKE_C_FLAGS=${CMAKE_VERBOSE_C_FLAGS} ${CMAKE_C11_C_FLAGS} ${CMAKE_WERROR_C_FLAGS}"
       "-DCMAKE_VERBOSE_MAKEFILE=${CMAKE_VERBOSE_MAKEFILE}"
-      "-DCMAKE_GENERATOR_PATH=${GENERATOR_PATH}"
       "-DCMAKE_TARGET_PATH=${TARGET_PATH}"
     OUTPUT_VARIABLE COMPILE_OUTPUT
   )

@@ -1,7 +1,7 @@
-include (GenerateRegistry)
-generate_registry ("${PROJECT_SOURCE_DIR}/registry/http-methods.xml" "//record/value" "alphabet")
+# include (GenerateRegistry)
+# generate_registry ("${PROJECT_SOURCE_DIR}/registry/http-methods.xml" "//record/value" "alphabet")
 
-configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/options.c.in" "${CMAKE_CURRENT_SOURCE_DIR}/options.c")
+# configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/options.c.in" "${CMAKE_CURRENT_SOURCE_DIR}/options.c")
 
 include (GenerateGeneric)
 generate_generic ("METHOD_ANY_FROM_STANDARD")

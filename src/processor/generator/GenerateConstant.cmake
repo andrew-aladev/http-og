@@ -5,7 +5,7 @@ function (generate_constant PREFIX)
   set (TARGET_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
   include (GenerateConstantProcessor)
-  generate_constant_processor (${PREFIX} ${PREFIX_LOWER_CASE} ${GENERATOR_PATH} ${TARGET_PATH})
+  generate_constant_processor (${PREFIX} ${PREFIX_LOWER_CASE} ${TARGET_PATH})
 
   if (DEFINED CMAKE_CONSTANT_SYMBOLS)
     file (RELATIVE_PATH RELATIVE_SOURCE_PATH ${TARGET_PATH} ${SOURCE_PATH})
