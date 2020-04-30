@@ -88,9 +88,7 @@ int init_next_state_by_last_symbols(
 
 #define NEXT_STATE_BY_LAST_SYMBOL_TEMPLATE "[%zu] = %zu"
 
-#define PRINT_SPACER_AND_NEXT_STATE_BY_LAST_SYMBOL(index, next_state) \
-  PRINT_SPACER();                                                     \
-  printf(NEXT_STATE_BY_LAST_SYMBOL_TEMPLATE, index, next_state);
+#define PRINT_NEXT_STATE_BY_LAST_SYMBOL(index, next_state) printf(NEXT_STATE_BY_LAST_SYMBOL_TEMPLATE, index, next_state);
 
 void print_next_state_by_last_symbols(const size_t* next_state_by_last_symbols, size_t next_state_by_last_symbols_length)
 {
@@ -102,7 +100,8 @@ void print_next_state_by_last_symbols(const size_t* next_state_by_last_symbols, 
       continue;
     }
 
-    PRINT_SPACER_AND_NEXT_STATE_BY_LAST_SYMBOL(index, next_state);
+    PRINT_SPACER();
+    PRINT_NEXT_STATE_BY_LAST_SYMBOL(index, next_state);
   }
 
   PRINT_GLUE();

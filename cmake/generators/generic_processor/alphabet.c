@@ -11,9 +11,7 @@
 
 #define ALLOWED_BYTE_TEMPLATE "[%u] = true"
 
-#define PRINT_SPACER_AND_ALLOWED_BYTE(byte) \
-  PRINT_SPACER();                           \
-  printf(ALLOWED_BYTE_TEMPLATE, (uint8_t)byte);
+#define PRINT_ALLOWED_BYTE(byte) printf(ALLOWED_BYTE_TEMPLATE, (uint8_t)byte);
 
 // -- inclusive --
 
@@ -41,17 +39,20 @@ static inline void print_alphabet_including_bytes_into_ranges()
     hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
     for (byte = range.from; byte < range.to; byte++) {
-      PRINT_SPACER_AND_ALLOWED_BYTE(byte);
+      PRINT_SPACER();
+      PRINT_ALLOWED_BYTE(byte);
     }
 
-    PRINT_SPACER_AND_ALLOWED_BYTE(range.to);
+    PRINT_SPACER();
+    PRINT_ALLOWED_BYTE(range.to);
   }
 
   for (index = 0; index < HOG_ALPHABET_LENGTH; index++) {
     byte = HOG_ALPHABET[index];
 
     if (!find_byte_in_ranges(byte)) {
-      PRINT_SPACER_AND_ALLOWED_BYTE(byte);
+      PRINT_SPACER();
+      PRINT_ALLOWED_BYTE(byte);
     }
   }
 }
@@ -83,14 +84,16 @@ static inline void print_alphabet_excluding_bytes_from_ranges()
 
     for (byte = range.from; byte < range.to; byte++) {
       if (!find_byte_in_bytes(byte)) {
-        PRINT_SPACER_AND_ALLOWED_BYTE(byte);
+        PRINT_SPACER();
+        PRINT_ALLOWED_BYTE(byte);
       }
     }
 
     byte = range.to;
 
     if (!find_byte_in_bytes(byte)) {
-      PRINT_SPACER_AND_ALLOWED_BYTE(byte);
+      PRINT_SPACER();
+      PRINT_ALLOWED_BYTE(byte);
     }
   }
 }

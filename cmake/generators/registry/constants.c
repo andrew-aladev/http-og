@@ -9,9 +9,7 @@
 
 #define CONSTANT_TEMPLATE "\"%s\""
 
-#define PRINT_SPACER_AND_CONSTANT(constant) \
-  PRINT_SPACER();                           \
-  printf(CONSTANT_TEMPLATE, constant);
+#define PRINT_CONSTANT(constant) printf(CONSTANT_TEMPLATE, constant);
 
 void print_constants(const xmlNodeSetPtr nodes)
 {
@@ -21,6 +19,7 @@ void print_constants(const xmlNodeSetPtr nodes)
     const xmlNodePtr node = nodes->nodeTab[index];
     const char*      text = (const char*)xmlNodeGetContent(node);
 
-    PRINT_SPACER_AND_CONSTANT(text);
+    PRINT_SPACER();
+    PRINT_CONSTANT(text);
   }
 }

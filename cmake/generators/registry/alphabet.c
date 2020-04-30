@@ -12,9 +12,7 @@
 
 #define BYTE_TEMPLATE "'%c'"
 
-#define PRINT_SPACER_AND_BYTE(byte) \
-  PRINT_SPACER();                   \
-  printf(BYTE_TEMPLATE, byte);
+#define PRINT_BYTE(byte) printf(BYTE_TEMPLATE, byte);
 
 int print_alphabet(const xmlNodeSetPtr nodes)
 {
@@ -40,7 +38,8 @@ int print_alphabet(const xmlNodeSetPtr nodes)
       byte = text[jndex];
 
       if (!alphabet[byte]) {
-        PRINT_SPACER_AND_BYTE(byte);
+        PRINT_SPACER();
+        PRINT_BYTE(byte);
 
         alphabet[byte] = true;
       }
