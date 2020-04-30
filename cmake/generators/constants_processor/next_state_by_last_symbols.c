@@ -86,12 +86,10 @@ int init_next_state_by_last_symbols(
   return 0;
 }
 
-#define NEXT_STATE_BY_LAST_SYMBOLS_PREFIX "  "
 #define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
-#define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
 
-#define PRINT_SPACER_AND_NEXT_STATE_BY_LAST_SYMBOL(index, next_state)                     \
-  PRINT_SPACER(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX, NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR); \
+#define PRINT_SPACER_AND_NEXT_STATE_BY_LAST_SYMBOL(index, next_state) \
+  PRINT_SPACER();                                                     \
   printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
 
 void print_next_state_by_last_symbols(const size_t* next_state_by_last_symbols, size_t next_state_by_last_symbols_length)

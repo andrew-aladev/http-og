@@ -9,12 +9,10 @@
 #include "options.h"
 #include "print.h"
 
-#define ALLOWED_BYTES_PREFIX "  "
 #define ALLOWED_BYTES_TEMPLATE "[%u] = true"
-#define ALLOWED_BYTES_TERMINATOR ",\n"
 
-#define PRINT_SPACER_AND_ALLOWED_BYTE(byte)                     \
-  PRINT_SPACER(ALLOWED_BYTES_PREFIX, ALLOWED_BYTES_TERMINATOR); \
+#define PRINT_SPACER_AND_ALLOWED_BYTE(byte) \
+  PRINT_SPACER();                           \
   printf(ALLOWED_BYTES_TEMPLATE, (uint8_t)byte);
 
 // -- inclusive --

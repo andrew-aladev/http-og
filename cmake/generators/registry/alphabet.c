@@ -10,12 +10,10 @@
 
 #define ALPHABET_MAX_LENGTH UINT8_MAX + 1
 
-#define BYTE_PREFIX "  "
 #define BYTE_TEMPLATE "'%c'"
-#define BYTE_TERMINATOR ",\n"
 
-#define PRINT_SPACER_AND_BYTE(byte)           \
-  PRINT_SPACER(BYTE_PREFIX, BYTE_TERMINATOR); \
+#define PRINT_SPACER_AND_BYTE(byte) \
+  PRINT_SPACER();                   \
   printf(BYTE_TEMPLATE, byte);
 
 int print_alphabet(const xmlNodeSetPtr nodes)
@@ -43,6 +41,7 @@ int print_alphabet(const xmlNodeSetPtr nodes)
 
       if (!alphabet[byte]) {
         PRINT_SPACER_AND_BYTE(byte);
+
         alphabet[byte] = true;
       }
     }

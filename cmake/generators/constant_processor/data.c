@@ -9,12 +9,10 @@
 #include "options.h"
 #include "print.h"
 
-#define BYTE_PREFIX "  "
 #define BYTE_TEMPLATE "0x%02x"
-#define BYTE_TERMINATOR ",\n"
 
-#define PRINT_SPACER_AND_BYTE(byte)           \
-  PRINT_SPACER(BYTE_PREFIX, BYTE_TERMINATOR); \
+#define PRINT_SPACER_AND_BYTE(byte) \
+  PRINT_SPACER();                   \
   printf(BYTE_TEMPLATE, byte);
 
 void print_data()

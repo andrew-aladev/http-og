@@ -7,12 +7,10 @@
 
 #include "print.h"
 
-#define CONSTANT_PREFIX "  "
 #define CONSTANT_TEMPLATE "\"%s\""
-#define CONSTANT_TERMINATOR ",\n"
 
-#define PRINT_SPACER_AND_CONSTANT(constant)           \
-  PRINT_SPACER(CONSTANT_PREFIX, CONSTANT_TERMINATOR); \
+#define PRINT_SPACER_AND_CONSTANT(constant) \
+  PRINT_SPACER();                           \
   printf(CONSTANT_TEMPLATE, constant);
 
 void print_constants(const xmlNodeSetPtr nodes)
