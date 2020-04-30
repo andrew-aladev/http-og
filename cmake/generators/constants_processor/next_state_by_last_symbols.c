@@ -3,7 +3,6 @@
 
 #include "next_state_by_last_symbols.h"
 
-#include <stdbool.h>
 #include <string.h>
 
 #include "options.h"
@@ -91,9 +90,13 @@ int init_next_state_by_last_symbols(
 #define NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE "[%zu] = %zu"
 #define NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR ",\n"
 
+#define PRINT_SPACER_AND_NEXT_STATE_BY_LAST_SYMBOL(index, next_state)                     \
+  PRINT_SPACER(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX, NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR); \
+  printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
+
 void print_next_state_by_last_symbols(const size_t* next_state_by_last_symbols, size_t next_state_by_last_symbols_length)
 {
-  bool first_state_printed = false;
+  INITIALIZE_SPACERS();
 
   for (size_t index = 0; index < next_state_by_last_symbols_length; index++) {
     size_t next_state = next_state_by_last_symbols[index];
@@ -101,16 +104,7 @@ void print_next_state_by_last_symbols(const size_t* next_state_by_last_symbols, 
       continue;
     }
 
-    if (first_state_printed) {
-      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_TERMINATOR);
-      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
-    }
-    else {
-      PRINT(NEXT_STATE_BY_LAST_SYMBOLS_PREFIX);
-      first_state_printed = true;
-    }
-
-    printf(NEXT_STATE_BY_LAST_SYMBOLS_TEMPLATE, index, next_state);
+    PRINT_SPACER_AND_NEXT_STATE_BY_LAST_SYMBOL(index, next_state);
   }
 
   PRINT_GLUE();

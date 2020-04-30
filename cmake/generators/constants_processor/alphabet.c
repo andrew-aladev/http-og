@@ -3,7 +3,6 @@
 
 #include "alphabet.h"
 
-#include <stdbool.h>
 #include <string.h>
 
 #include "options.h"
@@ -76,11 +75,9 @@ int init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t*
   return 0;
 }
 
-#define ALPHABET_LENGTH_TEMPLATE "%zu"
-
 void print_alphabet_length(size_t alphabet_length)
 {
-  printf(ALPHABET_LENGTH_TEMPLATE, alphabet_length);
+  PRINT_LENGTH(alphabet_length);
   PRINT_GLUE();
 }
 
@@ -88,19 +85,18 @@ void print_alphabet_length(size_t alphabet_length)
 #define SYMBOL_BY_BYTE_TEMPLATE "[%u] = %u"
 #define SYMBOL_BY_BYTE_TERMINATOR ",\n"
 
+#define PRINT_SPACER_AND_SYMBOL_BY_BYTE(byte, symbol_by_byte)     \
+  PRINT_SPACER(SYMBOL_BY_BYTE_PREFIX, SYMBOL_BY_BYTE_TERMINATOR); \
+  printf(SYMBOL_BY_BYTE_TEMPLATE, byte, symbol_by_byte);
+
 void print_symbol_by_bytes(const uint8_t* alphabet, const uint8_t* symbol_by_bytes, size_t alphabet_length)
 {
-  for (size_t index = 0; index < alphabet_length; index++) {
-    if (index == 0) {
-      PRINT(SYMBOL_BY_BYTE_PREFIX);
-    }
-    else {
-      PRINT(SYMBOL_BY_BYTE_TERMINATOR);
-      PRINT(SYMBOL_BY_BYTE_PREFIX);
-    }
+  INITIALIZE_SPACERS();
 
+  for (size_t index = 0; index < alphabet_length; index++) {
     uint8_t byte = alphabet[index];
-    printf(SYMBOL_BY_BYTE_TEMPLATE, byte, symbol_by_bytes[byte]);
+
+    PRINT_SPACER_AND_SYMBOL_BY_BYTE(byte, symbol_by_bytes[byte]);
   }
 
   PRINT_GLUE();

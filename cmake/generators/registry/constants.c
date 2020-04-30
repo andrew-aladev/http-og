@@ -11,29 +11,25 @@
 #define CONSTANT_TEMPLATE "\"%s\""
 #define CONSTANT_TERMINATOR ",\n"
 
-#define LENGTH_TEMPLATE "%zu"
+#define PRINT_SPACER_AND_CONSTANT(constant)           \
+  PRINT_SPACER(CONSTANT_PREFIX, CONSTANT_TERMINATOR); \
+  printf(CONSTANT_TEMPLATE, constant);
 
 void print_constants(const xmlNodeSetPtr nodes)
 {
+  INITIALIZE_SPACERS();
+
   size_t nodes_length = nodes->nodeNr;
 
   for (size_t index = 0; index < nodes_length; index++) {
-    if (index == 0) {
-      PRINT(CONSTANT_PREFIX);
-    }
-    else {
-      PRINT(CONSTANT_TERMINATOR);
-      PRINT(CONSTANT_PREFIX);
-    }
-
     const xmlNodePtr node = nodes->nodeTab[index];
     const char*      text = (const char*)xmlNodeGetContent(node);
 
-    printf(CONSTANT_TEMPLATE, text);
+    PRINT_SPACER_AND_CONSTANT(text);
   }
 
   PRINT_GLUE();
 
-  printf(LENGTH_TEMPLATE, nodes_length);
+  PRINT_LENGTH(nodes_length);
   PRINT_GLUE();
 }

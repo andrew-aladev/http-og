@@ -6,10 +6,8 @@
 #include "options.h"
 #include "print.h"
 
-#define LENGTH_TEMPLATE "%zu"
-
 void print_data()
 {
-  printf(LENGTH_TEMPLATE, HOG_CONSTANTS_LENGTH);
+  PRINT_LENGTH(HOG_CONSTANTS_LENGTH);
   PRINT_GLUE();
 }

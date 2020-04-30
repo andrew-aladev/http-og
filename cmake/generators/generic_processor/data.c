@@ -6,16 +6,11 @@
 #include "options.h"
 #include "print.h"
 
-#define LENGTH_TEMPLATE "%zu"
-
-static inline void print_length(size_t length)
-{
-  printf(LENGTH_TEMPLATE, length);
-  PRINT_GLUE();
-}
-
 void print_data()
 {
-  print_length(HOG_MIN_LENGTH);
-  print_length(HOG_MAX_LENGTH);
+  PRINT_LENGTH(HOG_MIN_LENGTH);
+  PRINT_GLUE();
+
+  PRINT_LENGTH(HOG_MAX_LENGTH);
+  PRINT_GLUE();
 }

@@ -13,25 +13,22 @@
 #define BYTE_TEMPLATE "0x%02x"
 #define BYTE_TERMINATOR ",\n"
 
-#define LENGTH_TEMPLATE "%zu"
+#define PRINT_SPACER_AND_BYTE(byte)           \
+  PRINT_SPACER(BYTE_PREFIX, BYTE_TERMINATOR); \
+  printf(BYTE_TEMPLATE, byte);
 
 void print_data()
 {
-  for (size_t index = 0; index < strlen(HOG_CONSTANT); index++) {
-    if (index == 0) {
-      PRINT(BYTE_PREFIX);
-    }
-    else {
-      PRINT(BYTE_TERMINATOR);
-      PRINT(BYTE_PREFIX);
-    }
+  INITIALIZE_SPACERS();
 
+  for (size_t index = 0; index < strlen(HOG_CONSTANT); index++) {
     uint8_t byte = HOG_CONSTANT[index];
-    printf(BYTE_TEMPLATE, byte);
+
+    PRINT_SPACER_AND_BYTE(byte);
   }
 
   PRINT_GLUE();
 
-  printf(LENGTH_TEMPLATE, strlen(HOG_CONSTANT));
+  PRINT_LENGTH(strlen(HOG_CONSTANT));
   PRINT_GLUE();
 }

@@ -3,7 +3,6 @@
 
 #include "prefix.h"
 
-#include <stdbool.h>
 #include <string.h>
 
 #include "options.h"

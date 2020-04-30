@@ -3,7 +3,6 @@
 
 #include "alphabet.h"
 
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -14,19 +13,9 @@
 #define ALLOWED_BYTES_TEMPLATE "[%u] = true"
 #define ALLOWED_BYTES_TERMINATOR ",\n"
 
-static inline void print_allowed_byte(bool* first_byte_printed_ptr, char byte)
-{
-  if (*first_byte_printed_ptr) {
-    PRINT(ALLOWED_BYTES_TERMINATOR);
-    PRINT(ALLOWED_BYTES_PREFIX);
-  }
-  else {
-    PRINT(ALLOWED_BYTES_PREFIX);
-    *first_byte_printed_ptr = true;
-  }
-
+#define PRINT_SPACER_AND_ALLOWED_BYTE(byte)                     \
+  PRINT_SPACER(ALLOWED_BYTES_PREFIX, ALLOWED_BYTES_TERMINATOR); \
   printf(ALLOWED_BYTES_TEMPLATE, (uint8_t)byte);
-}
 
 // -- inclusive --
 
@@ -45,26 +34,26 @@ static inline bool find_byte_in_ranges(char target_byte)
 
 static inline void print_alphabet_including_bytes_into_ranges()
 {
+  INITIALIZE_SPACERS();
+
   size_t index;
   char   byte;
-  bool   first_byte_printed = false;
 
   for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
     hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
     for (byte = range.from; byte < range.to; byte++) {
-      print_allowed_byte(&first_byte_printed, byte);
+      PRINT_SPACER_AND_ALLOWED_BYTE(byte);
     }
 
-    byte = range.to;
-    print_allowed_byte(&first_byte_printed, byte);
+    PRINT_SPACER_AND_ALLOWED_BYTE(range.to);
   }
 
   for (index = 0; index < HOG_ALPHABET_LENGTH; index++) {
     byte = HOG_ALPHABET[index];
 
     if (!find_byte_in_ranges(byte)) {
-      print_allowed_byte(&first_byte_printed, byte);
+      PRINT_SPACER_AND_ALLOWED_BYTE(byte);
     }
   }
 }
@@ -86,23 +75,24 @@ static inline bool find_byte_in_bytes(char target_byte)
 
 static inline void print_alphabet_excluding_bytes_from_ranges()
 {
+  INITIALIZE_SPACERS();
+
   size_t index;
   char   byte;
-  bool   first_byte_printed = false;
 
   for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
     hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
     for (byte = range.from; byte < range.to; byte++) {
       if (!find_byte_in_bytes(byte)) {
-        print_allowed_byte(&first_byte_printed, byte);
+        PRINT_SPACER_AND_ALLOWED_BYTE(byte);
       }
     }
 
     byte = range.to;
 
     if (!find_byte_in_bytes(byte)) {
-      print_allowed_byte(&first_byte_printed, byte);
+      PRINT_SPACER_AND_ALLOWED_BYTE(byte);
     }
   }
 }

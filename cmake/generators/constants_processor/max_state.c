@@ -14,8 +14,10 @@ void init_max_state(size_t* max_state_ptr, size_t prefixes_length)
 
 #define MAX_STATE_TEMPLATE "%zu"
 
+#define PRINT_MAX_STATE(max_state) printf(MAX_STATE_TEMPLATE, max_state);
+
 void print_max_state(size_t max_state)
 {
-  printf(MAX_STATE_TEMPLATE, max_state);
+  PRINT_MAX_STATE(max_state);
   PRINT_GLUE();
 }
