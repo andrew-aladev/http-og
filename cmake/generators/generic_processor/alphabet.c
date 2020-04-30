@@ -9,11 +9,11 @@
 #include "options.h"
 #include "print.h"
 
-#define ALLOWED_BYTES_TEMPLATE "[%u] = true"
+#define ALLOWED_BYTE_TEMPLATE "[%u] = true"
 
 #define PRINT_SPACER_AND_ALLOWED_BYTE(byte) \
   PRINT_SPACER();                           \
-  printf(ALLOWED_BYTES_TEMPLATE, (uint8_t)byte);
+  printf(ALLOWED_BYTE_TEMPLATE, (uint8_t)byte);
 
 // -- inclusive --
 
