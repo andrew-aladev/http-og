@@ -10,9 +10,7 @@ function (generate_registry FILE_PATH XPATH MODE)
   set (NAME "cmake_generate_registry")
 
   set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
-  set (OUTPUT_ALPHABET_LENGTH "CMAKE_ALPHABET_LENGTH")
   set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
-  set (OUTPUT_CONSTANTS_LENGTH "CMAKE_CONSTANTS_LENGTH")
 
   get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
   set (MESSAGE_PREFIX "Registry ${REGISTRY_NAME}, xpath ${XPATH}, mode ${MODE}")
@@ -37,32 +35,22 @@ function (generate_registry FILE_PATH XPATH MODE)
 
     if (RUN_RESULT EQUAL 0)
       if (MODE STREQUAL "alphabet")
-        list (GET RUN_OUTPUT 0 ALPHABET)
-        set (${OUTPUT_ALPHABET} ${ALPHABET} PARENT_SCOPE)
-        list (GET RUN_OUTPUT 1 ALPHABET_LENGTH)
-        set (${OUTPUT_ALPHABET_LENGTH} ${ALPHABET_LENGTH} PARENT_SCOPE)
+        set (${OUTPUT_ALPHABET} ${RUN_OUTPUT} PARENT_SCOPE)
       else ()
-        list (GET RUN_OUTPUT 0 CONSTANTS)
-        set (${OUTPUT_CONSTANTS} ${CONSTANTS} PARENT_SCOPE)
-        list (GET RUN_OUTPUT 1 CONSTANTS_LENGTH)
-        set (${OUTPUT_CONSTANTS_LENGTH} ${CONSTANTS_LENGTH} PARENT_SCOPE)
+        set (${OUTPUT_CONSTANTS} ${RUN_OUTPUT} PARENT_SCOPE)
       endif ()
 
       message (STATUS "${MESSAGE_PREFIX} - generated")
 
     else ()
       unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
-      unset (${OUTPUT_ALPHABET_LENGTH} PARENT_SCOPE)
       unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
-      unset (${OUTPUT_CONSTANTS_LENGTH} PARENT_SCOPE)
       message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
     endif ()
 
   else ()
     unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
-    unset (${OUTPUT_ALPHABET_LENGTH} PARENT_SCOPE)
     unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
-    unset (${OUTPUT_CONSTANTS_LENGTH} PARENT_SCOPE)
     message (STATUS "${MESSAGE_PREFIX} - compilation failed, using default")
   endif ()
 
@@ -70,8 +58,6 @@ function (generate_registry FILE_PATH XPATH MODE)
 
   mark_as_advanced (
     ${OUTPUT_ALPHABET}
-    ${OUTPUT_ALPHABET_LENGTH}
     ${OUTPUT_CONSTANTS}
-    ${OUTPUT_CONSTANTS_LENGTH}
   )
 endfunction ()

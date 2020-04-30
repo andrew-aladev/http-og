@@ -11,7 +11,6 @@
 
 #define PRINT(string) fputs(string, stdout)
 #define PRINT_ERROR(string) fputs(string, stderr)
-#define PRINT_GLUE() PRINT(GLUE)
 
 #define INITIALIZE_SPACERS() bool is_first_spacer = true;
 
@@ -24,9 +23,5 @@
     PRINT(TERMINATOR);                   \
     PRINT(PREFIX);                       \
   }
-
-#define LENGTH_TEMPLATE "%zu"
-
-#define PRINT_LENGTH(length) printf(LENGTH_TEMPLATE, length);
 
 #endif // PRINT_H

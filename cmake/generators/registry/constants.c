@@ -19,17 +19,10 @@ void print_constants(const xmlNodeSetPtr nodes)
 {
   INITIALIZE_SPACERS();
 
-  size_t nodes_length = nodes->nodeNr;
-
-  for (size_t index = 0; index < nodes_length; index++) {
+  for (size_t index = 0; index < nodes->nodeNr; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];
     const char*      text = (const char*)xmlNodeGetContent(node);
 
     PRINT_SPACER_AND_CONSTANT(text);
   }
-
-  PRINT_GLUE();
-
-  PRINT_LENGTH(nodes_length);
-  PRINT_GLUE();
 }

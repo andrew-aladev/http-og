@@ -10,9 +10,13 @@
 
 #define ALPHABET_MAX_LENGTH UINT8_MAX + 1
 
-#define PRINT_SPACER_AND_CONSTANT(constant)           \
-  PRINT_SPACER(CONSTANT_PREFIX, CONSTANT_TERMINATOR); \
-  printf(CONSTANT_TEMPLATE, constant);
+#define BYTE_PREFIX "  "
+#define BYTE_TEMPLATE "'%c'"
+#define BYTE_TERMINATOR ",\n"
+
+#define PRINT_SPACER_AND_BYTE(byte)           \
+  PRINT_SPACER(BYTE_PREFIX, BYTE_TERMINATOR); \
+  printf(BYTE_TEMPLATE, byte);
 
 int print_alphabet(const xmlNodeSetPtr nodes)
 {
@@ -22,15 +26,26 @@ int print_alphabet(const xmlNodeSetPtr nodes)
     return 1;
   }
 
+  char byte;
+
+  for (byte = 0; byte < ALPHABET_MAX_LENGTH; byte++) {
+    alphabet[byte] = false;
+  }
+
   INITIALIZE_SPACERS();
 
-  size_t nodes_length = nodes->nodeNr;
-
-  for (size_t index = 0; index < nodes_length; index++) {
+  for (size_t index = 0; index < nodes->nodeNr; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];
     const char*      text = (const char*)xmlNodeGetContent(node);
 
-    PRINT_SPACER_AND_CONSTANT(text);
+    for (size_t jndex = 0; jndex < strlen(text); jndex++) {
+      byte = text[jndex];
+
+      if (!alphabet[byte]) {
+        PRINT_SPACER_AND_BYTE(byte);
+        alphabet[byte] = true;
+      }
+    }
   }
 
   free(alphabet);
