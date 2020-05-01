@@ -64,7 +64,7 @@ function (generate_registry FILE_PATH XPATH MODE)
       message (STATUS "${MESSAGE_PREFIX} - compilation failed, using default")
     endif ()
 
-    FILE (REMOVE_RECURSE ${BINARY_DIR})
+    file (REMOVE_RECURSE ${BINARY_DIR})
 
   else ()
     unset (${OUTPUT_ALPHABET} PARENT_SCOPE)

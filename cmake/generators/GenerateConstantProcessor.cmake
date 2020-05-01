@@ -52,5 +52,5 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
     message (STATUS "${MESSAGE_PREFIX} - compilation failed, using default")
   endif ()
 
-  FILE (REMOVE_RECURSE ${BINARY_DIR})
+  file (REMOVE_RECURSE ${BINARY_DIR})
 endfunction ()
