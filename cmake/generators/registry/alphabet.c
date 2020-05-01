@@ -5,6 +5,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "print.h"
 
@@ -22,15 +23,22 @@ int print_alphabet(const xmlNodeSetPtr nodes)
     return 1;
   }
 
-  char byte;
+  uint8_t byte = 0;
 
-  for (byte = 0; byte < ALPHABET_MAX_LENGTH; byte++) {
+  while (true) {
     alphabet[byte] = false;
+
+    if (byte == UINT8_MAX) {
+      break;
+    }
+    byte++;
   }
 
   INITIALIZE_SPACERS();
 
-  for (size_t index = 0; index < nodes->nodeNr; index++) {
+  size_t nodes_length = nodes->nodeNr;
+
+  for (size_t index = 0; index < nodes_length; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];
     const char*      text = (const char*)xmlNodeGetContent(node);
 

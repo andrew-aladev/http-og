@@ -9,6 +9,7 @@
 
 #include "alphabet.h"
 #include "constants.h"
+#include "print.h"
 
 static inline int print_data(const xmlXPathObjectPtr xpath_object, const char* mode)
 {
@@ -30,7 +31,7 @@ int print_data_from_file(const char* file_path, const char* xpath, const char* m
 
   const xmlDocPtr document = xmlParseFile(file_path);
   if (document != NULL) {
-    PRINT_ERROR("failed to create xml document\n");
+    PRINT_ERROR("failed to parse file\n");
     xmlCleanupParser();
     return 1;
   }

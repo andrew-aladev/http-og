@@ -38,13 +38,17 @@ static inline void print_alphabet_including_bytes_into_ranges()
   for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
     hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
-    for (byte = range.from; byte < range.to; byte++) {
+    byte = range.from;
+
+    while (true) {
       PRINT_SPACER();
       PRINT_ALLOWED_BYTE(byte);
-    }
 
-    PRINT_SPACER();
-    PRINT_ALLOWED_BYTE(range.to);
+      if (byte == range.to) {
+        break;
+      }
+      byte++;
+    }
   }
 
   for (index = 0; index < HOG_ALPHABET_LENGTH; index++) {
@@ -82,18 +86,18 @@ static inline void print_alphabet_excluding_bytes_from_ranges()
   for (index = 0; index < HOG_ALPHABET_RANGES_LENGTH; index++) {
     hog_alphabet_range_t range = HOG_ALPHABET_RANGES[index];
 
-    for (byte = range.from; byte < range.to; byte++) {
+    byte = range.from;
+
+    while (true) {
       if (!find_byte_in_bytes(byte)) {
         PRINT_SPACER();
         PRINT_ALLOWED_BYTE(byte);
       }
-    }
 
-    byte = range.to;
-
-    if (!find_byte_in_bytes(byte)) {
-      PRINT_SPACER();
-      PRINT_ALLOWED_BYTE(byte);
+      if (byte == range.to) {
+        break;
+      }
+      byte++;
     }
   }
 }
