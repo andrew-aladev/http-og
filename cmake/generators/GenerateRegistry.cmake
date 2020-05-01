@@ -30,6 +30,7 @@ function (generate_registry FILE_PATH XPATH MODE)
         "-DCMAKE_LIBXML2_LIBRARIES=${LIBXML2_LIBRARIES}"
       OUTPUT_VARIABLE COMPILE_OUTPUT
     )
+
     if (CMAKE_VERBOSE_MAKEFILE)
       message (STATUS ${COMPILE_OUTPUT})
     endif ()

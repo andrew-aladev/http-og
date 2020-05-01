@@ -22,6 +22,7 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
       "-DCMAKE_TARGET_PATH=${TARGET_PATH}"
     OUTPUT_VARIABLE COMPILE_OUTPUT
   )
+
   if (CMAKE_VERBOSE_MAKEFILE)
     message (STATUS ${COMPILE_OUTPUT})
   endif ()
