@@ -9,6 +9,45 @@
 
 #include "options.h"
 
-const char* HOG_CONSTANTS[] = {};
+const char* HOG_CONSTANTS[] = {
+  "ACL",
+  "BASELINE-CONTROL",
+  "BIND",
+  "CHECKIN",
+  "CHECKOUT",
+  "CONNECT",
+  "COPY",
+  "DELETE",
+  "GET",
+  "HEAD",
+  "LABEL",
+  "LINK",
+  "LOCK",
+  "MERGE",
+  "MKACTIVITY",
+  "MKCALENDAR",
+  "MKCOL",
+  "MKREDIRECTREF",
+  "MKWORKSPACE",
+  "MOVE",
+  "OPTIONS",
+  "ORDERPATCH",
+  "PATCH",
+  "POST",
+  "PRI",
+  "PROPFIND",
+  "PROPPATCH",
+  "PUT",
+  "REBIND",
+  "REPORT",
+  "SEARCH",
+  "TRACE",
+  "UNBIND",
+  "UNCHECKOUT",
+  "UNLINK",
+  "UNLOCK",
+  "UPDATE",
+  "UPDATEREDIRECTREF",
+  "VERSION-CONTROL"};
 
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

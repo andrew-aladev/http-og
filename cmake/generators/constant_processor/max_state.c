@@ -14,7 +14,7 @@ int check_max_state()
 {
   size_t max_state = strlen(HOG_CONSTANT);
   if (max_state > UINT32_MAX) {
-    PRINT_ERROR("max state is too big\n");
+    PRINT_ERROR("max state is too big");
     return 1;
   }
 

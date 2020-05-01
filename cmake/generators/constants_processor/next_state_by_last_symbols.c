@@ -34,7 +34,7 @@ int init_next_state_by_last_symbols(
 
   *next_state_by_last_symbols_ptr = malloc(*next_state_by_last_symbols_length_ptr * sizeof(size_t));
   if (*next_state_by_last_symbols_ptr == NULL) {
-    PRINT_ERROR("failed to allocate memory for next state by last symbols\n");
+    PRINT_ERROR("failed to allocate memory for next state by last symbols");
     return 1;
   }
 
@@ -65,7 +65,7 @@ int init_next_state_by_last_symbols(
 
       if (!find_state_from_constants(&state, constant, jndex + 1)) {
         if (global_state >= max_state) {
-          PRINT_ERROR("global state should be less than max state\n");
+          PRINT_ERROR("global state should be less than max state");
           free(*next_state_by_last_symbols_ptr);
           return 2;
         }
@@ -78,7 +78,7 @@ int init_next_state_by_last_symbols(
   }
 
   if (global_state != max_state) {
-    PRINT_ERROR("global state is not equal to max state\n");
+    PRINT_ERROR("global state is not equal to max state");
     free(*next_state_by_last_symbols_ptr);
     return 3;
   }

@@ -6,6 +6,6 @@
 
 #include <libxml/xpath.h>
 
-int print_alphabet(const xmlNodeSetPtr nodes);
+int print_alphabet(const xmlNodeSetPtr nodes, size_t nodes_length);
 
 #endif // ALPHABET_H

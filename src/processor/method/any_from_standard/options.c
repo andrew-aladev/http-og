@@ -12,7 +12,30 @@
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {0};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = 0;
 
-const char HOG_ALPHABET[] = {};
+const char HOG_ALPHABET[] = {
+  'A',
+  'C',
+  'L',
+  'B',
+  'S',
+  'E',
+  'I',
+  'N',
+  '-',
+  'O',
+  'T',
+  'R',
+  'D',
+  'H',
+  'K',
+  'U',
+  'P',
+  'Y',
+  'G',
+  'M',
+  'V',
+  'F',
+  'W'};
 
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 

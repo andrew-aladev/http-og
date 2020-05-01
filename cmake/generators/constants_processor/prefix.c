@@ -60,7 +60,7 @@ int init_prefixes(size_t* prefixes_length_ptr)
 
   prefix_t* prefixes = malloc(max_prefixes_length * sizeof(prefix_t));
   if (prefixes == NULL) {
-    PRINT_ERROR("failed to allocate memory for prefixes\n");
+    PRINT_ERROR("failed to allocate memory for prefixes");
     return 1;
   }
 

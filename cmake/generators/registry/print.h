@@ -11,7 +11,10 @@
 #define TERMINATOR ",\n"
 
 #define PRINT(string) fputs(string, stdout)
-#define PRINT_ERROR(string) fputs(string, stderr)
+
+#define PRINT_ERROR(string) \
+  fputs(string, stderr);    \
+  fputc('\n', stderr);
 
 #define INITIALIZE_SPACERS() bool is_first_spacer = true;
 

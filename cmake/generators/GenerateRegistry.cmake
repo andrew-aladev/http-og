@@ -1,6 +1,6 @@
-function (generate_registry FILE_PATH XPATH MODE)
+function (generate_registry FILE_PATH NS_URI XPATH MODE)
   get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
-  set (MESSAGE_PREFIX "Registry ${REGISTRY_NAME}, xpath ${XPATH}, mode ${MODE}")
+  set (MESSAGE_PREFIX "registry ${REGISTRY_NAME}, ns uri: ${NS_URI}, xpath ${XPATH}, mode ${MODE}")
 
   set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
   set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
@@ -37,10 +37,10 @@ function (generate_registry FILE_PATH XPATH MODE)
 
     if (COMPILE_RESULT)
       execute_process (
-        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${XPATH} ${MODE}
+        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${NS_URI} ${XPATH} ${MODE}
         RESULT_VARIABLE RUN_RESULT
         OUTPUT_VARIABLE RUN_OUTPUT
-        ERROR_VARIABLE RUN_ERROR
+        ERROR_VARIABLE RUN_ERRORS
       )
 
       if (RUN_RESULT EQUAL 0)
@@ -55,7 +55,7 @@ function (generate_registry FILE_PATH XPATH MODE)
       else ()
         unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
         unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
-        message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, error:\n${RUN_ERROR}")
+        message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, errors:\n${RUN_ERRORS}")
         message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
       endif ()
 

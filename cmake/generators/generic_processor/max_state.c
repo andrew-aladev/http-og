@@ -11,7 +11,7 @@
 int check_max_state()
 {
   if (HOG_MAX_LENGTH > UINT32_MAX) {
-    PRINT_ERROR("max length is too big\n");
+    PRINT_ERROR("max length is too big");
     return 1;
   }
 

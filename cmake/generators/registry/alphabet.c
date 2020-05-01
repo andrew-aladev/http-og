@@ -15,11 +15,11 @@
 
 #define PRINT_BYTE(byte) printf(BYTE_TEMPLATE, byte);
 
-int print_alphabet(const xmlNodeSetPtr nodes)
+int print_alphabet(const xmlNodeSetPtr nodes, size_t nodes_length)
 {
   bool* alphabet = malloc(ALPHABET_MAX_LENGTH);
   if (alphabet == NULL) {
-    PRINT_ERROR("failed to allocate memory for alphabet\n");
+    PRINT_ERROR("failed to allocate memory for alphabet");
     return 1;
   }
 
@@ -35,8 +35,6 @@ int print_alphabet(const xmlNodeSetPtr nodes)
   }
 
   INITIALIZE_SPACERS();
-
-  size_t nodes_length = nodes->nodeNr;
 
   for (size_t index = 0; index < nodes_length; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];

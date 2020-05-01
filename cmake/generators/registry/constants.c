@@ -11,11 +11,9 @@
 
 #define PRINT_CONSTANT(constant) printf(CONSTANT_TEMPLATE, constant);
 
-void print_constants(const xmlNodeSetPtr nodes)
+void print_constants(const xmlNodeSetPtr nodes, size_t nodes_length)
 {
   INITIALIZE_SPACERS();
-
-  size_t nodes_length = nodes->nodeNr;
 
   for (size_t index = 0; index < nodes_length; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];

@@ -4,6 +4,6 @@
 #if !defined(FILE_H)
 #define FILE_H
 
-int print_data_from_file(const char* file_path, const char* xpath, const char* mode);
+int print_data_from_file(const char* file_path, const char* ns_uri, const char* xpath, const char* mode);
 
 #endif // FILE_H
