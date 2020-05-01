@@ -1,13 +1,13 @@
-function (generate_registry FILE_PATH NS_URI XPATH MODE)
+function (generate_data_from_registry FILE_PATH NS_URI XPATH MODE)
   get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
   set (MESSAGE_PREFIX "registry ${REGISTRY_NAME}, ns uri: ${NS_URI}, xpath ${XPATH}, mode ${MODE}")
 
   set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
   set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
 
-  set (NAME "cmake_generate_registry")
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_registry")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/registry")
+  set (NAME "cmake_generate_data_from_registry")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_data_from_registry")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/data_from_registry")
 
   find_package (LibXml2)
 

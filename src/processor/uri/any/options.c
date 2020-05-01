@@ -7,7 +7,7 @@
 
 #include <limits.h>
 
-// Any bytes except separator or terminator.
+// Any bytes except separators or terminators.
 
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{CHAR_MIN, CHAR_MAX}};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);

@@ -19,16 +19,17 @@ const size_t HOG_PROCESSOR_STATUS_CODE_ANY_FROM_STANDARD_MAX_LENGTH = 65535;
 
 const bool HOG_PROCESSOR_STATUS_CODE_ANY_FROM_STANDARD_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
-  [48] = true,
   [49] = true,
+  [48] = true,
   [50] = true,
   [51] = true,
   [52] = true,
+  [45] = true,
+  [57] = true,
   [53] = true,
   [54] = true,
   [55] = true,
-  [56] = true,
-  [57] = true};
+  [56] = true};
 
 // clang-format on
 

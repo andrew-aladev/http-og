@@ -31,7 +31,7 @@ count = special_symbols_data.each_with_object({}) do |value, data|
   data
 end
 
-puts "- special symbols requests count:"
+puts "- requests count:"
 pp count
 puts
 
@@ -46,6 +46,6 @@ count = special_symbols_data.each_with_object({}) do |value, data|
   data
 end
 
-puts "- special symbols log urls count:"
+puts "- log urls count:"
 pp count
 puts

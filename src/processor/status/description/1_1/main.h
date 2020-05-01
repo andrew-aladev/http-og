@@ -15,7 +15,7 @@
 #include "../../../../common.h"
 #include "../../../../log.h"
 
-typedef uint8_t hog_processor_status_description_1_1_state_t;
+typedef uint16_t hog_processor_status_description_1_1_state_t;
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_1_INITIAL_STATE;
 
