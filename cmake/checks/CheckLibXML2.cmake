@@ -1,9 +1,20 @@
 function (cmake_check_libxml2)
-  if (DEFINED LIBXML2_FOUND)
+  if (DEFINED CMAKE_LIBXML2_WORKS)
     return ()
   endif ()
 
-  find_package (LibXML2 REQUIRED)
+  set (MESSAGE_PREFIX "Status of XML2 support")
+
+  set (NAME "cmake_check_libxml2")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/check_LibXML2")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/checks/LibXML2")
+
+  find_package (LibXML2)
+
+  if (NOT DEFINED LIBXML2_FOUND)
+    message (STATUS "${MESSAGE_PREFIX} - library is not found")
+    return ()
+  endif ()
 
   include (GetVerboseFlags)
   cmake_get_verbose_flags ()
@@ -13,12 +24,6 @@ function (cmake_check_libxml2)
 
   include (CheckRunnable)
   cmake_check_runnable ()
-
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/check_LibXML2")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/checks/LibXML2")
-  set (NAME "cmake_check_libxml2")
-
-  set (MESSAGE_PREFIX "Status of XML2 support")
 
   try_compile (
     CHECK_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}

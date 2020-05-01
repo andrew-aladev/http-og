@@ -1,19 +1,19 @@
 function (generate_registry FILE_PATH XPATH MODE)
+  get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
+  set (MESSAGE_PREFIX "Registry ${REGISTRY_NAME}, xpath ${XPATH}, mode ${MODE}")
+
+  set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
+  set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
+
+  set (NAME "cmake_generate_registry")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_registry")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/registry")
+
   include (GetVerboseFlags)
   cmake_get_verbose_flags ()
 
   include (CheckC11)
   cmake_check_c11 ()
-
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_registry")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/registry")
-  set (NAME "cmake_generate_registry")
-
-  set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
-  set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
-
-  get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
-  set (MESSAGE_PREFIX "Registry ${REGISTRY_NAME}, xpath ${XPATH}, mode ${MODE}")
 
   try_compile (
     COMPILE_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}
@@ -55,9 +55,4 @@ function (generate_registry FILE_PATH XPATH MODE)
   endif ()
 
   FILE (REMOVE_RECURSE ${BINARY_DIR})
-
-  mark_as_advanced (
-    ${OUTPUT_ALPHABET}
-    ${OUTPUT_CONSTANTS}
-  )
 endfunction ()

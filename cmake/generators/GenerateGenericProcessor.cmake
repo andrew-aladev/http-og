@@ -1,19 +1,19 @@
 function (generate_generic_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
-  include (GetVerboseFlags)
-  cmake_get_verbose_flags ()
-
-  include (CheckC11)
-  cmake_check_c11 ()
-
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_generic_processor")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/generic_processor")
-  set (NAME "cmake_generate_generic_processor")
+  set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} generic processor")
 
   set (OUTPUT_MIN_LENGTH "CMAKE_MIN_LENGTH")
   set (OUTPUT_MAX_LENGTH "CMAKE_MAX_LENGTH")
   set (OUTPUT_ALLOWED_BYTES "CMAKE_ALLOWED_BYTES")
 
-  set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} generic processor")
+  set (NAME "cmake_generate_generic_processor")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_generic_processor")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/generic_processor")
+
+  include (GetVerboseFlags)
+  cmake_get_verbose_flags ()
+
+  include (CheckC11)
+  cmake_check_c11 ()
 
   try_compile (
     COMPILE_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}
@@ -56,10 +56,4 @@ function (generate_generic_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
   endif ()
 
   FILE (REMOVE_RECURSE ${BINARY_DIR})
-
-  mark_as_advanced (
-    ${OUTPUT_MIN_LENGTH}
-    ${OUTPUT_MAX_LENGTH}
-    ${OUTPUT_ALLOWED_BYTES}
-  )
 endfunction ()

@@ -1,18 +1,18 @@
 function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
+  set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} constant processor")
+
+  set (OUTPUT_CONSTANT_SYMBOLS "CMAKE_CONSTANT_SYMBOLS")
+  set (OUTPUT_CONSTANT_LENGTH "CMAKE_CONSTANT_LENGTH")
+
+  set (NAME "cmake_generate_constant_processor")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_constant_processor")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/constant_processor")
+
   include (GetVerboseFlags)
   cmake_get_verbose_flags ()
 
   include (CheckC11)
   cmake_check_c11 ()
-
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_constant_processor")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/constant_processor")
-  set (NAME "cmake_generate_constant_processor")
-
-  set (OUTPUT_CONSTANT_SYMBOLS "CMAKE_CONSTANT_SYMBOLS")
-  set (OUTPUT_CONSTANT_LENGTH "CMAKE_CONSTANT_LENGTH")
-
-  set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} constant processor")
 
   try_compile (
     COMPILE_RESULT ${BINARY_DIR} ${SOURCE_DIR} ${NAME}
@@ -51,9 +51,4 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
   endif ()
 
   FILE (REMOVE_RECURSE ${BINARY_DIR})
-
-  mark_as_advanced (
-    ${OUTPUT_CONSTANT_SYMBOLS}
-    ${OUTPUT_CONSTANT_LENGTH}
-  )
 endfunction ()
