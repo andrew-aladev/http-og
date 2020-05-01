@@ -55,7 +55,7 @@ function (generate_registry FILE_PATH XPATH MODE)
       else ()
         unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
         unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
-        message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, error: ${RUN_ERROR}")
+        message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, error:\n${RUN_ERROR}")
         message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
       endif ()
 
