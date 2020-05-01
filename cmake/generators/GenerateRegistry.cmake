@@ -36,9 +36,10 @@ function (generate_registry FILE_PATH XPATH MODE)
 
     if (COMPILE_RESULT)
       execute_process (
-        COMMAND "${BINARY_DIR}/main ${FILE_PATH} ${XPATH} ${MODE}"
+        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${XPATH} ${MODE}
         RESULT_VARIABLE RUN_RESULT
         OUTPUT_VARIABLE RUN_OUTPUT
+        ERROR_VARIABLE RUN_ERROR
       )
 
       if (RUN_RESULT EQUAL 0)
@@ -53,7 +54,7 @@ function (generate_registry FILE_PATH XPATH MODE)
       else ()
         unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
         unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
-        message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}")
+        message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, error: ${RUN_ERROR}")
         message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
       endif ()
 

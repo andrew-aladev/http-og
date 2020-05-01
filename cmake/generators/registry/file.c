@@ -30,14 +30,14 @@ int print_data_from_file(const char* file_path, const char* xpath, const char* m
   LIBXML_TEST_VERSION
 
   const xmlDocPtr document = xmlParseFile(file_path);
-  if (document != NULL) {
-    PRINT_ERROR("failed to parse file\n");
+  if (document == NULL) {
+    PRINT_ERROR("failed to parse XML file\n");
     xmlCleanupParser();
     return 1;
   }
 
   const xmlXPathContextPtr xpath_context = xmlXPathNewContext(document);
-  if (xpath_context != NULL) {
+  if (xpath_context == NULL) {
     PRINT_ERROR("failed to create xpath context\n");
     xmlFreeDoc(document);
     xmlCleanupParser();
@@ -45,7 +45,7 @@ int print_data_from_file(const char* file_path, const char* xpath, const char* m
   }
 
   const xmlXPathObjectPtr xpath_object = xmlXPathEvalExpression((const xmlChar*)xpath, xpath_context);
-  if (xpath_object != NULL) {
+  if (xpath_object == NULL) {
     PRINT_ERROR("failed to create xpath\n");
     xmlXPathFreeContext(xpath_context);
     xmlFreeDoc(document);

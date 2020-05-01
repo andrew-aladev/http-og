@@ -31,6 +31,7 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
       COMMAND "${BINARY_DIR}/main"
       RESULT_VARIABLE RUN_RESULT
       OUTPUT_VARIABLE RUN_OUTPUT
+      ERROR_VARIABLE RUN_ERROR
     )
 
     if (RUN_RESULT EQUAL 0)
@@ -42,7 +43,7 @@ function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
     else ()
       unset (${OUTPUT_CONSTANT_SYMBOLS} PARENT_SCOPE)
       unset (${OUTPUT_CONSTANT_LENGTH} PARENT_SCOPE)
-      message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}")
+      message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, error: ${RUN_ERROR}")
       message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
     endif ()
   else ()
