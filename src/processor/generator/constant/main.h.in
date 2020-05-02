@@ -31,7 +31,7 @@ inline hog_processor_state_fast_t hog_processor_@PREFIX_LOWER_CASE@_get_next_sta
   return state + 1;
 }
 
-inline bool hog_processor_@PREFIX_LOWER_CASE@_is_finished(hog_processor_state_fast_t state)
+inline bool hog_processor_@PREFIX_LOWER_CASE@_is_valid(hog_processor_state_fast_t state)
 {
   return state == HOG_PROCESSOR_@PREFIX@_CONSTANT_LENGTH;
 }

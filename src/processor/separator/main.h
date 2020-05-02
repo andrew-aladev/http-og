@@ -25,7 +25,12 @@ extern const bool HOG_PROCESSOR_SEPARATOR_ALLOWED_BYTES[];
 inline hog_processor_state_fast_t hog_processor_separator_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)
 {
-  if (state == HOG_PROCESSOR_SEPARATOR_MAX_LENGTH || !HOG_PROCESSOR_SEPARATOR_ALLOWED_BYTES[byte]) {
+  if (state == HOG_PROCESSOR_SEPARATOR_MAX_LENGTH) {
+    HOG_LOG_ERROR("separator processor exceeded max length");
+    return HOG_PROCESSOR_SEPARATOR_INITIAL_STATE;
+  }
+
+  if (!HOG_PROCESSOR_SEPARATOR_ALLOWED_BYTES[byte]) {
     HOG_LOG_ERROR("separator processor received invalid byte: %u", byte);
     return HOG_PROCESSOR_SEPARATOR_INITIAL_STATE;
   }
@@ -33,7 +38,7 @@ inline hog_processor_state_fast_t hog_processor_separator_get_next_state(
   return state + 1;
 }
 
-inline bool hog_processor_separator_is_finished(hog_processor_state_fast_t state)
+inline bool hog_processor_separator_is_valid(hog_processor_state_fast_t state)
 {
   return state >= HOG_PROCESSOR_SEPARATOR_MIN_LENGTH;
 }

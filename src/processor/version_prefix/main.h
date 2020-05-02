@@ -31,7 +31,7 @@ inline hog_processor_state_fast_t hog_processor_version_prefix_get_next_state(
   return state + 1;
 }
 
-inline bool hog_processor_version_prefix_is_finished(hog_processor_state_fast_t state)
+inline bool hog_processor_version_prefix_is_valid(hog_processor_state_fast_t state)
 {
   return state == HOG_PROCESSOR_VERSION_PREFIX_CONSTANT_LENGTH;
 }

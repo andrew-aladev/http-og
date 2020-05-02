@@ -279,4 +279,4 @@ const bool HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENG
 extern inline hog_processor_state_fast_t hog_processor_status_description_any_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_status_description_any_is_finished(hog_processor_state_fast_t state);
+extern inline bool hog_processor_status_description_any_is_valid(hog_processor_state_fast_t state);

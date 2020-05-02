@@ -25,7 +25,12 @@ extern const bool HOG_PROCESSOR_METHOD_ANY_ALLOWED_BYTES[];
 inline hog_processor_state_fast_t hog_processor_method_any_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)
 {
-  if (state == HOG_PROCESSOR_METHOD_ANY_MAX_LENGTH || !HOG_PROCESSOR_METHOD_ANY_ALLOWED_BYTES[byte]) {
+  if (state == HOG_PROCESSOR_METHOD_ANY_MAX_LENGTH) {
+    HOG_LOG_ERROR("method_any processor exceeded max length");
+    return HOG_PROCESSOR_METHOD_ANY_INITIAL_STATE;
+  }
+
+  if (!HOG_PROCESSOR_METHOD_ANY_ALLOWED_BYTES[byte]) {
     HOG_LOG_ERROR("method_any processor received invalid byte: %u", byte);
     return HOG_PROCESSOR_METHOD_ANY_INITIAL_STATE;
   }
@@ -33,7 +38,7 @@ inline hog_processor_state_fast_t hog_processor_method_any_get_next_state(
   return state + 1;
 }
 
-inline bool hog_processor_method_any_is_finished(hog_processor_state_fast_t state)
+inline bool hog_processor_method_any_is_valid(hog_processor_state_fast_t state)
 {
   return state >= HOG_PROCESSOR_METHOD_ANY_MIN_LENGTH;
 }

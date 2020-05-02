@@ -17,7 +17,7 @@ const size_t HOG_PROCESSOR_TERMINATOR_ALPHABET_MAX_LENGTH = HOG_MAX_SYMBOL + 1;
 
 const hog_symbol_fast_t HOG_PROCESSOR_TERMINATOR_UNDEFINED_SYMBOL = HOG_MAX_SYMBOL;
 
-#define SYMBOL_BY_BYTES_LENGTH HOG_MAX_SYMBOL + 1
+#define SYMBOL_BY_BYTES_LENGTH HOG_PROCESSOR_TERMINATOR_ALPHABET_MAX_LENGTH
 
 // clang-format off
 
@@ -43,4 +43,4 @@ const hog_processor_terminator_state_t HOG_PROCESSOR_TERMINATOR_NEXT_STATE_BY_LA
 extern inline hog_processor_state_fast_t hog_processor_terminator_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_terminator_is_finished(hog_processor_state_fast_t state);
+extern inline bool hog_processor_terminator_is_valid(hog_processor_state_fast_t state);

@@ -17,7 +17,7 @@ const size_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH = HOG_MAX_
 
 const hog_symbol_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_UNDEFINED_SYMBOL = HOG_MAX_SYMBOL;
 
-#define SYMBOL_BY_BYTES_LENGTH HOG_MAX_SYMBOL + 1
+#define SYMBOL_BY_BYTES_LENGTH HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH
 
 // clang-format off
 
@@ -252,4 +252,4 @@ const hog_processor_status_description_1_0_state_t HOG_PROCESSOR_STATUS_DESCRIPT
 extern inline hog_processor_state_fast_t hog_processor_status_description_1_0_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_status_description_1_0_is_finished(hog_processor_state_fast_t state);
+extern inline bool hog_processor_status_description_1_0_is_valid(hog_processor_state_fast_t state);

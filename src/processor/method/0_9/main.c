@@ -20,4 +20,4 @@ const size_t HOG_PROCESSOR_METHOD_0_9_CONSTANT_LENGTH = 3;
 extern inline hog_processor_state_fast_t hog_processor_method_0_9_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_method_0_9_is_finished(hog_processor_state_fast_t state);
+extern inline bool hog_processor_method_0_9_is_valid(hog_processor_state_fast_t state);

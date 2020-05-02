@@ -32,6 +32,8 @@ inline hog_processor_state_fast_t hog_processor_status_description_1_0_get_next_
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)
 {
   hog_symbol_fast_t symbol = HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_SYMBOL_BY_BYTES[byte];
+
+  // We need to verify symbol if alphabet is not full.
   if (HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_LENGTH != HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH && symbol == HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_UNDEFINED_SYMBOL) {
     HOG_LOG_ERROR("status_description_1_0 processor received invalid byte: %u", byte);
     return HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_INITIAL_STATE;
@@ -40,8 +42,9 @@ inline hog_processor_state_fast_t hog_processor_status_description_1_0_get_next_
   return HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_NEXT_STATE_BY_LAST_SYMBOLS[state * HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_LENGTH + symbol];
 }
 
-inline bool hog_processor_status_description_1_0_is_finished(hog_processor_state_fast_t state)
+inline bool hog_processor_status_description_1_0_is_valid(hog_processor_state_fast_t state)
 {
+  // State of each constant equals to its index.
   return state < HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_CONSTANTS_LENGTH;
 }
 
