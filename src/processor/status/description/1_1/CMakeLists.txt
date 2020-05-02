@@ -1,5 +1,8 @@
 include (GenerateConstantsFromRegistry)
-generate_constants_from_registry ("${PROJECT_SOURCE_DIR}/registry/http-status-codes.xml" "//record/description")
+generate_constants_from_registry (
+  "${PROJECT_SOURCE_DIR}/registry/http-status-codes.xml"
+  "//record/description[not(contains(text(),'Unassigned'))]"
+)
 
 if (DEFINED CMAKE_CONSTANTS)
   configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/options.c.in" "${CMAKE_CURRENT_SOURCE_DIR}/options.c")
