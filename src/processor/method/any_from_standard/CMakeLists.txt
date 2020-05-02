@@ -1,8 +1,7 @@
 include (GenerateDataFromRegistry)
 generate_data_from_registry (
   "${PROJECT_SOURCE_DIR}/registry/http-methods.xml"
-  "http://www.iana.org/assignments"
-  "//ns:record/ns:value"
+  "//record/value"
   "alphabet"
 )
 

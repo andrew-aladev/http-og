@@ -3,9 +3,9 @@
 
 #include "file.h"
 
+#include <libxml/HTMLparser.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
-#include <libxml/xpathInternals.h>
 #include <string.h>
 
 #include "alphabet.h"
@@ -34,14 +34,14 @@ static inline int print_data(const xmlXPathObjectPtr xpath_object, const char* m
   return 0;
 }
 
-int print_data_from_file(const char* file_path, const char* ns_uri, const char* xpath, const char* mode)
+int print_data_from_file(const char* file_path, const char* xpath, const char* mode)
 {
   xmlInitParser();
   LIBXML_TEST_VERSION
 
-  const xmlDocPtr document = xmlParseFile(file_path);
+  const htmlDocPtr document = htmlParseFile(file_path, NULL);
   if (document == NULL) {
-    PRINT_ERROR("failed to parse XML file");
+    PRINT_ERROR("failed to parse HTML file");
     xmlCleanupParser();
     return 1;
   }
@@ -54,21 +54,13 @@ int print_data_from_file(const char* file_path, const char* ns_uri, const char* 
     return 2;
   }
 
-  if (xmlXPathRegisterNs(xpath_context, (const xmlChar*)"ns", (const xmlChar*)ns_uri) != 0) {
-    PRINT_ERROR("failed to register ns uri");
-    xmlXPathFreeContext(xpath_context);
-    xmlFreeDoc(document);
-    xmlCleanupParser();
-    return 3;
-  }
-
   const xmlXPathObjectPtr xpath_object = xmlXPathEvalExpression((const xmlChar*)xpath, xpath_context);
   if (xpath_object == NULL) {
     PRINT_ERROR("failed to create xpath");
     xmlXPathFreeContext(xpath_context);
     xmlFreeDoc(document);
     xmlCleanupParser();
-    return 4;
+    return 3;
   }
 
   int result = print_data(xpath_object, mode);
@@ -79,7 +71,7 @@ int print_data_from_file(const char* file_path, const char* ns_uri, const char* 
   xmlCleanupParser();
 
   if (result != 0) {
-    return 5;
+    return 4;
   }
 
   return 0;

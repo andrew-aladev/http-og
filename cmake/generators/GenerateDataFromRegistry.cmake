@@ -1,6 +1,6 @@
-function (generate_data_from_registry FILE_PATH NS_URI XPATH MODE)
+function (generate_data_from_registry FILE_PATH XPATH MODE)
   get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
-  set (MESSAGE_PREFIX "registry ${REGISTRY_NAME}, ns uri: ${NS_URI}, xpath ${XPATH}, mode ${MODE}")
+  set (MESSAGE_PREFIX "registry ${REGISTRY_NAME}, xpath ${XPATH}, mode ${MODE}")
 
   set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
   set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
@@ -37,7 +37,7 @@ function (generate_data_from_registry FILE_PATH NS_URI XPATH MODE)
 
     if (COMPILE_RESULT)
       execute_process (
-        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${NS_URI} ${XPATH} ${MODE}
+        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${XPATH} ${MODE}
         RESULT_VARIABLE RUN_RESULT
         OUTPUT_VARIABLE RUN_OUTPUT
         ERROR_VARIABLE RUN_ERRORS
