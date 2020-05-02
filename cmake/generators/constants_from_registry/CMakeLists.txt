@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.9)
-project ("cmake_generate_data_from_registry" "C")
+project ("cmake_generate_constants_from_registry" "C")
 
 set (CMAKE_LIBXML2_INCLUDE_DIRS "" CACHE STRING "XML2 include directories")
 set (CMAKE_LIBXML2_LIBRARIES    "" CACHE STRING "XML2 libraries")
@@ -10,7 +10,6 @@ include_directories (${CMAKE_LIBXML2_INCLUDE_DIRS})
 
 add_executable (
   "main"
-  "alphabet.c"
   "constants.c"
   "file.c"
   "main.c"

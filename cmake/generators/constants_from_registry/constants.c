@@ -3,23 +3,28 @@
 
 #include "constants.h"
 
-#include <stdlib.h>
-
 #include "print.h"
 
 #define CONSTANT_TEMPLATE "\"%s\""
 
 #define PRINT_CONSTANT(constant) printf(CONSTANT_TEMPLATE, constant);
 
-void print_constants(const xmlNodeSetPtr nodes, size_t nodes_length)
+int print_constants(const xmlNodeSetPtr nodes, int nodes_length)
 {
+  if (nodes_length <= 0) {
+    PRINT_ERROR("can't find any constant");
+    return 1;
+  }
+
   INITIALIZE_SPACERS();
 
-  for (size_t index = 0; index < nodes_length; index++) {
+  for (int index = 0; index < nodes_length; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];
     const char*      text = (const char*)xmlNodeGetContent(node);
 
     PRINT_SPACER();
     PRINT_CONSTANT(text);
   }
+
+  return 0;
 }

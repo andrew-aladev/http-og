@@ -1,13 +1,12 @@
-function (generate_data_from_registry FILE_PATH XPATH MODE)
+function (generate_constants_from_registry FILE_PATH XPATH)
   get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
-  set (MESSAGE_PREFIX "registry ${REGISTRY_NAME}, xpath ${XPATH}, mode ${MODE}")
+  set (MESSAGE_PREFIX "constants from registry ${REGISTRY_NAME}, xpath ${XPATH}")
 
-  set (OUTPUT_ALPHABET "CMAKE_ALPHABET")
   set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
 
-  set (NAME "cmake_generate_data_from_registry")
-  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_data_from_registry")
-  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/data_from_registry")
+  set (NAME "cmake_generate_constants_from_registry")
+  set (BINARY_DIR "${PROJECT_BINARY_DIR}/CMakeTmp/generate_constants_from_registry")
+  set (SOURCE_DIR "${PROJECT_SOURCE_DIR}/cmake/generators/constants_from_registry")
 
   find_package (LibXml2)
 
@@ -37,30 +36,23 @@ function (generate_data_from_registry FILE_PATH XPATH MODE)
 
     if (COMPILE_RESULT)
       execute_process (
-        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${XPATH} ${MODE}
+        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${XPATH}
         RESULT_VARIABLE RUN_RESULT
         OUTPUT_VARIABLE RUN_OUTPUT
         ERROR_VARIABLE RUN_ERRORS
       )
 
       if (RUN_RESULT EQUAL 0)
-        if (MODE STREQUAL "alphabet")
-          set (${OUTPUT_ALPHABET} ${RUN_OUTPUT} PARENT_SCOPE)
-        else ()
-          set (${OUTPUT_CONSTANTS} ${RUN_OUTPUT} PARENT_SCOPE)
-        endif ()
-
+        set (${OUTPUT_CONSTANTS} ${RUN_OUTPUT} PARENT_SCOPE)
         message (STATUS "${MESSAGE_PREFIX} - generated")
 
       else ()
-        unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
         unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
         message (STATUS "${MESSAGE_PREFIX} - result: ${RUN_RESULT}, errors:\n${RUN_ERRORS}")
         message (STATUS "${MESSAGE_PREFIX} - failed to generate, using default")
       endif ()
 
     else ()
-      unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
       unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
       message (STATUS "${MESSAGE_PREFIX} - compilation failed, using default")
     endif ()
@@ -68,7 +60,6 @@ function (generate_data_from_registry FILE_PATH XPATH MODE)
     file (REMOVE_RECURSE ${BINARY_DIR})
 
   else ()
-    unset (${OUTPUT_ALPHABET} PARENT_SCOPE)
     unset (${OUTPUT_CONSTANTS} PARENT_SCOPE)
     message (STATUS "${MESSAGE_PREFIX} - XML2 is not working, using default")
   endif ()

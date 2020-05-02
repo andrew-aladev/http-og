@@ -9,25 +9,16 @@
 
 #include "options.h"
 
-const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {0};
-const size_t               HOG_ALPHABET_RANGES_LENGTH = 0;
+// HTTP Status Codes https://www.iana.org/assignments/http-status-codes/http-status-codes.xml
+// HTTP Warn Codes https://www.iana.org/assignments/http-warn-codes/http-warn-codes.xml
 
-const char HOG_ALPHABET[] = {
-  '1',
-  '0',
-  '2',
-  '3',
-  '4',
-  '-',
-  '9',
-  '5',
-  '6',
-  '7',
-  '8'};
+const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{'0', '9'}};
+const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
-const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
+const char   HOG_ALPHABET[]      = {0};
+const size_t HOG_ALPHABET_LENGTH = 0;
 
 const hog_alphabet_mode_t HOG_ALPHABET_MODE = HOG_ALPHABET_INCLUDING_BYTES_INTO_RANGES;
 
 const size_t HOG_MIN_LENGTH = 1;
-const size_t HOG_MAX_LENGTH = UINT16_MAX;
+const size_t HOG_MAX_LENGTH = UINT8_MAX;

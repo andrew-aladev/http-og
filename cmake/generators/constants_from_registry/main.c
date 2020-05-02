@@ -6,16 +6,15 @@
 
 int main(int argc, const char** argv)
 {
-  if (argc != 4) {
-    PRINT_ERROR("required arguments: file path, xpath, mode");
+  if (argc != 3) {
+    PRINT_ERROR("required arguments: file path, xpath");
     return 1;
   }
 
   const char* file_path = argv[1];
   const char* xpath     = argv[2];
-  const char* mode      = argv[3];
 
-  int result = print_data_from_file(file_path, xpath, mode);
+  int result = process_file(file_path, xpath);
   if (result != 0) {
     return 2;
   }

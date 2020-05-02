@@ -9,60 +9,13 @@
 
 #include "options.h"
 
-const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {0};
-const size_t               HOG_ALPHABET_RANGES_LENGTH = 0;
+// HTTP Status Codes https://www.iana.org/assignments/http-status-codes/http-status-codes.xml
+// HTTP Warn Codes https://www.iana.org/assignments/http-warn-codes/http-warn-codes.xml
 
-const char HOG_ALPHABET[] = {
-  'C',
-  'o',
-  'n',
-  't',
-  'i',
-  'u',
-  'e',
-  'S',
-  'w',
-  'c',
-  'h',
-  'g',
-  ' ',
-  'P',
-  'r',
-  'l',
-  's',
-  'E',
-  'a',
-  'y',
-  'H',
-  'U',
-  'd',
-  'O',
-  'K',
-  'A',
-  'p',
-  'N',
-  '-',
-  'v',
-  'I',
-  'f',
-  'm',
-  'R',
-  'M',
-  'F',
-  'x',
-  '(',
-  ')',
-  'T',
-  'B',
-  'q',
-  'z',
-  'b',
-  'G',
-  'L',
-  'k',
-  'D',
-  'V'};
+const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{'a', 'z'}, {'A', 'Z'}, {'0', '9'}};
+const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
+const char   HOG_ALPHABET[]      = {' ', '\t'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
 const hog_alphabet_mode_t HOG_ALPHABET_MODE = HOG_ALPHABET_INCLUDING_BYTES_INTO_RANGES;
