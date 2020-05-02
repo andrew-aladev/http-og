@@ -2,18 +2,20 @@
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 #include <assert.h>
+#include <libxml/HTMLparser.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 #include <string.h>
 
 const char DATA[] =
-  "<?xml version=\"1.0\"?>\
-    <root>\
-      <element key=\"value\">text</element>\
-    </root>\
-  ";
+  "<!DOCTYPE html>\
+    <html>\
+      <body>\
+        <span key=\"value\">text</span>\
+      </body>\
+    </html>";
 
-const char XPATH[]           = "/root/element";
+const char XPATH[]           = "//span";
 const char ATTRIBUTE_KEY[]   = "key";
 const char ATTRIBUTE_VALUE[] = "value";
 const char TEXT[]            = "text";
@@ -23,7 +25,7 @@ int main()
   xmlInitParser();
   LIBXML_TEST_VERSION
 
-  const xmlDocPtr document = xmlParseMemory(DATA, strlen(DATA));
+  const htmlDocPtr document = htmlParseDoc((const xmlChar*)DATA, NULL);
   assert(document != NULL);
 
   const xmlXPathContextPtr xpath_context = xmlXPathNewContext(document);
