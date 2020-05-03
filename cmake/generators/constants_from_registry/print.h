@@ -16,7 +16,7 @@
   fputs(string, stderr);    \
   fputc('\n', stderr);
 
-#define INITIALIZE_SPACERS() bool is_first_spacer = true;
+#define INITIALIZE_SPACERS(is_first) bool is_first_spacer = is_first;
 
 #define PRINT_SPACER()       \
   if (is_first_spacer) {     \

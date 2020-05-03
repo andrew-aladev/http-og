@@ -11,3 +11,6 @@ wget "https://www.iana.org/assignments/http-methods/http-methods.xml" \
 
 wget "https://www.iana.org/assignments/http-status-codes/http-status-codes.xml" \
   -O "http-status-codes.xml"
+
+wget "https://www.iana.org/assignments/http-warn-codes/http-warn-codes.xml" \
+  -O "http-warn-codes.xml"

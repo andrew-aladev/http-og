@@ -1,2 +1,4 @@
+set (PREFIX "TERMINATOR")
+
 include (GenerateConstants)
-generate_constants ("TERMINATOR")
+generate_constants (${PREFIX})

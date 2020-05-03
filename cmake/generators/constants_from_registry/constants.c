@@ -9,14 +9,14 @@
 
 #define PRINT_CONSTANT(constant) printf(CONSTANT_TEMPLATE, constant);
 
-int print_constants(const xmlNodeSetPtr nodes, int nodes_length)
+int print_constants(const xmlNodeSetPtr nodes, int nodes_length, bool is_first_file)
 {
   if (nodes_length <= 0) {
     PRINT_ERROR("can't find any constant");
     return 1;
   }
 
-  INITIALIZE_SPACERS();
+  INITIALIZE_SPACERS(is_first_file);
 
   for (int index = 0; index < nodes_length; index++) {
     const xmlNodePtr node = nodes->nodeTab[index];

@@ -1,4 +1,7 @@
-function (generate_constant_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
+function (generate_constant_processor PREFIX TARGET_PATH)
+  string (TOLOWER ${PREFIX} PREFIX_LOWER_CASE)
+  set (PREFIX_LOWER_CASE ${PREFIX_LOWER_CASE} PARENT_SCOPE)
+
   set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} constant processor")
 
   set (OUTPUT_CONSTANT_SYMBOLS "CMAKE_CONSTANT_SYMBOLS")

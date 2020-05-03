@@ -1,2 +1,4 @@
+set (PREFIX "STATUS_CODE_ANY")
+
 include (GenerateGeneric)
-generate_generic ("STATUS_CODE_ANY")
+generate_generic (${PREFIX})

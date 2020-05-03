@@ -1,2 +1,4 @@
+set (PREFIX "SEPARATOR")
+
 include (GenerateGeneric)
-generate_generic ("SEPARATOR")
+generate_generic (${PREFIX})

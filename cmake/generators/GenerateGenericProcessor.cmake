@@ -1,4 +1,7 @@
-function (generate_generic_processor PREFIX PREFIX_LOWER_CASE TARGET_PATH)
+function (generate_generic_processor PREFIX TARGET_PATH)
+  string (TOLOWER ${PREFIX} PREFIX_LOWER_CASE)
+  set (PREFIX_LOWER_CASE ${PREFIX_LOWER_CASE} PARENT_SCOPE)
+
   set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} generic processor")
 
   set (OUTPUT_MIN_LENGTH "CMAKE_MIN_LENGTH")

@@ -1,2 +1,4 @@
+set (PREFIX "URI_ANY")
+
 include (GenerateGeneric)
-generate_generic ("URI_ANY")
+generate_generic (${PREFIX})

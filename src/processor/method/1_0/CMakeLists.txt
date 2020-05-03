@@ -1,2 +1,4 @@
+set (PREFIX "METHOD_1_0")
+
 include (GenerateConstants)
-generate_constants ("METHOD_1_0")
+generate_constants (${PREFIX})

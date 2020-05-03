@@ -1,2 +1,4 @@
+set (PREFIX "VERSION_ANY")
+
 include (GenerateGeneric)
-generate_generic ("VERSION_ANY")
+generate_generic (${PREFIX})

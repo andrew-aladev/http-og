@@ -1,2 +1,4 @@
+set (PREFIX "METHOD_ANY")
+
 include (GenerateGeneric)
-generate_generic ("METHOD_ANY")
+generate_generic (${PREFIX})

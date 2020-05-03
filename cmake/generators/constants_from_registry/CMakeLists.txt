@@ -11,7 +11,7 @@ include_directories (${CMAKE_LIBXML2_INCLUDE_DIRS})
 add_executable (
   "main"
   "constants.c"
-  "file.c"
+  "files.c"
   "main.c"
 )
 target_link_libraries ("main" ${CMAKE_LIBXML2_LIBRARIES})

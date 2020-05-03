@@ -1,2 +1,4 @@
+set (PREFIX "METHOD_0_9")
+
 include (GenerateConstant)
-generate_constant ("METHOD_0_9")
+generate_constant (${PREFIX})

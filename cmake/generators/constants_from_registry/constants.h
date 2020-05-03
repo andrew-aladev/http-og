@@ -5,7 +5,8 @@
 #define CONSTANTS_H
 
 #include <libxml/xpath.h>
+#include <stdbool.h>
 
-int print_constants(const xmlNodeSetPtr nodes, int nodes_length);
+int print_constants(const xmlNodeSetPtr nodes, int nodes_length, bool is_first_file);
 
 #endif // CONSTANTS_H

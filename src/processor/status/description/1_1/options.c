@@ -71,6 +71,13 @@ const char* HOG_CONSTANTS[] = {
   "Insufficient Storage",
   "Loop Detected",
   "Not Extended",
-  "Network Authentication Required"};
+  "Network Authentication Required",
+  "Response is Stale",
+  "Revalidation Failed",
+  "Disconnected Operation",
+  "Heuristic Expiration",
+  "Miscellaneous Warning",
+  "Transformation Applied",
+  "Miscellaneous Persistent Warning"};
 
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

@@ -1,6 +1,8 @@
-function (generate_constants_from_registry FILE_PATH XPATH)
-  get_filename_component (REGISTRY_NAME ${FILE_PATH} NAME)
-  set (MESSAGE_PREFIX "constants from registry ${REGISTRY_NAME}, xpath ${XPATH}")
+function (generate_constants_from_registry PREFIX)
+  string (TOLOWER ${PREFIX} PREFIX_LOWER_CASE)
+  set (PREFIX_LOWER_CASE ${PREFIX_LOWER_CASE} PARENT_SCOPE)
+
+  set (MESSAGE_PREFIX "${PREFIX_LOWER_CASE} constants from registry")
 
   set (OUTPUT_CONSTANTS "CMAKE_CONSTANTS")
 
@@ -36,7 +38,7 @@ function (generate_constants_from_registry FILE_PATH XPATH)
 
     if (COMPILE_RESULT)
       execute_process (
-        COMMAND "${BINARY_DIR}/main" ${FILE_PATH} ${XPATH}
+        COMMAND "${BINARY_DIR}/main" ${ARGN}
         RESULT_VARIABLE RUN_RESULT
         OUTPUT_VARIABLE RUN_OUTPUT
         ERROR_VARIABLE RUN_ERRORS

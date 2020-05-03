@@ -71,6 +71,13 @@ const char* HOG_CONSTANTS[] = {
   "507",
   "508",
   "510",
-  "511"};
+  "511",
+  "110",
+  "111",
+  "112",
+  "113",
+  "199",
+  "214",
+  "299"};
 
 const size_t HOG_CONSTANTS_LENGTH = sizeof(HOG_CONSTANTS) / sizeof(HOG_CONSTANTS[0]);

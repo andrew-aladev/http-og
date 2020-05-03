@@ -1,2 +1,4 @@
+set (PREFIX "VERSION_1_1")
+
 include (GenerateConstant)
-generate_constant ("VERSION_1_1")
+generate_constant (${PREFIX})

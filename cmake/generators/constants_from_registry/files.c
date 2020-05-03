@@ -1,7 +1,7 @@
 // HTTP old generation (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
-#include "file.h"
+#include "files.h"
 
 #include <libxml/HTMLparser.h>
 #include <libxml/parser.h>
@@ -10,7 +10,7 @@
 #include "constants.h"
 #include "print.h"
 
-int process_file(const char* file_path, const char* xpath)
+static inline int process_file(const char* file_path, const char* xpath, bool is_first_file)
 {
   xmlInitParser();
   LIBXML_TEST_VERSION
@@ -39,10 +39,9 @@ int process_file(const char* file_path, const char* xpath)
     return 3;
   }
 
-  const xmlNodeSetPtr nodes        = xpath_object->nodesetval;
-  int                 nodes_length = nodes->nodeNr;
+  const xmlNodeSetPtr nodes = xpath_object->nodesetval;
 
-  int result = print_constants(nodes, nodes_length);
+  int result = print_constants(nodes, nodes->nodeNr, is_first_file);
 
   xmlXPathFreeObject(xpath_object);
   xmlXPathFreeContext(xpath_context);
@@ -51,6 +50,20 @@ int process_file(const char* file_path, const char* xpath)
 
   if (result != 0) {
     return 4;
+  }
+
+  return 0;
+}
+
+int process_files(const char** file_datas, size_t file_datas_length)
+{
+  int result;
+
+  for (size_t index = 0; index + 1 < file_datas_length; index += 2) {
+    result = process_file(file_datas[index], file_datas[index + 1], index == 0);
+    if (result != 0) {
+      return result;
+    }
   }
 
   return 0;
