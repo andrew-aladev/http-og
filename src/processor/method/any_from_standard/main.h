@@ -4,7 +4,7 @@
 // This file was generated, do not edit manually.
 
 // It may not be possible to run generator while cross compiling.
-// So generated file should be shipped with its template.
+// So generated file should be distributed with its template.
 
 #if !defined(HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_H)
 #define HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_H

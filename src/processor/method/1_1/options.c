@@ -5,7 +5,7 @@
 // This file is intended to be used by generator only.
 
 // It may not be possible to run generator while cross compiling.
-// So generated file should be shipped with its template.
+// So generated file should be distributed with its template.
 
 #include "options.h"
 
