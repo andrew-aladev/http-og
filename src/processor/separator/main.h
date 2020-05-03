@@ -10,15 +10,14 @@
 #define HOG_PROCESSOR_SEPARATOR_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "../../common.h"
 #include "../../log.h"
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_SEPARATOR_INITIAL_STATE;
 
-extern const size_t HOG_PROCESSOR_SEPARATOR_MIN_LENGTH;
-extern const size_t HOG_PROCESSOR_SEPARATOR_MAX_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_SEPARATOR_MIN_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_SEPARATOR_MAX_LENGTH;
 
 extern const bool HOG_PROCESSOR_SEPARATOR_ALLOWED_BYTES[];
 

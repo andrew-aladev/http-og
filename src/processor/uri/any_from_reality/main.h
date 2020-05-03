@@ -10,15 +10,14 @@
 #define HOG_PROCESSOR_URI_ANY_FROM_REALITY_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "../../../common.h"
 #include "../../../log.h"
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_URI_ANY_FROM_REALITY_INITIAL_STATE;
 
-extern const size_t HOG_PROCESSOR_URI_ANY_FROM_REALITY_MIN_LENGTH;
-extern const size_t HOG_PROCESSOR_URI_ANY_FROM_REALITY_MAX_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_URI_ANY_FROM_REALITY_MIN_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_URI_ANY_FROM_REALITY_MAX_LENGTH;
 
 extern const bool HOG_PROCESSOR_URI_ANY_FROM_REALITY_ALLOWED_BYTES[];
 

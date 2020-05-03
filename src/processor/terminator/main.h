@@ -10,21 +10,21 @@
 #define HOG_PROCESSOR_TERMINATOR_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "../../common.h"
 #include "../../log.h"
 
-typedef uint8_t hog_processor_terminator_state_t;
-
 extern const hog_processor_state_fast_t HOG_PROCESSOR_TERMINATOR_INITIAL_STATE;
 
-extern const size_t HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH;
-extern const size_t HOG_PROCESSOR_TERMINATOR_ALPHABET_LENGTH;
-extern const size_t HOG_PROCESSOR_TERMINATOR_ALPHABET_MAX_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_TERMINATOR_CONSTANTS_LENGTH;
+
+extern const uint_fast16_t HOG_PROCESSOR_TERMINATOR_ALPHABET_LENGTH;
+extern const uint_fast16_t HOG_PROCESSOR_TERMINATOR_ALPHABET_MAX_LENGTH;
 
 extern const hog_symbol_fast_t HOG_PROCESSOR_TERMINATOR_UNDEFINED_SYMBOL;
 extern const hog_symbol_t      HOG_PROCESSOR_TERMINATOR_SYMBOL_BY_BYTES[];
+
+typedef uint8_t hog_processor_terminator_state_t;
 
 extern const hog_processor_terminator_state_t HOG_PROCESSOR_TERMINATOR_NEXT_STATE_BY_LAST_SYMBOLS[];
 

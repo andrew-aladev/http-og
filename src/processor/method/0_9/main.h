@@ -10,15 +10,14 @@
 #define HOG_PROCESSOR_METHOD_0_9_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "../../../common.h"
 #include "../../../log.h"
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_0_9_INITIAL_STATE;
 
-extern const hog_symbol_t HOG_PROCESSOR_METHOD_0_9_CONSTANT_SYMBOLS[];
-extern const size_t       HOG_PROCESSOR_METHOD_0_9_CONSTANT_LENGTH;
+extern const hog_symbol_t               HOG_PROCESSOR_METHOD_0_9_CONSTANT_SYMBOLS[];
+extern const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_0_9_CONSTANT_LENGTH;
 
 inline hog_processor_state_fast_t hog_processor_method_0_9_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)

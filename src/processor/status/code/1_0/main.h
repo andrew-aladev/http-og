@@ -10,21 +10,21 @@
 #define HOG_PROCESSOR_STATUS_CODE_1_0_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "../../../../common.h"
 #include "../../../../log.h"
 
-typedef uint8_t hog_processor_status_code_1_0_state_t;
-
 extern const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_CODE_1_0_INITIAL_STATE;
 
-extern const size_t HOG_PROCESSOR_STATUS_CODE_1_0_CONSTANTS_LENGTH;
-extern const size_t HOG_PROCESSOR_STATUS_CODE_1_0_ALPHABET_LENGTH;
-extern const size_t HOG_PROCESSOR_STATUS_CODE_1_0_ALPHABET_MAX_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_CODE_1_0_CONSTANTS_LENGTH;
+
+extern const uint_fast16_t HOG_PROCESSOR_STATUS_CODE_1_0_ALPHABET_LENGTH;
+extern const uint_fast16_t HOG_PROCESSOR_STATUS_CODE_1_0_ALPHABET_MAX_LENGTH;
 
 extern const hog_symbol_fast_t HOG_PROCESSOR_STATUS_CODE_1_0_UNDEFINED_SYMBOL;
 extern const hog_symbol_t      HOG_PROCESSOR_STATUS_CODE_1_0_SYMBOL_BY_BYTES[];
+
+typedef uint8_t hog_processor_status_code_1_0_state_t;
 
 extern const hog_processor_status_code_1_0_state_t HOG_PROCESSOR_STATUS_CODE_1_0_NEXT_STATE_BY_LAST_SYMBOLS[];
 

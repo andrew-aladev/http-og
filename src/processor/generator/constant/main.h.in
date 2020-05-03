@@ -10,15 +10,14 @@
 #define HOG_PROCESSOR_@PREFIX@_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "@RELATIVE_SOURCE_PATH@common.h"
 #include "@RELATIVE_SOURCE_PATH@log.h"
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE;
 
-extern const hog_symbol_t HOG_PROCESSOR_@PREFIX@_CONSTANT_SYMBOLS[];
-extern const size_t       HOG_PROCESSOR_@PREFIX@_CONSTANT_LENGTH;
+extern const hog_symbol_t               HOG_PROCESSOR_@PREFIX@_CONSTANT_SYMBOLS[];
+extern const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_CONSTANT_LENGTH;
 
 inline hog_processor_state_fast_t hog_processor_@PREFIX_LOWER_CASE@_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte)

@@ -10,21 +10,21 @@
 #define HOG_PROCESSOR_@PREFIX@_H
 
 #include <stdbool.h>
-#include <stdlib.h>
 
 #include "@RELATIVE_SOURCE_PATH@common.h"
 #include "@RELATIVE_SOURCE_PATH@log.h"
 
-typedef uint@CMAKE_MIN_STATE_BITS@_t hog_processor_@PREFIX_LOWER_CASE@_state_t;
-
 extern const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_INITIAL_STATE;
 
-extern const size_t HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH;
-extern const size_t HOG_PROCESSOR_@PREFIX@_ALPHABET_LENGTH;
-extern const size_t HOG_PROCESSOR_@PREFIX@_ALPHABET_MAX_LENGTH;
+extern const hog_processor_state_fast_t HOG_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH;
+
+extern const uint_fast16_t HOG_PROCESSOR_@PREFIX@_ALPHABET_LENGTH;
+extern const uint_fast16_t HOG_PROCESSOR_@PREFIX@_ALPHABET_MAX_LENGTH;
 
 extern const hog_symbol_fast_t HOG_PROCESSOR_@PREFIX@_UNDEFINED_SYMBOL;
 extern const hog_symbol_t      HOG_PROCESSOR_@PREFIX@_SYMBOL_BY_BYTES[];
+
+typedef uint@CMAKE_MIN_STATE_BITS@_t hog_processor_@PREFIX_LOWER_CASE@_state_t;
 
 extern const hog_processor_@PREFIX_LOWER_CASE@_state_t HOG_PROCESSOR_@PREFIX@_NEXT_STATE_BY_LAST_SYMBOLS[];
 

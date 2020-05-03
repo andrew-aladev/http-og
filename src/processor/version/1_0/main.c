@@ -15,7 +15,7 @@ const hog_symbol_t HOG_PROCESSOR_VERSION_1_0_CONSTANT_SYMBOLS[] = {
   0x2e,
   0x30};
 
-const size_t HOG_PROCESSOR_VERSION_1_0_CONSTANT_LENGTH = 3;
+const hog_processor_state_fast_t HOG_PROCESSOR_VERSION_1_0_CONSTANT_LENGTH = 3;
 
 extern inline hog_processor_state_fast_t hog_processor_version_1_0_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
