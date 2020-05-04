@@ -16,5 +16,5 @@ const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]
 
 const hog_alphabet_mode_t HOG_ALPHABET_MODE = HOG_ALPHABET_INCLUDING_BYTES_INTO_RANGES;
 
-const size_t HOG_MIN_LENGTH = 1;
-const size_t HOG_MAX_LENGTH = UINT8_MAX;
+const size_t HOG_MIN_LENGTH = 3;
+const size_t HOG_MAX_LENGTH = 3;

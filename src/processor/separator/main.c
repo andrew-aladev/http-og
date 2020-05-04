@@ -20,7 +20,10 @@ const hog_processor_state_fast_t HOG_PROCESSOR_SEPARATOR_MAX_LENGTH = 65535;
 const bool HOG_PROCESSOR_SEPARATOR_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
   [32] = true,
-  [9] = true};
+  [9] = true,
+  [11] = true,
+  [12] = true,
+  [13] = true};
 
 // clang-format on
 

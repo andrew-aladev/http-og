@@ -9,10 +9,11 @@
 
 #include "options.h"
 
-// HTTP Status Codes https://www.iana.org/assignments/http-status-codes/http-status-codes.xml
-// HTTP Warn Codes https://www.iana.org/assignments/http-warn-codes/http-warn-codes.xml
+// RFC 7230 - 3.1.2 Status Line.
+// RFC 7230 - 3.2.6 Field Value Components.
+// RFC 7230 - 3.5 Message Parsing Robustness.
 
-const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{'a', 'z'}, {'A', 'Z'}, {'0', '9'}};
+const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{'\x21', '\x7e'}, {'\x80', '\xff'}};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
 const char   HOG_ALPHABET[]      = {' ', '\t'};
