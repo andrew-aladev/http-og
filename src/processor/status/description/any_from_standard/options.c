@@ -9,6 +9,9 @@
 
 #include "options.h"
 
+// RFC 1945 - 6.1 Status-Line.
+// RFC 1945 - 6.1.1 Status Code and Reason Phrase.
+// RFC 1945 - B Tolerant Applications.
 // RFC 7230 - 3.1.2 Status Line.
 // RFC 7230 - 3.2.6 Field Value Components.
 // RFC 7230 - 3.5 Message Parsing Robustness.

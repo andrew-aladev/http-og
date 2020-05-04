@@ -5,6 +5,7 @@
 
 #include "options.h"
 
+// RFC 1945 - B Tolerant Applications.
 // RFC 7230 - 3.5 Message Parsing Robustness.
 
 const char*  HOG_CONSTANTS[]      = {"\n", "\r\n"};

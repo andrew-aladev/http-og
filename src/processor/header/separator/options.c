@@ -5,16 +5,16 @@
 
 #include "options.h"
 
-// RFC 1945 - B Tolerant Applications.
-// RFC 7230 - 3.5 Message Parsing Robustness.
+// RFC 1945 - 4.2 Message Headers.
+// RFC 7230 - 3.2 Header Fields.
 
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {0};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = 0;
 
-const char   HOG_ALPHABET[]      = {' ', '\t', '\v', '\f', '\r'};
+const char   HOG_ALPHABET[]      = {':'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
 const hog_alphabet_mode_t HOG_ALPHABET_MODE = HOG_ALPHABET_INCLUDING_BYTES_INTO_RANGES;
 
 const size_t HOG_MIN_LENGTH = 1;
-const size_t HOG_MAX_LENGTH = UINT16_MAX;
+const size_t HOG_MAX_LENGTH = 1;

@@ -7,9 +7,10 @@
 
 #include <limits.h>
 
-// Any bytes except terminators, separators are possible.
-
+// RFC 1945 - B Tolerant Applications.
 // RFC 7230 - 3.5 Message Parsing Robustness.
+
+// Any bytes except terminators, separators are possible.
 
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{CHAR_MIN, CHAR_MAX}};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);

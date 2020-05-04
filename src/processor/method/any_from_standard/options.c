@@ -9,6 +9,8 @@
 
 #include "options.h"
 
+// RFC 1945 - 5.1 Request-Line.
+// RFC 1945 - 2.2 Basic Rules.
 // RFC 7230 - 3.1.1 Request Line.
 // RFC 7230 - 3.2.6 Field Value Components.
 

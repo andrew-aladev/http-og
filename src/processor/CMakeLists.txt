@@ -1,5 +1,6 @@
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/generator")
 
+add_subdirectory ("header")
 add_subdirectory ("method")
 add_subdirectory ("separator")
 add_subdirectory ("status")
