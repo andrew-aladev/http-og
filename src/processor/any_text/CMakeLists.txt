@@ -1,4 +1,4 @@
-set (PREFIX "METHOD_ANY_FROM_STANDARD")
+set (PREFIX "ANY_TEXT")
 
 include (GenerateGeneric)
 generate_generic (${PREFIX})

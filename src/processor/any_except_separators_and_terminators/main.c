@@ -8,16 +8,16 @@
 
 #include "main.h"
 
-const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_INITIAL_STATE = 0;
+const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_INITIAL_STATE = 0;
 
-const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_MIN_LENGTH = 1;
-const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_MAX_LENGTH = 65535;
+const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_MIN_LENGTH = 1;
+const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_MAX_LENGTH = 65535;
 
 #define ALLOWED_BYTES_LENGTH HOG_MAX_SYMBOL + 1
 
 // clang-format off
 
-const bool HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
+const bool HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
   [128] = true,
   [129] = true,
@@ -156,9 +156,6 @@ const bool HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENG
   [6] = true,
   [7] = true,
   [8] = true,
-  [9] = true,
-  [11] = true,
-  [12] = true,
   [14] = true,
   [15] = true,
   [16] = true,
@@ -177,7 +174,6 @@ const bool HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENG
   [29] = true,
   [30] = true,
   [31] = true,
-  [32] = true,
   [33] = true,
   [34] = true,
   [35] = true,
@@ -276,7 +272,7 @@ const bool HOG_PROCESSOR_STATUS_DESCRIPTION_ANY_ALLOWED_BYTES[ALLOWED_BYTES_LENG
 
 // clang-format on
 
-extern inline hog_processor_state_fast_t hog_processor_status_description_any_get_next_state(
+extern inline hog_processor_state_fast_t hog_processor_any_except_separators_and_terminators_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_status_description_any_is_valid(hog_processor_state_fast_t state);
+extern inline bool hog_processor_any_except_separators_and_terminators_is_valid(hog_processor_state_fast_t state);

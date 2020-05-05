@@ -10,9 +10,7 @@
 #include "options.h"
 
 // RFC 1945 - 6.1 Status-Line.
-// RFC 1945 - B Tolerant Applications.
 // RFC 7230 - 3.1.2 Status Line.
-// RFC 7230 - 3.5 Message Parsing Robustness.
 
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{'0', '9'}};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);

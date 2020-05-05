@@ -1,4 +1,4 @@
-set (PREFIX "URI_ANY")
+set (PREFIX "ANY_TOKEN")
 
 include (GenerateGeneric)
 generate_generic (${PREFIX})

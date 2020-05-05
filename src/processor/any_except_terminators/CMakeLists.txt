@@ -1,4 +1,4 @@
-set (PREFIX "STATUS_DESCRIPTION_ANY_FROM_STANDARD")
+set (PREFIX "ANY_EXCEPT_TERMINATORS")
 
 include (GenerateGeneric)
 generate_generic (${PREFIX})

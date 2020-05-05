@@ -8,16 +8,16 @@
 
 #include "main.h"
 
-const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_INITIAL_STATE = 0;
+const hog_processor_state_fast_t HOG_PROCESSOR_ANY_TOKEN_INITIAL_STATE = 0;
 
-const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_MIN_LENGTH = 1;
-const hog_processor_state_fast_t HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_MAX_LENGTH = 65535;
+const hog_processor_state_fast_t HOG_PROCESSOR_ANY_TOKEN_MIN_LENGTH = 1;
+const hog_processor_state_fast_t HOG_PROCESSOR_ANY_TOKEN_MAX_LENGTH = 65535;
 
 #define ALLOWED_BYTES_LENGTH HOG_MAX_SYMBOL + 1
 
 // clang-format off
 
-const bool HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
+const bool HOG_PROCESSOR_ANY_TOKEN_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
   [33] = true,
   [35] = true,
@@ -99,7 +99,7 @@ const bool HOG_PROCESSOR_METHOD_ANY_FROM_STANDARD_ALLOWED_BYTES[ALLOWED_BYTES_LE
 
 // clang-format on
 
-extern inline hog_processor_state_fast_t hog_processor_method_any_from_standard_get_next_state(
+extern inline hog_processor_state_fast_t hog_processor_any_token_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_method_any_from_standard_is_valid(hog_processor_state_fast_t state);
+extern inline bool hog_processor_any_token_is_valid(hog_processor_state_fast_t state);

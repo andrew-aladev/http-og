@@ -10,13 +10,10 @@
 // RFC 1945 - B Tolerant Applications.
 // RFC 7230 - 3.5 Message Parsing Robustness.
 
-// Version should be a part of both request and response status lines.
-// So we can use any bytes except separators or terminators.
-
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{CHAR_MIN, CHAR_MAX}};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
 
-const char   HOG_ALPHABET[]      = {' ', '\t', '\v', '\f', '\r', '\n'};
+const char   HOG_ALPHABET[]      = {'\r', '\n'};
 const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
 
 const hog_alphabet_mode_t HOG_ALPHABET_MODE = HOG_ALPHABET_EXCLUDING_BYTES_FROM_RANGES;

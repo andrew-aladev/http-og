@@ -9,12 +9,8 @@
 
 #include "options.h"
 
-// RFC 1945 - 6.1 Status-Line.
-// RFC 1945 - 6.1.1 Status Code and Reason Phrase.
-// RFC 1945 - B Tolerant Applications.
-// RFC 7230 - 3.1.2 Status Line.
-// RFC 7230 - 3.2.6 Field Value Components.
-// RFC 7230 - 3.5 Message Parsing Robustness.
+// RFC 1945 - 2.2 Basic Rules.
+// RFC 7230 - Appendix B. Collected ABNF.
 
 const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {{'\x21', '\x7e'}, {'\x80', '\xff'}};
 const size_t               HOG_ALPHABET_RANGES_LENGTH = sizeof(HOG_ALPHABET_RANGES) / sizeof(HOG_ALPHABET_RANGES[0]);
