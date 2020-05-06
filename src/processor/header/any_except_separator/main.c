@@ -8,16 +8,16 @@
 
 #include "main.h"
 
-const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_INITIAL_STATE = 0;
+const hog_processor_state_fast_t HOG_PROCESSOR_HEADER_ANY_EXCEPT_TERMINATOR_INITIAL_STATE = 0;
 
-const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_MIN_LENGTH = 1;
-const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_MAX_LENGTH = 65535;
+const hog_processor_state_fast_t HOG_PROCESSOR_HEADER_ANY_EXCEPT_TERMINATOR_MIN_LENGTH = 1;
+const hog_processor_state_fast_t HOG_PROCESSOR_HEADER_ANY_EXCEPT_TERMINATOR_MAX_LENGTH = 65535;
 
 #define ALLOWED_BYTES_LENGTH HOG_MAX_SYMBOL + 1
 
 // clang-format off
 
-const bool HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
+const bool HOG_PROCESSOR_HEADER_ANY_EXCEPT_TERMINATOR_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
   [128] = true,
   [129] = true,
@@ -156,6 +156,11 @@ const bool HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_ALLOWED_BYTES[ALL
   [6] = true,
   [7] = true,
   [8] = true,
+  [9] = true,
+  [10] = true,
+  [11] = true,
+  [12] = true,
+  [13] = true,
   [14] = true,
   [15] = true,
   [16] = true,
@@ -174,6 +179,7 @@ const bool HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_ALLOWED_BYTES[ALL
   [29] = true,
   [30] = true,
   [31] = true,
+  [32] = true,
   [33] = true,
   [34] = true,
   [35] = true,
@@ -199,7 +205,6 @@ const bool HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_ALLOWED_BYTES[ALL
   [55] = true,
   [56] = true,
   [57] = true,
-  [58] = true,
   [59] = true,
   [60] = true,
   [61] = true,
@@ -272,7 +277,7 @@ const bool HOG_PROCESSOR_ANY_EXCEPT_SEPARATORS_AND_TERMINATORS_ALLOWED_BYTES[ALL
 
 // clang-format on
 
-extern inline hog_processor_state_fast_t hog_processor_any_except_separators_and_terminators_get_next_state(
+extern inline hog_processor_state_fast_t hog_processor_header_any_except_terminator_get_next_state(
   hog_processor_state_fast_t state, hog_symbol_fast_t byte);
 
-extern inline bool hog_processor_any_except_separators_and_terminators_is_valid(hog_processor_state_fast_t state);
+extern inline bool hog_processor_header_any_except_terminator_is_valid(hog_processor_state_fast_t state);

@@ -11,8 +11,8 @@
 
 #include <stdbool.h>
 
-#include "../../common.h"
-#include "../../log.h"
+#include "../../../common.h"
+#include "../../../log.h"
 
 extern const hog_processor_state_fast_t HOG_PROCESSOR_HEADER_SEPARATOR_INITIAL_STATE;
 
