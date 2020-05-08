@@ -1,4 +1,4 @@
-set (PREFIX "HEADER_ANY_EXCEPT_TERMINATOR")
+set (PREFIX "ANY_VISIBLE_TEXT_EXCEPT_SEPARATOR")
 
 include (GenerateGeneric)
 generate_generic (${PREFIX})

@@ -1,0 +1,54 @@
+RFC 7230 declears the following rules for header value:
+
+header-field  = field-name ":" OWS field-value OWS
+field-value   = *( field-content / obs-fold )
+field-content = field-vchar [ 1*( SP / HTAB ) field-vchar ]
+field-vchar   = VCHAR / obs-text
+obs-fold      = CRLF 1*( SP / HTAB )
+
+RFC 7230 made header value folding deprecated, but we are going to support it anyway - we want full compatibility.
+
+Please look at the following example:
+
+Transfer-Encoding: gzip, compress,CRLF
+ chunked CRLF
+
+How to parse header value in streaming way?
+
+1. Received " " after ":".
+This whitespace can be ignored (leading OWS).
+We can use "separator" terminology for it.
+
+2. Received "gzip," after " ".
+This data is a part of header value.
+We can use "word" terminology for it.
+
+3. Received " " after "gzip,".
+We don't know whether this "separator" is a part of header value or trailing OWS.
+It is possible just not to read it from stream.
+We can maintain "source_offset" variable to store length of data that we can't read and request more data.
+So "source_offset" = 1.
+
+4. Received "compress," after " ".
+Now we can see that previous "separator" + "word" is a part of header value.
+Than we need to reset "source_offset" = 0.
+
+6. Received CRLF.
+Ignoring "terminator".
+
+7. Received " " after CRLF.
+This "separator" is the leading whitespace before header value continuation.
+It is a part of header value.
+
+8. Received "chunked" after " ".
+This "word" is a part of header value.
+
+9. Received " " after "chunked".
+We don't know whether this "separator" is a part of header value or trailing OWS.
+So "source_offset" = 1.
+
+10. Received CRLF.
+Ignoring previous "separator" (trailing OWS) and "terminator".
+Than we need to reset "source_offset" = 0.
+
+Result header value: "gzip, compress, chunked".
