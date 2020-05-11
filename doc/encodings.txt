@@ -1,0 +1,30 @@
+RFC 7230 declears the following exception for chunked encoding:
+
+3.3.1 Transfer-Encoding
+
+If any transfer coding other than chunked is applied to a request payload body, the sender
+MUST apply chunked as the final transfer coding to ensure that the message is properly framed.
+If any transfer coding other than chunked is applied to a response payload body, the sender MUST either
+apply chunked as the final transfer coding or terminate the message by closing the connection.
+
+3.3.3 Message Body Length
+
+If a Transfer-Encoding header field is present and the chunked transfer coding (Section 4.1) is the final encoding,
+the message body length is determined by reading and decoding the chunked data until the transfer coding indicates the data is complete.
+
+If a Transfer-Encoding header field is present in a response and the chunked transfer coding is not the final encoding,
+the message body length is determined by reading the connection until it is closed by the server.
+If a Transfer-Encoding header field is present in a request and the chunked transfer coding is not the final encoding,
+the message body length cannot be determined reliably; the server MUST respond with the 400 (Bad Request) status code and then close the connection.
+
+We can see that "chunked" can be used in any position (not only final) with other encodings in response.
+
+For example:
+Transfer-Encoding: compress, chunked
+Transfer-Encoding: chunked, compress
+
+But it is not possible to process "chunked" without processing previous encodings.
+It means that we need to keep all possible encoding processors (compress, gzip, etc) as project dependencies.
+
+But we want to create light project that user can use without additional dependencies.
+So it will be better to move "chunked" and other encodings into separate project.
