@@ -1,3 +1,4 @@
 [submodule "request-collector"]
 	path = request-collector
 	url = https://github.com/andrew-aladev/oghttp-request-collector.git
+	branch = master

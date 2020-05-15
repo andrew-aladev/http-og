@@ -10,4 +10,5 @@ git remote | xargs -n1 -I {} git rebase "{}/$(git branch --show-current)" || tru
 
 ./registry/update.sh
 
-git submodule update --init --recursive
+git submodule sync
+git submodule update --init --recursive --remote
