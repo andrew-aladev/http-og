@@ -44,7 +44,7 @@ const char HOG_ALPHABET[] = {
 
   // There are several symbols invalid for RFC 3986 but used often in real world.
   // These symbols are described as unsafe in old RFC 1738.
-  // See "scripts/request-collector" research.
+  // See "request-collector" research.
   '\\',
   '{',
   '}',
