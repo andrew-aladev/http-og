@@ -1,4 +1,4 @@
-// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Old generation HTTP (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 // This file was generated, do not edit manually.
@@ -8,21 +8,21 @@
 
 #include "main.h"
 
-const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_CONSTANTS_LENGTH = 15;
+const ogh_processor_state_fast_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_CONSTANTS_LENGTH = 15;
 
-const hog_processor_state_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_INITIAL_STATE = HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_CONSTANTS_LENGTH;
+const ogh_processor_state_fast_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_INITIAL_STATE = OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_CONSTANTS_LENGTH;
 
-const uint_fast16_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_LENGTH     = 39;
-const uint_fast16_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH = HOG_MAX_SYMBOL + 1;
+const uint_fast16_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_LENGTH     = 39;
+const uint_fast16_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH = OGH_MAX_SYMBOL + 1;
 
-const hog_symbol_fast_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_UNDEFINED_SYMBOL = HOG_MAX_SYMBOL;
+const ogh_symbol_fast_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_UNDEFINED_SYMBOL = OGH_MAX_SYMBOL;
 
-#define SYMBOL_BY_BYTES_LENGTH HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH
+#define SYMBOL_BY_BYTES_LENGTH OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_MAX_LENGTH
 
 // clang-format off
 
-const hog_symbol_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_SYMBOL_BY_BYTES[SYMBOL_BY_BYTES_LENGTH] = {
-  [0 ... SYMBOL_BY_BYTES_LENGTH - 1] = HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_UNDEFINED_SYMBOL,
+const ogh_symbol_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_SYMBOL_BY_BYTES[SYMBOL_BY_BYTES_LENGTH] = {
+  [0 ... SYMBOL_BY_BYTES_LENGTH - 1] = OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_UNDEFINED_SYMBOL,
   [79] = 0,
   [75] = 1,
   [67] = 2,
@@ -65,12 +65,12 @@ const hog_symbol_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_SYMBOL_BY_BYTES[SYMBOL_B
 
 // clang-format on
 
-#define NEXT_STATE_BY_LAST_SYMBOLS_LENGTH (175 + 1) * HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_LENGTH
+#define NEXT_STATE_BY_LAST_SYMBOLS_LENGTH (175 + 1) * OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_ALPHABET_LENGTH
 
 // clang-format off
 
-const hog_processor_status_description_1_0_state_t HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_NEXT_STATE_BY_LAST_SYMBOLS[NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
-  [0 ... NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = HOG_PROCESSOR_STATUS_DESCRIPTION_1_0_INITIAL_STATE,
+const ogh_processor_status_description_1_0_state_t OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_NEXT_STATE_BY_LAST_SYMBOLS[NEXT_STATE_BY_LAST_SYMBOLS_LENGTH] = {
+  [0 ... NEXT_STATE_BY_LAST_SYMBOLS_LENGTH - 1] = OGH_PROCESSOR_STATUS_DESCRIPTION_1_0_INITIAL_STATE,
   [585] = 16,
   [587] = 17,
   [596] = 31,
@@ -249,7 +249,7 @@ const hog_processor_status_description_1_0_state_t HOG_PROCESSOR_STATUS_DESCRIPT
 
 // clang-format on
 
-extern inline hog_processor_state_fast_t hog_processor_status_description_1_0_get_next_state(
-  hog_processor_state_fast_t state, hog_symbol_fast_t byte);
+extern inline ogh_processor_state_fast_t ogh_processor_status_description_1_0_get_next_state(
+  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
 
-extern inline bool hog_processor_status_description_1_0_is_valid(hog_processor_state_fast_t state);
+extern inline bool ogh_processor_status_description_1_0_is_valid(ogh_processor_state_fast_t state);

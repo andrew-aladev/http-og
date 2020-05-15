@@ -1,4 +1,4 @@
-// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Old generation HTTP (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 // This file was generated, do not edit manually.
@@ -8,16 +8,16 @@
 
 #include "main.h"
 
-const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_TERMINATOR_INITIAL_STATE = 0;
+const ogh_processor_state_fast_t OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_INITIAL_STATE = 0;
 
-const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_TERMINATOR_MIN_LENGTH = 1;
-const hog_processor_state_fast_t HOG_PROCESSOR_ANY_EXCEPT_TERMINATOR_MAX_LENGTH = 65535;
+const ogh_processor_state_fast_t OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_MIN_LENGTH = 1;
+const ogh_processor_state_fast_t OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_MAX_LENGTH = 65535;
 
-#define ALLOWED_BYTES_LENGTH HOG_MAX_SYMBOL + 1
+#define ALLOWED_BYTES_LENGTH OGH_MAX_SYMBOL + 1
 
 // clang-format off
 
-const bool HOG_PROCESSOR_ANY_EXCEPT_TERMINATOR_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
+const bool OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
   [0 ... ALLOWED_BYTES_LENGTH - 1] = false,
   [128] = true,
   [129] = true,
@@ -276,7 +276,7 @@ const bool HOG_PROCESSOR_ANY_EXCEPT_TERMINATOR_ALLOWED_BYTES[ALLOWED_BYTES_LENGT
 
 // clang-format on
 
-extern inline hog_processor_state_fast_t hog_processor_any_except_terminator_get_next_state(
-  hog_processor_state_fast_t state, hog_symbol_fast_t byte);
+extern inline ogh_processor_state_fast_t ogh_processor_any_except_terminator_get_next_state(
+  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
 
-extern inline bool hog_processor_any_except_terminator_is_valid(hog_processor_state_fast_t state);
+extern inline bool ogh_processor_any_except_terminator_is_valid(ogh_processor_state_fast_t state);

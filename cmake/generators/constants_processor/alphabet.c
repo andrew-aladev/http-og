@@ -1,4 +1,4 @@
-// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Old generation HTTP (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 #include "alphabet.h"
@@ -55,8 +55,8 @@ int init_alphabet(uint8_t** alphabet_ptr, uint8_t** symbol_by_bytes_ptr, size_t*
 
   *alphabet_length_ptr = 0;
 
-  for (index = 0; index < HOG_CONSTANTS_LENGTH; index++) {
-    const char* constant = HOG_CONSTANTS[index];
+  for (index = 0; index < OGH_CONSTANTS_LENGTH; index++) {
+    const char* constant = OGH_CONSTANTS[index];
 
     for (size_t jndex = 0; jndex < strlen(constant); jndex++) {
       uint8_t byte = constant[jndex];

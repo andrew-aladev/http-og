@@ -1,14 +1,14 @@
-// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Old generation HTTP (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 // This file is intended to be used by generator only.
 
-#if !defined(HOG_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H)
-#define HOG_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H
+#if !defined(OGH_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H)
+#define OGH_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H
 
 #include <stdlib.h>
 
-extern const char*  HOG_CONSTANTS[];
-extern const size_t HOG_CONSTANTS_LENGTH;
+extern const char*  OGH_CONSTANTS[];
+extern const size_t OGH_CONSTANTS_LENGTH;
 
-#endif // HOG_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H
+#endif // OGH_PROCESSOR_GENERATOR_CONSTANTS_OPTIONS_H

@@ -1,4 +1,4 @@
-// HTTP old generation (v0.9, v1.0, v1.1) C library.
+// Old generation HTTP (v0.9, v1.0, v1.1) C library.
 // Copyright (c) 2019 AUTHORS, MIT License.
 
 // This file is intended to be used by generator only.
@@ -8,13 +8,13 @@
 // RFC 1945 - 4.2 Message Headers.
 // RFC 7230 - 3.2 Header Fields.
 
-const hog_alphabet_range_t HOG_ALPHABET_RANGES[]      = {0};
-const size_t               HOG_ALPHABET_RANGES_LENGTH = 0;
+const ogh_alphabet_range_t OGH_ALPHABET_RANGES[]      = {0};
+const size_t               OGH_ALPHABET_RANGES_LENGTH = 0;
 
-const char   HOG_ALPHABET[]      = {':'};
-const size_t HOG_ALPHABET_LENGTH = sizeof(HOG_ALPHABET) / sizeof(HOG_ALPHABET[0]);
+const char   OGH_ALPHABET[]      = {':'};
+const size_t OGH_ALPHABET_LENGTH = sizeof(OGH_ALPHABET) / sizeof(OGH_ALPHABET[0]);
 
-const hog_alphabet_mode_t HOG_ALPHABET_MODE = HOG_ALPHABET_INCLUDING_BYTES_INTO_RANGES;
+const ogh_alphabet_mode_t OGH_ALPHABET_MODE = OGH_ALPHABET_INCLUDING_BYTES_INTO_RANGES;
 
-const size_t HOG_MIN_LENGTH = 1;
-const size_t HOG_MAX_LENGTH = 1;
+const size_t OGH_MIN_LENGTH = 1;
+const size_t OGH_MAX_LENGTH = 1;
