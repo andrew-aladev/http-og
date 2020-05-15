@@ -1,0 +1,3 @@
+[submodule "request-collector"]
+	path = request-collector
+	url = https://github.com/andrew-aladev/httpog-request-collector.git

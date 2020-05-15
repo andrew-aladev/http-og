@@ -9,3 +9,5 @@ git fetch --tags || true
 git remote | xargs -n1 -I {} git rebase "{}/$(git branch --show-current)" || true
 
 ./registry/update.sh
+
+git submodule update --init --recursive
