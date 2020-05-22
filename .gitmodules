@@ -2,3 +2,7 @@
 	path = request-collector
 	url = https://github.com/andrew-aladev/oghttp-request-collector.git
 	branch = master
+[submodule "cmake"]
+	path = cmake
+	url = https://github.com/andrew-aladev/oghttp-cmake.git
+	branch = master
