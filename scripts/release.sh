@@ -22,7 +22,8 @@ cd ".."
 
 # Packing source.
 
-NAME="oghttp"
+VERSION=$(grep "OGH_VERSION" "CMakeLists.txt" | sed "s/.*OGH_VERSION\s*['\"]\([0-9.]*\).*/\1/g")
+NAME="oghttp-${VERSION}"
 
 COMPRESSION_LEVEL="-9"
 TAR_COMMANDS=(
@@ -40,8 +41,8 @@ TAR_EXTENSIONS=(
 CURRENT_BRANCH="$(git branch --show-current)"
 
 for index in ${!TAR_COMMANDS[@]}; do
-  git archive --format="tar" "$CURRENT_BRANCH" | \
+  git archive "$CURRENT_BRANCH" --format="tar" | \
     ${TAR_COMMANDS[$index]} > "build/${NAME}.${TAR_EXTENSIONS[$index]}"
 done
 
-git archive --format="zip" "$CURRENT_BRANCH" $COMPRESSION_LEVEL -o "build/${NAME}.zip"
+git archive "$CURRENT_BRANCH" --format="zip" $COMPRESSION_LEVEL -o "build/${NAME}.zip"
