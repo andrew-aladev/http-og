@@ -21,14 +21,14 @@ if (NOT DEFINED OGH_TARGET)
   set (OGH_TARGET ${PROJECT_NAME})
 endif ()
 
-option (OGH_SHARED   "build shared libs" ON)
-option (OGH_STATIC   "build static libs" OFF)
-option (OGH_TESTS    "build tests"       ON)
-option (OGH_COVERAGE "enable coverage"   OFF)
-option (OGH_EXAMPLES "build examples"    OFF)
+option (OGH_SHARED   "build shared binaries" ON)
+option (OGH_STATIC   "build static binaries" OFF)
+option (OGH_TESTS    "build tests"           ON)
+option (OGH_COVERAGE "enable coverage"       OFF)
+option (OGH_EXAMPLES "build examples"        OFF)
 
 if (NOT OGH_SHARED AND NOT OGH_STATIC)
-  message (FATAL_ERROR "Please enable building of shared or static libraries.")
+  message (FATAL_ERROR "Please enable building of shared or static binaries.")
 endif ()
 
 set (
@@ -65,8 +65,8 @@ if (NOT DEFINED CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
   set (CMAKE_BUILD_TYPE "DEBUG")
 endif ()
 
-set (CMAKE_C_FLAGS_DEBUG         "-O0 -g" CACHE STRING "debug cflags" FORCE)
-set (CMAKE_C_FLAGS_RELEASE       "-O2"    CACHE STRING "release cflags" FORCE)
+set (CMAKE_C_FLAGS_DEBUG         "-O0 -g" CACHE STRING "debug cflags"         FORCE)
+set (CMAKE_C_FLAGS_RELEASE       "-O2"    CACHE STRING "release cflags"       FORCE)
 set (CMAKE_C_FLAGS_RELEASE_EMBED "-Os"    CACHE STRING "release embed cflags" FORCE)
 
 if (CMAKE_HAVE_IPO)

@@ -16,6 +16,7 @@
   fprintf(target, __VA_ARGS__);                                               \
   fputs("\n", target);
 
-#define OGH_LOG_ERROR(...) _OGH_LOG(stderr, __VA_ARGS__)
+#define OGH_LOG_ERROR(...) \
+  _OGH_LOG(stderr, __VA_ARGS__)
 
 #endif // OGH_LOG_H
