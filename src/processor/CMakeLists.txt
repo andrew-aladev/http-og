@@ -1,4 +1,4 @@
-list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/generator")
+list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/generator")
 
 add_subdirectory ("any_except_separator_and_terminator")
 add_subdirectory ("any_except_terminator")

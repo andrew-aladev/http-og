@@ -8,7 +8,7 @@ generate_constants_from_registry (
 )
 
 if (DEFINED CMAKE_CONSTANTS)
-  configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/options.c.in" "${CMAKE_CURRENT_SOURCE_DIR}/options.c")
+  configure_file ("options.c.in" "${CMAKE_CURRENT_SOURCE_DIR}/options.c")
 endif ()
 
 include (GenerateConstants)
