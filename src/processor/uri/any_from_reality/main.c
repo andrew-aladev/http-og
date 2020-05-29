@@ -117,6 +117,6 @@ const bool OGH_PROCESSOR_URI_ANY_FROM_REALITY_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH
 // clang-format on
 
 extern inline ogh_processor_state_fast_t ogh_processor_uri_any_from_reality_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
 
 extern inline bool ogh_processor_uri_any_from_reality_is_valid(ogh_processor_state_fast_t state);

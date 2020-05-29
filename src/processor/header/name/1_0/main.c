@@ -15,13 +15,13 @@ const ogh_processor_state_fast_t OGH_PROCESSOR_HEADER_NAME_1_0_INITIAL_STATE = O
 const uint_fast16_t OGH_PROCESSOR_HEADER_NAME_1_0_ALPHABET_LENGTH     = 37;
 const uint_fast16_t OGH_PROCESSOR_HEADER_NAME_1_0_ALPHABET_MAX_LENGTH = OGH_MAX_SYMBOL + 1;
 
-const ogh_symbol_fast_t OGH_PROCESSOR_HEADER_NAME_1_0_UNDEFINED_SYMBOL = OGH_MAX_SYMBOL;
+const ogh_byte_fast_t OGH_PROCESSOR_HEADER_NAME_1_0_UNDEFINED_SYMBOL = OGH_MAX_SYMBOL;
 
 #define SYMBOL_BY_BYTES_LENGTH OGH_PROCESSOR_HEADER_NAME_1_0_ALPHABET_MAX_LENGTH
 
 // clang-format off
 
-const ogh_symbol_t OGH_PROCESSOR_HEADER_NAME_1_0_SYMBOL_BY_BYTES[SYMBOL_BY_BYTES_LENGTH] = {
+const ogh_byte_t OGH_PROCESSOR_HEADER_NAME_1_0_SYMBOL_BY_BYTES[SYMBOL_BY_BYTES_LENGTH] = {
   [0 ... SYMBOL_BY_BYTES_LENGTH - 1] = OGH_PROCESSOR_HEADER_NAME_1_0_UNDEFINED_SYMBOL,
   [65] = 0,
   [108] = 1,
@@ -213,6 +213,6 @@ const ogh_processor_header_name_1_0_state_t OGH_PROCESSOR_HEADER_NAME_1_0_NEXT_S
 // clang-format on
 
 extern inline ogh_processor_state_fast_t ogh_processor_header_name_1_0_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
 
 extern inline bool ogh_processor_header_name_1_0_is_valid(ogh_processor_state_fast_t state);

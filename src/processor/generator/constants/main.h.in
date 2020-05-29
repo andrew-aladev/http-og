@@ -21,17 +21,17 @@ extern const ogh_processor_state_fast_t OGH_PROCESSOR_@PREFIX@_CONSTANTS_LENGTH;
 extern const uint_fast16_t OGH_PROCESSOR_@PREFIX@_ALPHABET_LENGTH;
 extern const uint_fast16_t OGH_PROCESSOR_@PREFIX@_ALPHABET_MAX_LENGTH;
 
-extern const ogh_symbol_fast_t OGH_PROCESSOR_@PREFIX@_UNDEFINED_SYMBOL;
-extern const ogh_symbol_t      OGH_PROCESSOR_@PREFIX@_SYMBOL_BY_BYTES[];
+extern const ogh_byte_fast_t OGH_PROCESSOR_@PREFIX@_UNDEFINED_SYMBOL;
+extern const ogh_byte_t      OGH_PROCESSOR_@PREFIX@_SYMBOL_BY_BYTES[];
 
 typedef uint@CMAKE_MIN_STATE_BITS@_t ogh_processor_@PREFIX_LOWER_CASE@_state_t;
 
 extern const ogh_processor_@PREFIX_LOWER_CASE@_state_t OGH_PROCESSOR_@PREFIX@_NEXT_STATE_BY_LAST_SYMBOLS[];
 
 inline ogh_processor_state_fast_t ogh_processor_@PREFIX_LOWER_CASE@_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte)
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
 {
-  ogh_symbol_fast_t symbol = OGH_PROCESSOR_@PREFIX@_SYMBOL_BY_BYTES[byte];
+  ogh_byte_fast_t symbol = OGH_PROCESSOR_@PREFIX@_SYMBOL_BY_BYTES[byte];
 
   // We need to verify symbol if alphabet is not full.
   if (OGH_PROCESSOR_@PREFIX@_ALPHABET_LENGTH != OGH_PROCESSOR_@PREFIX@_ALPHABET_MAX_LENGTH && symbol == OGH_PROCESSOR_@PREFIX@_UNDEFINED_SYMBOL) {

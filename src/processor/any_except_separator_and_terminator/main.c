@@ -273,6 +273,6 @@ const bool OGH_PROCESSOR_ANY_EXCEPT_SEPARATOR_AND_TERMINATOR_ALLOWED_BYTES[ALLOW
 // clang-format on
 
 extern inline ogh_processor_state_fast_t ogh_processor_any_except_separator_and_terminator_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
 
 extern inline bool ogh_processor_any_except_separator_and_terminator_is_valid(ogh_processor_state_fast_t state);

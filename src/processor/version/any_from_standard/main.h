@@ -22,7 +22,7 @@ extern const ogh_processor_state_fast_t OGH_PROCESSOR_VERSION_ANY_FROM_STANDARD_
 extern const bool OGH_PROCESSOR_VERSION_ANY_FROM_STANDARD_ALLOWED_BYTES[];
 
 inline ogh_processor_state_fast_t ogh_processor_version_any_from_standard_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte)
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
 {
   if (state == OGH_PROCESSOR_VERSION_ANY_FROM_STANDARD_MAX_LENGTH) {
     OGH_LOG_ERROR("version_any_from_standard processor exceeded max length");

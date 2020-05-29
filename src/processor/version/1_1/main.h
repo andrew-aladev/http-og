@@ -16,11 +16,11 @@
 
 extern const ogh_processor_state_fast_t OGH_PROCESSOR_VERSION_1_1_INITIAL_STATE;
 
-extern const ogh_symbol_t               OGH_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[];
+extern const ogh_byte_t                 OGH_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[];
 extern const ogh_processor_state_fast_t OGH_PROCESSOR_VERSION_1_1_CONSTANT_LENGTH;
 
 inline ogh_processor_state_fast_t ogh_processor_version_1_1_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte)
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
 {
   if (OGH_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[state] != byte) {
     OGH_LOG_ERROR("version_1_1 processor received invalid byte: %u", byte);

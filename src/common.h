@@ -17,8 +17,8 @@
 
 typedef uint_fast8_t ogh_result_t;
 
-typedef uint8_t      ogh_symbol_t;
-typedef uint_fast8_t ogh_symbol_fast_t;
+typedef uint8_t      ogh_byte_t;
+typedef uint_fast8_t ogh_byte_fast_t;
 
 // Unified fast processor state type.
 typedef uint_fast32_t ogh_processor_state_fast_t;

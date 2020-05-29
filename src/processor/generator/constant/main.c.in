@@ -10,12 +10,12 @@
 
 const ogh_processor_state_fast_t OGH_PROCESSOR_@PREFIX@_INITIAL_STATE = 0;
 
-const ogh_symbol_t OGH_PROCESSOR_@PREFIX@_CONSTANT_SYMBOLS[] = {
+const ogh_byte_t OGH_PROCESSOR_@PREFIX@_CONSTANT_SYMBOLS[] = {
 @CMAKE_CONSTANT_SYMBOLS@};
 
 const ogh_processor_state_fast_t OGH_PROCESSOR_@PREFIX@_CONSTANT_LENGTH = @CMAKE_CONSTANT_LENGTH@;
 
 extern inline ogh_processor_state_fast_t ogh_processor_@PREFIX_LOWER_CASE@_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
 
 extern inline bool ogh_processor_@PREFIX_LOWER_CASE@_is_valid(ogh_processor_state_fast_t state);

@@ -10,7 +10,7 @@
 
 const ogh_processor_state_fast_t OGH_PROCESSOR_VERSION_1_1_INITIAL_STATE = 0;
 
-const ogh_symbol_t OGH_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[] = {
+const ogh_byte_t OGH_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[] = {
   0x31,
   0x2e,
   0x31};
@@ -18,6 +18,6 @@ const ogh_symbol_t OGH_PROCESSOR_VERSION_1_1_CONSTANT_SYMBOLS[] = {
 const ogh_processor_state_fast_t OGH_PROCESSOR_VERSION_1_1_CONSTANT_LENGTH = 3;
 
 extern inline ogh_processor_state_fast_t ogh_processor_version_1_1_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
 
 extern inline bool ogh_processor_version_1_1_is_valid(ogh_processor_state_fast_t state);

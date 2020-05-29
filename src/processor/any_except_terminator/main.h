@@ -22,7 +22,7 @@ extern const ogh_processor_state_fast_t OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_MAX_
 extern const bool OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_ALLOWED_BYTES[];
 
 inline ogh_processor_state_fast_t ogh_processor_any_except_terminator_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte)
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
 {
   if (state == OGH_PROCESSOR_ANY_EXCEPT_TERMINATOR_MAX_LENGTH) {
     OGH_LOG_ERROR("any_except_terminator processor exceeded max length");

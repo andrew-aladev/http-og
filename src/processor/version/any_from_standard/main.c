@@ -34,6 +34,6 @@ const bool OGH_PROCESSOR_VERSION_ANY_FROM_STANDARD_ALLOWED_BYTES[ALLOWED_BYTES_L
 // clang-format on
 
 extern inline ogh_processor_state_fast_t ogh_processor_version_any_from_standard_get_next_state(
-  ogh_processor_state_fast_t state, ogh_symbol_fast_t byte);
+  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
 
 extern inline bool ogh_processor_version_any_from_standard_is_valid(ogh_processor_state_fast_t state);
