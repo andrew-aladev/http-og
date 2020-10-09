@@ -28,18 +28,21 @@ typedef uint8_t ogh_processor_status_code_1_1_state_t;
 
 extern const ogh_processor_status_code_1_1_state_t OGH_PROCESSOR_STATUS_CODE_1_1_NEXT_STATE_BY_LAST_SYMBOLS[];
 
-inline ogh_processor_state_fast_t ogh_processor_status_code_1_1_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
+inline ogh_processor_state_fast_t ogh_processor_status_code_1_1_get_next_state(ogh_processor_state_fast_t state,
+                                                                               ogh_byte_fast_t            byte)
 {
   ogh_byte_fast_t symbol = OGH_PROCESSOR_STATUS_CODE_1_1_SYMBOL_BY_BYTES[byte];
 
   // We need to verify symbol if alphabet is not full.
-  if (OGH_PROCESSOR_STATUS_CODE_1_1_ALPHABET_LENGTH != OGH_PROCESSOR_STATUS_CODE_1_1_ALPHABET_MAX_LENGTH && symbol == OGH_PROCESSOR_STATUS_CODE_1_1_UNDEFINED_SYMBOL) {
+  if (OGH_PROCESSOR_STATUS_CODE_1_1_ALPHABET_LENGTH != OGH_PROCESSOR_STATUS_CODE_1_1_ALPHABET_MAX_LENGTH &&
+      symbol == OGH_PROCESSOR_STATUS_CODE_1_1_UNDEFINED_SYMBOL) {
     OGH_LOG_ERROR("status_code_1_1 processor received invalid byte: %u", byte);
     return OGH_PROCESSOR_STATUS_CODE_1_1_INITIAL_STATE;
   }
 
-  return OGH_PROCESSOR_STATUS_CODE_1_1_NEXT_STATE_BY_LAST_SYMBOLS[state * OGH_PROCESSOR_STATUS_CODE_1_1_ALPHABET_LENGTH + symbol];
+  return OGH_PROCESSOR_STATUS_CODE_1_1_NEXT_STATE_BY_LAST_SYMBOLS[state *
+                                                                    OGH_PROCESSOR_STATUS_CODE_1_1_ALPHABET_LENGTH +
+                                                                  symbol];
 }
 
 inline bool ogh_processor_status_code_1_1_is_valid(ogh_processor_state_fast_t state)

@@ -40,7 +40,7 @@ const ogh_processor_terminator_state_t OGH_PROCESSOR_TERMINATOR_NEXT_STATE_BY_LA
 
 // clang-format on
 
-extern inline ogh_processor_state_fast_t ogh_processor_terminator_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
+extern inline ogh_processor_state_fast_t ogh_processor_terminator_get_next_state(ogh_processor_state_fast_t state,
+                                                                                 ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_terminator_is_valid(ogh_processor_state_fast_t state);

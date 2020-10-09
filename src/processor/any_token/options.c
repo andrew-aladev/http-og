@@ -15,24 +15,7 @@
 const ogh_alphabet_range_t OGH_ALPHABET_RANGES[]      = {{'\x21', '\x7e'}};
 const size_t               OGH_ALPHABET_RANGES_LENGTH = sizeof(OGH_ALPHABET_RANGES) / sizeof(OGH_ALPHABET_RANGES[0]);
 
-const char OGH_ALPHABET[] = {
-  '\"',
-  '(',
-  ')',
-  ',',
-  '/',
-  ':',
-  ';',
-  '<',
-  '=',
-  '>',
-  '?',
-  '@',
-  '[',
-  '\\',
-  ']',
-  '{',
-  '}'};
+const char   OGH_ALPHABET[] = {'\"', '(', ')', ',', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '{', '}'};
 const size_t OGH_ALPHABET_LENGTH = sizeof(OGH_ALPHABET) / sizeof(OGH_ALPHABET[0]);
 
 const ogh_alphabet_mode_t OGH_ALPHABET_MODE = OGH_ALPHABET_EXCLUDING_BYTES_FROM_RANGES;

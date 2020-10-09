@@ -7,21 +7,8 @@
 
 const char* OGH_CONSTANTS[] = {
   // RFC 1945 - 10 Header Field Definitions.
-  "Allow",
-  "Authorization",
-  "Content-Encoding",
-  "Content-Length",
-  "Content-Type",
-  "Date",
-  "Expires",
-  "From",
-  "If-Modified-Since",
-  "Last-Modified",
-  "Location",
-  "Pragma",
-  "Referer",
-  "Server",
-  "User-Agent",
-  "WWW-Authenticate"};
+  "Allow",   "Authorization", "Content-Encoding",  "Content-Length",  "Content-Type", "Date",
+  "Expires", "From",          "If-Modified-Since", "Last-Modified",   "Location",     "Pragma",
+  "Referer", "Server",        "User-Agent",        "WWW-Authenticate"};
 
 const size_t OGH_CONSTANTS_LENGTH = sizeof(OGH_CONSTANTS) / sizeof(OGH_CONSTANTS[0]);

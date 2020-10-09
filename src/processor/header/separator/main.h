@@ -21,8 +21,8 @@ extern const ogh_processor_state_fast_t OGH_PROCESSOR_HEADER_SEPARATOR_MAX_LENGT
 
 extern const bool OGH_PROCESSOR_HEADER_SEPARATOR_ALLOWED_BYTES[];
 
-inline ogh_processor_state_fast_t ogh_processor_header_separator_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
+inline ogh_processor_state_fast_t ogh_processor_header_separator_get_next_state(ogh_processor_state_fast_t state,
+                                                                                ogh_byte_fast_t            byte)
 {
   if (state == OGH_PROCESSOR_HEADER_SEPARATOR_MAX_LENGTH) {
     OGH_LOG_ERROR("header_separator processor exceeded max length");

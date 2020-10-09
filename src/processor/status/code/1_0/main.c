@@ -10,7 +10,8 @@
 
 const ogh_processor_state_fast_t OGH_PROCESSOR_STATUS_CODE_1_0_CONSTANTS_LENGTH = 15;
 
-const ogh_processor_state_fast_t OGH_PROCESSOR_STATUS_CODE_1_0_INITIAL_STATE = OGH_PROCESSOR_STATUS_CODE_1_0_CONSTANTS_LENGTH;
+const ogh_processor_state_fast_t OGH_PROCESSOR_STATUS_CODE_1_0_INITIAL_STATE =
+  OGH_PROCESSOR_STATUS_CODE_1_0_CONSTANTS_LENGTH;
 
 const uint_fast16_t OGH_PROCESSOR_STATUS_CODE_1_0_ALPHABET_LENGTH     = 6;
 const uint_fast16_t OGH_PROCESSOR_STATUS_CODE_1_0_ALPHABET_MAX_LENGTH = OGH_MAX_SYMBOL + 1;
@@ -67,7 +68,7 @@ const ogh_processor_status_code_1_0_state_t OGH_PROCESSOR_STATUS_CODE_1_0_NEXT_S
 
 // clang-format on
 
-extern inline ogh_processor_state_fast_t ogh_processor_status_code_1_0_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
+extern inline ogh_processor_state_fast_t ogh_processor_status_code_1_0_get_next_state(ogh_processor_state_fast_t state,
+                                                                                      ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_status_code_1_0_is_valid(ogh_processor_state_fast_t state);
