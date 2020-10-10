@@ -12,13 +12,32 @@ const size_t               OGH_ALPHABET_RANGES_LENGTH = sizeof(OGH_ALPHABET_RANG
 
 const char OGH_ALPHABET[] = {
   // RFC 3986 - 2.2 Reserved Characters.
-  ':', '/', '?', '#', '[', ']', '@',
+  ':',
+  '/',
+  '?',
+  '#',
+  '[',
+  ']',
+  '@',
 
   // RFC 3986 - 2.2 Reserved Characters.
-  '!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '=',
+  '!',
+  '$',
+  '&',
+  '\'',
+  '(',
+  ')',
+  '*',
+  '+',
+  ',',
+  ';',
+  '=',
 
   // RFC 3986 - 2.3 Unreserved Characters.
-  '-', '.', '_', '~',
+  '-',
+  '.',
+  '_',
+  '~',
 
   // RFC 3986 - 2.1 Percent-Encoding.
   '%'};

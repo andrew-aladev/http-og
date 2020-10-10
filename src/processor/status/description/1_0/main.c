@@ -251,6 +251,7 @@ const ogh_processor_status_description_1_0_state_t OGH_PROCESSOR_STATUS_DESCRIPT
 // clang-format on
 
 extern inline ogh_processor_state_fast_t ogh_processor_status_description_1_0_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_status_description_1_0_is_valid(ogh_processor_state_fast_t state);

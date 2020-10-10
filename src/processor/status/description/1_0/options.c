@@ -13,12 +13,21 @@ const char* OGH_CONSTANTS[] = {
   "No Content",
 
   // RFC 1945 - 9.3 Redirection 3xx.
-  "Multiple Choices", "Moved Permanently", "Moved Temporarily", "Not Modified",
+  "Multiple Choices",
+  "Moved Permanently",
+  "Moved Temporarily",
+  "Not Modified",
 
   // RFC 1945 - 9.4 Client Error 4xx.
-  "Bad Request", "Unauthorized", "Forbidden", "Not Found",
+  "Bad Request",
+  "Unauthorized",
+  "Forbidden",
+  "Not Found",
 
   // RFC 1945 - 9.5 Server Error 5xx.
-  "Internal Server Error", "Not Implemented", "Bad Gateway", "Service Unavailable"};
+  "Internal Server Error",
+  "Not Implemented",
+  "Bad Gateway",
+  "Service Unavailable"};
 
 const size_t OGH_CONSTANTS_LENGTH = sizeof(OGH_CONSTANTS) / sizeof(OGH_CONSTANTS[0]);

@@ -23,7 +23,8 @@ const bool OGH_PROCESSOR_HEADER_SEPARATOR_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = 
 
 // clang-format on
 
-extern inline ogh_processor_state_fast_t ogh_processor_header_separator_get_next_state(ogh_processor_state_fast_t state,
-                                                                                       ogh_byte_fast_t            byte);
+extern inline ogh_processor_state_fast_t ogh_processor_header_separator_get_next_state(
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_header_separator_is_valid(ogh_processor_state_fast_t state);

@@ -14,7 +14,8 @@ const ogh_byte_t OGH_PROCESSOR_VERSION_1_0_CONSTANT_SYMBOLS[] = {0x31, 0x2e, 0x3
 
 const ogh_processor_state_fast_t OGH_PROCESSOR_VERSION_1_0_CONSTANT_LENGTH = 3;
 
-extern inline ogh_processor_state_fast_t ogh_processor_version_1_0_get_next_state(ogh_processor_state_fast_t state,
-                                                                                  ogh_byte_fast_t            byte);
+extern inline ogh_processor_state_fast_t ogh_processor_version_1_0_get_next_state(
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_version_1_0_is_valid(ogh_processor_state_fast_t state);

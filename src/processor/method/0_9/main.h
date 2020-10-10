@@ -19,8 +19,9 @@ extern const ogh_processor_state_fast_t OGH_PROCESSOR_METHOD_0_9_INITIAL_STATE;
 extern const ogh_byte_t                 OGH_PROCESSOR_METHOD_0_9_CONSTANT_SYMBOLS[];
 extern const ogh_processor_state_fast_t OGH_PROCESSOR_METHOD_0_9_CONSTANT_LENGTH;
 
-inline ogh_processor_state_fast_t ogh_processor_method_0_9_get_next_state(ogh_processor_state_fast_t state,
-                                                                          ogh_byte_fast_t            byte)
+inline ogh_processor_state_fast_t ogh_processor_method_0_9_get_next_state(
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte)
 {
   if (OGH_PROCESSOR_METHOD_0_9_CONSTANT_SYMBOLS[state] != byte) {
     OGH_LOG_ERROR("method_0_9 processor received invalid byte: %u", byte);

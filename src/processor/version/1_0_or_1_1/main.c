@@ -44,6 +44,7 @@ const ogh_processor_version_1_0_or_1_1_state_t OGH_PROCESSOR_VERSION_1_0_OR_1_1_
 // clang-format on
 
 extern inline ogh_processor_state_fast_t ogh_processor_version_1_0_or_1_1_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte);
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_version_1_0_or_1_1_is_valid(ogh_processor_state_fast_t state);

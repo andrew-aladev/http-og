@@ -99,7 +99,8 @@ const bool OGH_PROCESSOR_ANY_TOKEN_ALLOWED_BYTES[ALLOWED_BYTES_LENGTH] = {
 
 // clang-format on
 
-extern inline ogh_processor_state_fast_t ogh_processor_any_token_get_next_state(ogh_processor_state_fast_t state,
-                                                                                ogh_byte_fast_t            byte);
+extern inline ogh_processor_state_fast_t ogh_processor_any_token_get_next_state(
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte);
 
 extern inline bool ogh_processor_any_token_is_valid(ogh_processor_state_fast_t state);

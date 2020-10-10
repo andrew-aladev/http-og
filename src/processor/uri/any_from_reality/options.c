@@ -12,13 +12,32 @@ const size_t               OGH_ALPHABET_RANGES_LENGTH = sizeof(OGH_ALPHABET_RANG
 
 const char OGH_ALPHABET[] = {
   // RFC 3986 - 2.2 Reserved Characters.
-  ':', '/', '?', '#', '[', ']', '@',
+  ':',
+  '/',
+  '?',
+  '#',
+  '[',
+  ']',
+  '@',
 
   // RFC 3986 - 2.2 Reserved Characters.
-  '!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '=',
+  '!',
+  '$',
+  '&',
+  '\'',
+  '(',
+  ')',
+  '*',
+  '+',
+  ',',
+  ';',
+  '=',
 
   // RFC 3986 - 2.3 Unreserved Characters.
-  '-', '.', '_', '~',
+  '-',
+  '.',
+  '_',
+  '~',
 
   // RFC 3986 - 2.1 Percent-Encoding.
   '%',
@@ -26,7 +45,15 @@ const char OGH_ALPHABET[] = {
   // There are several symbols invalid for RFC 3986 but used often in real world.
   // These symbols are described as unsafe in old RFC 1738.
   // See "request-collector" research.
-  '\\', '{', '}', '<', '>', '|', '`', '^', '"'};
+  '\\',
+  '{',
+  '}',
+  '<',
+  '>',
+  '|',
+  '`',
+  '^',
+  '"'};
 
 const size_t OGH_ALPHABET_LENGTH = sizeof(OGH_ALPHABET) / sizeof(OGH_ALPHABET[0]);
 

@@ -22,7 +22,8 @@ extern const ogh_processor_state_fast_t OGH_PROCESSOR_ANY_VISIBLE_TEXT_EXCEPT_SE
 extern const bool OGH_PROCESSOR_ANY_VISIBLE_TEXT_EXCEPT_SEPARATOR_ALLOWED_BYTES[];
 
 inline ogh_processor_state_fast_t ogh_processor_any_visible_text_except_separator_get_next_state(
-  ogh_processor_state_fast_t state, ogh_byte_fast_t byte)
+  ogh_processor_state_fast_t state,
+  ogh_byte_fast_t            byte)
 {
   if (state == OGH_PROCESSOR_ANY_VISIBLE_TEXT_EXCEPT_SEPARATOR_MAX_LENGTH) {
     OGH_LOG_ERROR("any_visible_text_except_separator processor exceeded max length");

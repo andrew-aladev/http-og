@@ -13,12 +13,21 @@ const char* OGH_CONSTANTS[] = {
   "204",
 
   // RFC 1945 - 9.3 Redirection 3xx.
-  "300", "301", "302", "304",
+  "300",
+  "301",
+  "302",
+  "304",
 
   // RFC 1945 - 9.4 Client Error 4xx.
-  "400", "401", "403", "404",
+  "400",
+  "401",
+  "403",
+  "404",
 
   // RFC 1945 - 9.5 Server Error 5xx.
-  "500", "501", "502", "503"};
+  "500",
+  "501",
+  "502",
+  "503"};
 
 const size_t OGH_CONSTANTS_LENGTH = sizeof(OGH_CONSTANTS) / sizeof(OGH_CONSTANTS[0]);
