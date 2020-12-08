@@ -8,7 +8,7 @@ cd "../build"
 
 # Packing binaries.
 
-find . \( -name "CMake*" -o -name "*.cmake" \) -depth -exec rm -rf {} +
+find . -depth \( -name "CMake*" -o -name "*.cmake" \) -exec rm -rf {} +
 
 cmake ".." -DCMAKE_BUILD_TYPE="RELEASE"
 make clean
